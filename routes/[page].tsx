@@ -6,12 +6,16 @@ function sanitizePath(path: string) {
   return path.replace(/[^a-z0-9@]*/g, '');
 }
 
+/**
+ * TODO: May want to cache it somehow in order to avoid reading the file on every request
+ */
 export const handler: Handlers = {
   async GET(req, ctx) {
     const path = 'pages/' + sanitizePath(ctx.params.page) + ".md";
     try {
+      const source = await Deno.readTextFile(path);
       return ctx.render({ 
-        path: await Deno.realPath(path)
+        source,
       })
     } catch (e) {
       return ctx.renderNotFound()
@@ -20,10 +24,9 @@ export const handler: Handlers = {
 };
 
 export default function MarkedPage(props: PageProps) {
-
   return (
     <Page>
-      <Marked path={props.data.path}/>
+      <Marked source={props.data.source}/>
     </Page>
   )
 }
