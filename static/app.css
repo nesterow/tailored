@@ -1,0 +1,131 @@
+body {
+    position: relative;
+    min-height: 100vh;
+    background-color: #fff;
+}
+#svg-hex {
+    fill: var(--main-color);
+    stroke: var(--stroke-color);
+    stroke-dasharray: 140 540;
+    stroke-dashoffset: -474;
+    stroke-width: 8px;
+ }
+#svg-hex:hover {
+    fill: var(--hover-color); animation: 0.5s draw linear forwards;
+}
+@keyframes draw {
+    0% {
+        stroke-dasharray: 140 540;
+        stroke-dashoffset: -474;
+        stroke-width: 8px;
+    }
+    100% {
+        stroke-dasharray: 760;
+        stroke-dashoffset: 0;
+        stroke-width: 2px;
+    }
+}
+
+a svg path[name='colors']{
+    display: none;
+    opacity: 0.6;
+}
+a:hover svg path[name='colors']{
+    display: block;
+    transition: all 0.5s ease-in-out;
+    animation: 0.2s draw linear forwards;
+    opacity: .2;
+    stroke-width: 1;
+}
+
+a[active] svg path[name='colors'], a:active svg path[name='colors']{
+    display: block;
+    animation: 0.2s draw linear forwards;
+}
+
+h1 {
+  white-space: nowrap;
+  overflow: hidden;
+    animation: animated-text 2s steps(29,end) 1s 1 normal both,
+    animated-cursor .5s steps(29,end) 4 normal both;
+}
+p.placeholder {
+    white-space: nowrap;
+    overflow: hidden;
+    animation: animated-cursor .5s steps(29,end) infinite;
+}
+
+@keyframes animated-text{
+    from{width: 0%;}
+    to{
+        animation: none;
+        width: 100%;
+    }
+  }
+  
+/* cursor animations */
+
+@keyframes animated-cursor{
+    from{
+        border-right-width: 3px;
+        border-right-color: rgba(0, 184, 0, 0.75);
+    }
+    to{
+        border-right-width: 3px;
+        border-right-color: transparent;
+    }
+}
+
+.apear {
+    opacity: 0;
+    animation: appear 2s ease-in-out forwards 1s;
+}
+.apear-shake {
+    opacity: 0;
+    animation: appear 2s ease-in-out forwards 1s, 
+               shake 15s infinite;
+    transform-origin: center;
+    animation-timing-function: ease-in-out;
+}
+.shake {
+    animation: shake 15s infinite;
+    transform-origin: center;
+    animation-timing-function: ease-in-out;
+}
+.slow-rotate {
+    animation: rotate 120s infinite;
+    transform-origin: center;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(1.5deg);
+    }
+    75% {
+        transform: rotate(-1.5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
