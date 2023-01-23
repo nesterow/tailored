@@ -2,13 +2,14 @@
 import {marked} from "https://cdn.jsdelivr.net/npm/marked@latest/lib/marked.esm.js";
 import {JSX} from "preact"
 
-export default function Marked(props: { source: string }): JSX.Element {
-  return (
-    <section
-      data-marked
-      dangerouslySetInnerHTML={{
-        __html: marked.parse(props.source),
-      }}
-    />
-  )
+export default function Marked(props: { path: string }): JSX.Element {
+    const source = Deno.readTextFileSync(props.path)
+    return (
+        <section
+        data-marked
+        dangerouslySetInnerHTML={{
+            __html: marked.parse(source),
+        }}
+        />
+    )
 }
