@@ -1,5 +1,5 @@
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
-import { renderMdPage } from "@/components/system/page.ts";
+import renderMd  from "@/components/system/renderMd.ts";
 
 /**
  * depends on i18n
@@ -11,7 +11,7 @@ export default async function MarkdownMiddleware(
   const path = ctx.state.i18nPath as string || new URL(req.url).pathname;
   if (/\.|api\//g.test(path)) return ctx.next();
   try {
-    const markdown = await renderMdPage(path);
+    const markdown = await renderMd(path);
     ctx.state.markdown = markdown;
   } catch (_e) {
     return ctx.next();
