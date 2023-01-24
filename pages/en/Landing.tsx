@@ -12,7 +12,10 @@ export default function Landing() {
         </a>
 
         <section class="text-center mt-12 flex flex-col w-full justify-center items-center">
-          <h1 class="text-2xl sm:text-3xl md:text-4xl text-blood font-thin mb-4">
+          <h1
+            data-type-effect
+            class="text-2xl sm:text-3xl md:text-4xl text-blood font-thin mb-4"
+          >
             Tailored Software Development
           </h1>
           <p class="apear font-thin mb-4 text-blue opacity-60">

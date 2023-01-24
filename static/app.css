@@ -43,7 +43,7 @@ a[active] svg path[name='colors'], a:active svg path[name='colors']{
     animation: 0.2s draw linear forwards;
 }
 
-h1 {
+h1[data-type-effect] {
   white-space: nowrap;
   overflow: hidden;
     animation: animated-text 2s steps(29,end) 1s 1 normal both,
