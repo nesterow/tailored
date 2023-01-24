@@ -1,4 +1,4 @@
-import Page from "../layouts/Page.tsx";
+import Page from "@/layouts/Page.tsx";
 
 export default function NotFoundPage() {
   return (

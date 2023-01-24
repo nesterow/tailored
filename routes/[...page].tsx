@@ -1,20 +1,17 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import Page from "../layouts/Page.tsx";
-import { renderMdPage } from "../system/page.ts";
+import Page from "@/layouts/Page.tsx";
 
 /**
  * This is a handler for a route that renders a markdown page.
  */
 export const handler: Handlers = {
-  async GET(req, ctx) {
-    try {
-      const source = await renderMdPage(ctx.params.page);
+  GET(_req, ctx) {
+    if (ctx.state.markdown) {
       return ctx.render({
-        source,
+        source: ctx.state.markdown,
       });
-    } catch (e) {
-      return ctx.renderNotFound();
     }
+    return ctx.renderNotFound();
   },
 };
 

@@ -1,7 +1,5 @@
 // deno-lint-ignore-file no-window-prefix
-import ColorfulLink, {
-  ColorfulLinkProps,
-} from "../components/ColorfulLink.tsx";
+import ColorfulLink, { ColorfulLinkProps } from "@/components/ColorfulLink.tsx";
 import { useEffect, useState } from "preact/hooks";
 
 /**

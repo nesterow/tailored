@@ -3,6 +3,9 @@ import { JSX } from "preact";
 
 declare module "preact" {
   namespace JSX {
+    interface IntrinsicAttributes {
+      lang?: string;
+    }
     interface SVGAttributes<SVGTextPathElement> {
       side?: "left" | "right";
     }

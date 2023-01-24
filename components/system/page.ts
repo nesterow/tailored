@@ -5,7 +5,7 @@ import { LRU } from "https://deno.land/x/lru@1.0.2/mod.ts";
 const cache = new LRU<string>(32);
 
 function sanitizePath(path: string) {
-  return path.replace(/[^a-z0-9@]*/g, "");
+  return path.replace(/[^a-z0-9@\/\-]*/g, "");
 }
 
 export async function renderMdPage(path: string): Promise<string> {

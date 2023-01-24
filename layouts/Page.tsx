@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import HelixAnimation from "../islands/HelixAnimation.tsx";
+import HelixAnimation from "@/islands/HelixAnimation.tsx";
 import Header from "./sections/Header.tsx";
 import Footer from "./sections/Footer.tsx";
 
