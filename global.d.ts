@@ -1,10 +1,10 @@
 // deno-lint-ignore-file no-unused-vars
-import { JSX } from "preact"
+import { JSX } from "preact";
 
 declare module "preact" {
-    namespace JSX {
-        interface SVGAttributes<SVGTextPathElement> {
-            side?: "left" | "right";
-        }
+  namespace JSX {
+    interface SVGAttributes<SVGTextPathElement> {
+      side?: "left" | "right";
     }
+  }
 }
