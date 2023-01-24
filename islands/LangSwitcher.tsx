@@ -12,23 +12,21 @@ export default function LangSwitcher(
   const wrapperRef = useRef<HTMLDivElement>(null);
   function toggle() {
     wrapperRef.current?.classList.toggle("h-0");
-    console.log(wrapperRef.current?.classList);
   }
   return (
     <div className={"relative h-0 " + className}>
       <a onClick={toggle} class="cursor-pointer">
-        {lang}
+        {lang.toLocaleUpperCase()}
       </a>
       <div
         ref={wrapperRef}
-        class="flex gap-1 flex-col absolute top-0 w-auto h-0 overflow-hidden transition bg-white "
+        class="flex flex-wrap gap-2 absolute top-0 h-0 w-[3.5rem] overflow-hidden transition bg-white "
       >
-        <a lang="en" href="/en">
-          EN
-        </a>
-        <a lang="ru" href="/ru">
-          RU
-        </a>
+        {languages.map((language) => (
+          <a class="text-blue hover:text-blood" lang="en" href={`/` + language}>
+            {language.toLocaleUpperCase()}
+          </a>
+        ))}
       </div>
     </div>
   );

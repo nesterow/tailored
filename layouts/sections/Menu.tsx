@@ -7,8 +7,8 @@ import LangSwitcher from "@/islands/LangSwitcher.tsx";
 export default function Menu() {
   const { lang } = useContext(RenderContext);
   return (
-    <section class="w-full flex justify-between px-4">
-      <LangSwitcher className="-mt-2" lang={lang} languages={[]} />
+    <section class="w-full flex justify-between px-6">
+      <div></div>
       <div class="flex gap-6">
         <I18n>
           <MenuLink lang="en" href="/en">
@@ -51,7 +51,11 @@ export default function Menu() {
           </MenuLink>
         </I18n>
       </div>
-      <>X</>
+      <LangSwitcher
+        className="-mt-2 mr-4"
+        lang={lang}
+        languages={["en", "ru", "es"]}
+      />
     </section>
   );
 }
