@@ -1,6 +1,6 @@
 import { useContext } from "preact/hooks";
 import { RenderContext } from "@/components/system/context.ts";
-import I18n from "@/components/system/i18n.tsx";
+import { I18n } from "@/components/system/i18n.tsx";
 import MenuLink from "@/islands/MenuLink.tsx";
 import LangSwitcher from "@/islands/LangSwitcher.tsx";
 

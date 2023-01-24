@@ -1,5 +1,5 @@
 import Page from "@/layouts/Page.tsx";
-import I18n from "@/components/system/i18n.tsx";
+import { I18n } from "@/components/system/i18n.tsx";
 
 import LandingEn from "./en/Landing.tsx";
 import LandingRu from "./ru/Landing.tsx";
