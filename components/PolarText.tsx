@@ -6,9 +6,9 @@ interface PolarTextProps {
   viewBox?: string;
 }
 /**
- * Yet another way to abuse CPU.
+ * Yet another way to abuse CPU. Don't use it, it was an experiment.
  * Render text on polar rings. Rotate the rings with different speeds.
- * At the moment awaiting for experimental features (side) to be implemented in browsers.
+ * Experimental feature (textPath[side]) to be implemented in browsers.
  * @param {PolarTextProps} props
  */
 export default function PolarText(props: PolarTextProps) {

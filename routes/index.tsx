@@ -22,7 +22,6 @@ export default function Index({ data }: PageProps) {
   return (
     <RenderContext.Provider
       value={{
-        theme: "light",
         lang: data.lang,
       }}
     >

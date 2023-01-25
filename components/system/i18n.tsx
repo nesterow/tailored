@@ -9,6 +9,7 @@ interface I18nProps {
 /**
  * A strategy.
  * Good for static components and pages that might have slightly different styles for different languages.
+ * It plays better when your app has heavy design and a lot of translations to different languages.
  */
 export function I18n(props: I18nProps) {
   const { lang } = useContext(RenderContext);
@@ -29,6 +30,7 @@ interface LcMessageProps {
 /**
  * A dictionary.
  * Good for short strings.
+ * TODO: if or when we build an app, we will need a utility to generate a dictionary in json or csv formats.
  */
 export function LcMessage({ children }: LcMessageProps) {
   const { lang, lc } = useContext(RenderContext);

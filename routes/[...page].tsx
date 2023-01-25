@@ -21,7 +21,6 @@ export default function MarkedPage(props: PageProps) {
   return (
     <RenderContext.Provider
       value={{
-        theme: "light",
         lang: props.data.lang,
       }}
     >

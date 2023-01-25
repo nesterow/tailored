@@ -9,8 +9,10 @@ import * as $2 from "./routes/_app.tsx";
 import * as $3 from "./routes/_middleware.ts";
 import * as $4 from "./routes/api/joke.ts";
 import * as $5 from "./routes/index.tsx";
-import * as $6 from "./routes/middleware/i18n.ts";
-import * as $7 from "./routes/middleware/markdown.ts";
+import * as $6 from "./routes/middleware/cookies.ts";
+import * as $7 from "./routes/middleware/i18n.ts";
+import * as $8 from "./routes/middleware/markdown.ts";
+import * as $9 from "./routes/middleware/requestCounter.ts";
 import * as $$0 from "./islands/ClickOutside.tsx";
 import * as $$1 from "./islands/HelixAnimation.tsx";
 import * as $$2 from "./islands/HexoCube.tsx";
@@ -26,8 +28,10 @@ const manifest = {
     "./routes/_middleware.ts": $3,
     "./routes/api/joke.ts": $4,
     "./routes/index.tsx": $5,
-    "./routes/middleware/i18n.ts": $6,
-    "./routes/middleware/markdown.ts": $7,
+    "./routes/middleware/cookies.ts": $6,
+    "./routes/middleware/i18n.ts": $7,
+    "./routes/middleware/markdown.ts": $8,
+    "./routes/middleware/requestCounter.ts": $9,
   },
   islands: {
     "./islands/ClickOutside.tsx": $$0,

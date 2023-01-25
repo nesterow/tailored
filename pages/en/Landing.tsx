@@ -33,7 +33,7 @@ export default function Landing() {
             className="apear-shake !font-thin mt-12 py-2 px-6 !text-blue hover:!text-black transition"
             active
           >
-            Learn more
+            Hire me
           </ColorfulLink>
         </section>
         <section class="flex flex-wrap justify-center w-full md:w-2/3 mt-20 px-6 apear opacity-100">
