@@ -6,7 +6,6 @@ export default function NotFoundPage(props: PageProps) {
   return (
     <RenderContext.Provider
       value={{
-        theme: "light",
         lang: props.url.pathname.split("/")[1],
       }}
     >

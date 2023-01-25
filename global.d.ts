@@ -6,8 +6,5 @@ declare module "preact" {
     interface IntrinsicAttributes {
       lang?: string;
     }
-    interface SVGAttributes<SVGTextPathElement> {
-      side?: "left" | "right";
-    }
   }
 }
