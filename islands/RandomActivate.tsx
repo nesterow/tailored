@@ -1,5 +1,4 @@
 import { useEffect } from "preact/hooks";
-import { JSX } from "preact";
 
 interface RandomActivateProps {
   selector: string;
@@ -41,5 +40,5 @@ export default function RandomActivate(props: RandomActivateProps) {
       clearInterval(interval);
     };
   }, []);
-  return <>{" "}</>;
+  return <>{" "}</>; // hydration issue
 }

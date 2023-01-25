@@ -10,7 +10,8 @@ import manifest from "./fresh.gen.ts";
 import twindPlugin from "$fresh/plugins/twind.ts";
 import twindConfig from "./twind.config.ts";
 
-await start(manifest, {
+// deno-lint-ignore no-explicit-any
+await start(manifest as any, {
   plugins: [
     twindPlugin({
       selfURL: new URL("./twind.config.ts", import.meta.url).href,

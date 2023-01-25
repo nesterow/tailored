@@ -1,4 +1,5 @@
 import { useRef } from "preact/hooks";
+import ClickOutside from "@/islands/ClickOutside.tsx";
 
 interface LangSwitcherProps {
   lang: string;
@@ -13,8 +14,12 @@ export default function LangSwitcher(
   function toggle() {
     wrapperRef.current?.classList.toggle("h-0");
   }
+  function close() {
+    wrapperRef.current?.classList.add("h-0");
+  }
   return (
-    <div className={"relative h-0 " + className}>
+    <div data-lang-switch className={"relative h-0 " + className}>
+      <ClickOutside target="[data-lang-switch]" onClickOutside={close} />
       <a onClick={toggle} class="cursor-pointer">
         {lang.toLocaleUpperCase()}
       </a>

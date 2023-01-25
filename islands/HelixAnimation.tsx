@@ -19,6 +19,8 @@ const SPEED_FACTOR = 0.3; // how fast the lines form a helix x <= 4
  * In fact, svg is better without animation.
  * Indefinete animation is actually CPU intensive, so use `repeat` prop wisely. Incrementing `delta` by smaller factor will make it run longer.
  * A way to do a little optimization on cpu usage is to clear the loop when the user switched tab.
+ *
+ * If you want to bend text look at the PolarText component to get the idea.
  */
 export default function HelixAnimation(props: HelixAnimationProps) {
   const [path, setPath] = useState(getPath(0.4));
