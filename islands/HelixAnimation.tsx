@@ -1,4 +1,3 @@
-// deno-lint-ignore-file no-window-prefix
 import { useEffect, useState } from "preact/hooks";
 
 interface HelixAnimationProps {
@@ -16,11 +15,8 @@ const SPEED_FACTOR = 0.3; // how fast the lines form a helix x <= 4
  * Messed up lines form a helix spiral over time. SVG + CSS transition.
  * use/extend `trigger` prop to start the animation on some event.
  *
- * In fact, svg is better without animation.
  * Indefinete animation is actually CPU intensive, so use `repeat` prop wisely. Incrementing `delta` by smaller factor will make it run longer.
  * A way to do a little optimization on cpu usage is to clear the loop when the user switched tab.
- *
- * If you want to bend text look at the PolarText component to get the idea.
  */
 export default function HelixAnimation(props: HelixAnimationProps) {
   const [path, setPath] = useState(getPath(0.4));
@@ -56,14 +52,16 @@ export default function HelixAnimation(props: HelixAnimationProps) {
     }
 
     if (props.trigger) {
-      window.addEventListener(props.trigger, increment);
+      globalThis.addEventListener(props.trigger, increment);
     } else {
       loop();
     }
 
     return () => {
       if (typeof timeout === "number") clearTimeout(timeout);
-      if (props.trigger) window.removeEventListener(props.trigger, increment);
+      if (props.trigger) {
+        globalThis.removeEventListener(props.trigger, increment);
+      }
     };
   }, []);
 

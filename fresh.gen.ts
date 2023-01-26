@@ -13,12 +13,11 @@ import * as $6 from "./routes/middleware/cookie-counter.ts";
 import * as $7 from "./routes/middleware/cookies.ts";
 import * as $8 from "./routes/middleware/i18n.ts";
 import * as $9 from "./routes/middleware/markdown.ts";
-import * as $$0 from "./islands/ClickOutside.tsx";
-import * as $$1 from "./islands/HelixAnimation.tsx";
-import * as $$2 from "./islands/HexoCube.tsx";
-import * as $$3 from "./islands/LangSwitcher.tsx";
-import * as $$4 from "./islands/MenuLink.tsx";
-import * as $$5 from "./islands/RandomActivate.tsx";
+import * as $$0 from "./islands/HelixAnimation.tsx";
+import * as $$1 from "./islands/HexoCube.tsx";
+import * as $$2 from "./islands/LangSwitcher.tsx";
+import * as $$3 from "./islands/MenuLink.tsx";
+import * as $$4 from "./islands/RandomActivate.tsx";
 
 const manifest = {
   routes: {
@@ -34,12 +33,11 @@ const manifest = {
     "./routes/middleware/markdown.ts": $9,
   },
   islands: {
-    "./islands/ClickOutside.tsx": $$0,
-    "./islands/HelixAnimation.tsx": $$1,
-    "./islands/HexoCube.tsx": $$2,
-    "./islands/LangSwitcher.tsx": $$3,
-    "./islands/MenuLink.tsx": $$4,
-    "./islands/RandomActivate.tsx": $$5,
+    "./islands/HelixAnimation.tsx": $$0,
+    "./islands/HexoCube.tsx": $$1,
+    "./islands/LangSwitcher.tsx": $$2,
+    "./islands/MenuLink.tsx": $$3,
+    "./islands/RandomActivate.tsx": $$4,
   },
   baseUrl: import.meta.url,
   config,

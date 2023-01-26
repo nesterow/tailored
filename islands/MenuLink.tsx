@@ -1,4 +1,3 @@
-// deno-lint-ignore-file no-window-prefix
 import ColorfulLink, { ColorfulLinkProps } from "@/components/ColorfulLink.tsx";
 import { useEffect, useState } from "preact/hooks";
 
@@ -19,9 +18,9 @@ export default function MenuLink(props: ColorfulLinkProps) {
 
   useEffect(() => {
     listener();
-    window.addEventListener("popstate", listener);
+    globalThis.addEventListener("popstate", listener);
     return () => {
-      window.removeEventListener("popstate", listener);
+      globalThis.removeEventListener("popstate", listener);
     };
   }, []);
 
