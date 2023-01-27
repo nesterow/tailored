@@ -16,8 +16,9 @@ import * as $9 from "./routes/middleware/markdown.ts";
 import * as $$0 from "./islands/HelixAnimation.tsx";
 import * as $$1 from "./islands/HexoCube.tsx";
 import * as $$2 from "./islands/LangSwitcher.tsx";
-import * as $$3 from "./islands/MenuLink.tsx";
-import * as $$4 from "./islands/StackIcons.tsx";
+import * as $$3 from "./islands/MenuButton.tsx";
+import * as $$4 from "./islands/MenuLink.tsx";
+import * as $$5 from "./islands/StackIcons.tsx";
 
 const manifest = {
   routes: {
@@ -36,8 +37,9 @@ const manifest = {
     "./islands/HelixAnimation.tsx": $$0,
     "./islands/HexoCube.tsx": $$1,
     "./islands/LangSwitcher.tsx": $$2,
-    "./islands/MenuLink.tsx": $$3,
-    "./islands/StackIcons.tsx": $$4,
+    "./islands/MenuButton.tsx": $$3,
+    "./islands/MenuLink.tsx": $$4,
+    "./islands/StackIcons.tsx": $$5,
   },
   baseUrl: import.meta.url,
   config,

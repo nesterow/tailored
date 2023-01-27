@@ -4,12 +4,14 @@ const mainColors = {
   main: "#800856",
   blue: "#000082",
   blood: "#ac2424",
+  light: "#fffdf099",
 };
 export default {
   theme: {
     extend: {
       colors: mainColors,
       textColor: mainColors,
+      backgroundColor: mainColors,
     },
   },
   plugins: {

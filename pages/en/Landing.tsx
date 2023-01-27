@@ -25,7 +25,7 @@ export default function Landing() {
             >
               IT Consult
             </ColorfulLink>
-            <IconArrowGuide size={20} color="red" class="opacity-20" />
+            <IconArrowGuide size={20} color="red" class="opacity-30" />
             <ColorfulLink
               lineHeight={7}
               href="/hire"
@@ -37,7 +37,7 @@ export default function Landing() {
             <IconArrowGuide
               size={20}
               color="red"
-              class="opacity-20"
+              class="opacity-30"
               style={{
                 transform: "scale3d(1,-1,1)",
               }}

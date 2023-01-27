@@ -18,14 +18,10 @@ body {
 }
 @keyframes draw {
     0% {
-        stroke-dasharray: 140 540;
-        stroke-dashoffset: -474;
-        stroke-width: 8px;
+      stroke-width: 1;
     }
     100% {
-        stroke-dasharray: 760;
-        stroke-dashoffset: 0;
-        stroke-width: 2px;
+      stroke-width: .25;
     }
 }
 
@@ -35,15 +31,14 @@ a svg path[name='colors']{
 }
 a:hover svg path[name='colors']{
     display: block;
-    transition: all 0.5s ease-in-out;
-    animation: 0.2s draw linear forwards;
-    opacity: .2;
-    stroke-width: 1;
+    /* transition: all 0.5s ease-in-out; */
+    animation: .2s draw linear forwards;
+    /* opacity: .1; */
 }
 
 a[active] svg path[name='colors'], a:active svg path[name='colors']{
     display: block;
-    animation: 0.2s draw linear forwards;
+    /* animation: .2s draw linear forwards; */
 }
 
 h1[data-type-effect] {

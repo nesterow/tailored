@@ -5,6 +5,7 @@
 /// <reference lib="deno.ns" />
 import "$std/dotenv/load.ts";
 import { start } from "$fresh/server.ts";
+import { apply } from "twind";
 import manifest from "./fresh.gen.ts";
 
 import twindPlugin from "$fresh/plugins/twind.ts";
@@ -16,6 +17,9 @@ await start(manifest as any, {
     twindPlugin({
       selfURL: new URL("./twind.config.ts", import.meta.url).href,
       ...twindConfig,
+      preflight: {
+        ".menu-open": apply`h-[auto!important] flex-col gap-1 w-full px-6`,
+      },
     }),
   ],
 });
