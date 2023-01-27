@@ -13,6 +13,14 @@ interface MenuButtonProps {
   className: string;
 }
 
+/**
+ * Menu button behavior.
+ * Switch between classes on the target element.
+ * @param target - CSS selector of the target element (menu wrapper).
+ * @param container - CSS selector of the container element i.e header, used for the "click outside" behavour.
+ * @param toggleAddClass - CSS class to add to the target element on activation.
+ * @param toggleRemoveClass - CSS class to remove from the target element on activation.
+ */
 export default function MenuButton(
   {
     target,
