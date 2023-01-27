@@ -10,17 +10,21 @@ const LANGUAGES = Deno.env.get("LANGUAGES")?.split(",") ?? ["en"];
 export default function Menu() {
   const { lang } = useContext(RenderContext);
   return (
-    <section class="w-full flex justify-between px-6">
+    <section class="w-full flex flex-col md:flex-row justify-between px-6">
       <div>
         <MenuButton
           container="[data-site-header]"
           target="[data-mobile-menu]"
           size={30}
           className="mb-3 md:hidden"
-          toggleClass="menu-open"
+          toggleAddClass="menu-open mt-4"
+          toggleRemoveClass="overflow-y-hidden"
         />
       </div>
-      <div data-mobile-menu class="h-0 overflow-hidden md:h-auto flex gap-6">
+      <div
+        data-mobile-menu
+        class="h-[0vh] overflow-y-hidden flex-col gap-6 w-full px-0 md:w-auto md:h-auto md:mt-0 md:px-1 md:flex-row flex transition-all duration-300 ease-in"
+      >
         <I18n>
           <MenuLink lang="en" href="/en">
             About
@@ -63,7 +67,7 @@ export default function Menu() {
         </I18n>
       </div>
       <LangSwitcher
-        className="-mt-2 mr-4"
+        className="md:-mt-2 md:mr-4 md:relative md:right-0 absolute right-12"
         lang={lang}
         languages={LANGUAGES}
       />

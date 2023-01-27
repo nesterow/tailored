@@ -5,7 +5,8 @@ import IconMenu from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/menu-2.tsx"
 interface MenuButtonProps {
   target: string;
   container: string;
-  toggleClass: string;
+  toggleAddClass: string;
+  toggleRemoveClass?: string;
   size?: number;
   color?: string;
   stroke?: number;
@@ -13,23 +14,37 @@ interface MenuButtonProps {
 }
 
 export default function MenuButton(
-  { target, toggleClass, className, size, stroke, color, container }:
-    MenuButtonProps,
+  {
+    target,
+    toggleAddClass,
+    toggleRemoveClass,
+    className,
+    size,
+    stroke,
+    color,
+    container,
+  }: MenuButtonProps,
 ) {
   const [active, setActive] = useState(false);
-  const _classes = toggleClass.split(" ");
+  const _classes = toggleAddClass.split(" ");
+  const _removeClasses = toggleRemoveClass?.split(" ");
 
   function activate() {
     document.querySelectorAll(target).forEach((el) => {
       el.classList.add(..._classes);
+      if (_removeClasses) {
+        el.classList.remove(..._removeClasses);
+      }
     });
     setActive(true);
-    console.log(target, _classes, document.querySelectorAll(target));
   }
 
   function deactivate() {
     document.querySelectorAll(target).forEach((el) => {
       el.classList.remove(..._classes);
+      if (_removeClasses) {
+        el.classList.add(..._removeClasses);
+      }
     });
     setActive(false);
   }
@@ -41,6 +56,24 @@ export default function MenuButton(
       activate();
     }
   }
+
+  useEffect(() => {
+    const keyListener = function (e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        deactivate();
+      }
+    };
+    const resizeListener = function () {
+      deactivate();
+    };
+    globalThis.addEventListener("resize", resizeListener);
+    globalThis.addEventListener("keydown", keyListener);
+    return () => {
+      globalThis.removeEventListener("keydown", keyListener);
+      globalThis.removeEventListener("resize", resizeListener);
+    };
+  }, []);
+
   return (
     <>
       <ClickOutside target={container} onClickOutside={deactivate} />

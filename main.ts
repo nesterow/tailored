@@ -18,7 +18,7 @@ await start(manifest as any, {
       selfURL: new URL("./twind.config.ts", import.meta.url).href,
       ...twindConfig,
       preflight: {
-        ".menu-open": apply`h-[auto!important] flex-col gap-1 w-full px-6`,
+        ".menu-open": apply`h-[25vh!important] overflow-y-auto`,
       },
     }),
   ],
