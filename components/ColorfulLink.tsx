@@ -3,12 +3,13 @@ import { JSX } from "preact";
 export interface ColorfulLinkProps
   extends JSX.HTMLAttributes<HTMLAnchorElement> {
   active?: boolean;
+  lineHeight?: number;
 }
 export default function ColorfulLink(props: ColorfulLinkProps) {
   return (
     <a {...props} class="relative text-2xl text-[#333] font-normal font-sans">
       {props.children}
-      <svg viewBox="0 0 10 10" width="100%" height="15">
+      <svg viewBox="0 0 10 10" width="100%" height={props.lineHeight || 8}>
         <path
           name="colors"
           d="M -100 0 L 100 4 Z"

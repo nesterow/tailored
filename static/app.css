@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 body {
     position: relative;
     min-height: 100vh;
@@ -62,7 +65,7 @@ p.placeholder {
         width: 100%;
     }
   }
-  
+
 /* cursor animations */
 
 @keyframes animated-cursor{
@@ -82,7 +85,7 @@ p.placeholder {
 }
 .apear-shake {
     opacity: 0;
-    animation: appear 2s ease-in-out forwards 1s, 
+    animation: appear 2s ease-in-out forwards 1s,
                shake 15s infinite;
     transform-origin: center;
     animation-timing-function: ease-in-out;

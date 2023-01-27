@@ -4,11 +4,14 @@ import { I18n } from "@/components/system/i18n.tsx";
 import MenuLink from "@/islands/MenuLink.tsx";
 import LangSwitcher from "@/islands/LangSwitcher.tsx";
 
+const LANGUAGES = Deno.env.get("LANGUAGES")?.split(",") ?? ["en"];
+
 export default function Menu() {
   const { lang } = useContext(RenderContext);
   return (
     <section class="w-full flex justify-between px-6">
-      <div></div>
+      <div>
+      </div>
       <div class="flex gap-6">
         <I18n>
           <MenuLink lang="en" href="/en">
@@ -54,7 +57,7 @@ export default function Menu() {
       <LangSwitcher
         className="-mt-2 mr-4"
         lang={lang}
-        languages={["en", "ru", "es"]}
+        languages={LANGUAGES}
       />
     </section>
   );

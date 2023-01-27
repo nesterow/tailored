@@ -5,6 +5,7 @@ interface RandomActivateProps {
   activateClass: string;
   delay: number;
   className?: string;
+  onActivate?: (e: CustomEvent) => void;
 }
 
 interface WithChildren {
@@ -51,6 +52,9 @@ export default function RandomActivate(props: RandomActivateProp) {
       const element = elements[index];
       element.classList.add(props.activateClass);
       element.dispatchEvent(new CustomEvent("activate"));
+      if (props.onActivate) {
+        props.onActivate(new CustomEvent("activate", { detail: element }));
+      }
       setTimeout(() => {
         element.classList.remove(props.activateClass);
         element.dispatchEvent(new CustomEvent("deactivate"));
