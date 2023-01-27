@@ -6,23 +6,22 @@ const log = logger("RequestCounterMiddleware:");
 const cookieName = "_unsigned_counter";
 /**
  * Just for test and fun.
+ * See the cookie middleware
  */
 export default function RequestCounterMiddleware(
-  req: Request,
+  _req: Request,
   ctx: WithCookie<MiddlewareHandlerContext>,
 ) {
-  if (!/[_\.]/gi.test(req.url)) {
-    const count = Number(ctx.cookies[cookieName] || 0);
-    log.info("Test request count was", count);
-    ctx.setCookie({
-      name: cookieName,
-      value: String(count + 1),
-      expires: new Date(Date.now() + 360000),
-      secure: true,
-      path: "/",
-      httpOnly: true,
-    });
-    log.warn("Test request count is", count + 1);
-  }
+  const count = Number(ctx.cookies[cookieName] || 0);
+  log.info("Test request count was", count);
+  ctx.setCookie({
+    name: cookieName,
+    value: String(count + 1),
+    expires: new Date(Date.now() + 360000),
+    secure: true,
+    path: "/",
+    httpOnly: true,
+  });
+  log.warn("Test request count is", count + 1);
   return ctx.next();
 }

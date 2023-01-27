@@ -1,6 +1,6 @@
 import HexoCube from "@/islands/HexoCube.tsx";
 import ColorfulLink from "@/components/ColorfulLink.tsx";
-import RandomActivate from "@/islands/RandomActivate.tsx";
+import StackIcons from "@/islands/StackIcons.tsx";
 
 export default function Landing() {
   return (
@@ -23,7 +23,7 @@ export default function Landing() {
             needs
           </p>
           <p class="apear mt-1 p-1 text-2xl text-main font-thin md:w-3/4">
-            With a <span class="text-blue">decade of experience</span>
+            With a <span class="text-blue">decade of experience</span>{" "}
             in the software development, guiding your business through
             <span class="text-blue">the entire development cycle</span>, from
             initial prototype to final production.
@@ -36,23 +36,7 @@ export default function Landing() {
             Hire me
           </ColorfulLink>
         </section>
-        <section class="flex flex-wrap justify-center w-full md:w-2/3 mt-20 px-6 apear opacity-100">
-          <RandomActivate
-            activateClass="opacity-100"
-            selector="img[data-blinking-stars]"
-            delay={2300}
-          />
-          {["deno", "typescript", "react", "node-js", "python", "tensorflow"]
-            .map((name, i) => (
-              <img
-                data-blinking-stars
-                title={name}
-                src={`/img/${name}.svg`}
-                style={{ animationDelay: `${0.5 * i}s` }}
-                class="shake w-20 m-6 opacity-40 hover:opacity-100 transition-opacity duration-[.76s]"
-              />
-            ))}
-        </section>
+        <StackIcons className="flex flex-wrap justify-center w-full md:w-2/3 mt-20 px-6 apear opacity-100" />
       </div>
     </>
   );

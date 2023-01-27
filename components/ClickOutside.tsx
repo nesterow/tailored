@@ -14,7 +14,7 @@ interface WithTarget {
 interface WithChildren {
   className?: string;
   target?: never;
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }
 
 type ClickOutsideProp =
@@ -51,7 +51,7 @@ export default function ClickOutside(props: ClickOutsideProp) {
   if (props.target) return <>{" "}</>;
 
   return (
-    <div id={id}>
+    <div id={id} className={props.className}>
       {props.children}
     </div>
   );

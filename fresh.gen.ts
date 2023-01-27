@@ -17,7 +17,7 @@ import * as $$0 from "./islands/HelixAnimation.tsx";
 import * as $$1 from "./islands/HexoCube.tsx";
 import * as $$2 from "./islands/LangSwitcher.tsx";
 import * as $$3 from "./islands/MenuLink.tsx";
-import * as $$4 from "./islands/RandomActivate.tsx";
+import * as $$4 from "./islands/StackIcons.tsx";
 
 const manifest = {
   routes: {
@@ -37,7 +37,7 @@ const manifest = {
     "./islands/HexoCube.tsx": $$1,
     "./islands/LangSwitcher.tsx": $$2,
     "./islands/MenuLink.tsx": $$3,
-    "./islands/RandomActivate.tsx": $$4,
+    "./islands/StackIcons.tsx": $$4,
   },
   baseUrl: import.meta.url,
   config,
