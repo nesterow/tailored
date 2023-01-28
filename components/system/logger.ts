@@ -1,4 +1,4 @@
-import {Logger} from "./deps.ts";
+import { Logger } from "./deps.ts";
 
 const isDev = Deno.env.get("DENO_ENV") === "development";
 const LOGGER_FILE_DIR = Deno.env.get("LOGGER_FILE_DIR");
