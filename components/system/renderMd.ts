@@ -17,8 +17,9 @@ function sanitizePath(path: string) {
 }
 
 /**
- * TODO: Relying on sanitizer to prevent path traversal, better test this with different escape sequences.
- * TODO: For now using marked@latest, which troubles me a bit. Need to pick a version and follow security updates.
+ * Render markdown page and put it in cache.
+ * The cache is active only in production mode.
+ * @param {string} path - File path without extension.
  */
 export default async function renderMdPage(path: string): Promise<string> {
   const file = "pages" + sanitizePath(path) + ".md";

@@ -1,6 +1,6 @@
 /**
  * System dependencies.
- * Everyting except the standard library and fresh deps shoud be here.
+ * Everyting except the standard library and fresh deps.
  */
 
 // @deno-types="https://cdn.jsdelivr.net/npm/@types/marked@4/index.d.ts"
