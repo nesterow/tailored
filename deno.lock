@@ -1,7 +1,9 @@
 {
   "version": "2",
   "remote": {
+    "https://cdn.jsdelivr.net/npm/@types/marked@4/index.d.ts": "0b2fcecb260110d36514d4a845e10d98d19ae62f19ff18a5fc0181c31e1be8ef",
     "https://cdn.jsdelivr.net/npm/@types/marked@latest/index.d.ts": "0b2fcecb260110d36514d4a845e10d98d19ae62f19ff18a5fc0181c31e1be8ef",
+    "https://cdn.jsdelivr.net/npm/marked@4.2.12/lib/marked.esm.js": "442e98d3ea2af80517dfe2bec08a99f958f275fa4bb15d42f2aeb92b693f93ff",
     "https://cdn.jsdelivr.net/npm/marked@latest/lib/marked.esm.js": "442e98d3ea2af80517dfe2bec08a99f958f275fa4bb15d42f2aeb92b693f93ff",
     "https://cdn.skypack.dev/-/http-cache-semantics@v4.1.0-5IkAyzxageW9utYlM9Kq/dist=es2019,mode=imports/optimized/http-cache-semantics.js": "abb90d8731ed016549017a010e198e5075e5ca5308bfe429b7acaa07c3fe7200",
     "https://cdn.skypack.dev/-/http-cache-semantics@v4.1.0-5IkAyzxageW9utYlM9Kq/dist=es2019,mode=types/index.d.ts": "0bf440ab914e79e890cb15e5ffacb5e18bec678338b3eab069a5829d3d5c96e3",

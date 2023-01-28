@@ -2,7 +2,8 @@ import { MiddlewareHandlerContext } from "$fresh/server.ts";
 import renderMd from "@/components/system/renderMd.ts";
 
 /**
- * depends on i18n
+ * Depends on i18n.
+ * Why we render markdown here? Because we want to use cache.
  */
 export default async function MarkdownMiddleware(
   req: Request,

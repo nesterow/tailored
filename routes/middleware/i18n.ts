@@ -5,7 +5,7 @@ const DEFAULT_LANGUAGE = Deno.env.get("DEFAULT_LANGUAGE") || LANGUAGES[0];
 
 /**
  * Naive i18n middleware.
- * Since we don't have sessions yet we just set the language based on the path.
+ * Set the language based on the path.
  */
 export default function I18nMiddleware(
   req: Request,

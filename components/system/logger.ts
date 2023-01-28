@@ -1,5 +1,6 @@
-import Logger from "https://deno.land/x/logger@v1.0.2/logger.ts";
+import {Logger} from "./deps.ts";
 
+const isDev = Deno.env.get("DENO_ENV") === "development";
 const LOGGER_FILE_DIR = Deno.env.get("LOGGER_FILE_DIR");
 const LOGGER_DISABLE_CONSOLE = Deno.env.get("LOGGER_DISABLE_CONSOLE") === "1";
 const logger = new Logger();
@@ -17,5 +18,6 @@ export default (prefix: string) => {
     info: proxy(logger.info.bind(logger)),
     error: proxy(logger.error.bind(logger)),
     warn: proxy(logger.warn.bind(logger)),
+    dev: isDev ? proxy(logger.info.bind(logger)) : () => {},
   };
 };

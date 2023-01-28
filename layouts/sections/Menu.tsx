@@ -6,7 +6,9 @@ import LangSwitcher from "@/islands/LangSwitcher.tsx";
 import MenuButton from "@/islands/MenuButton.tsx";
 
 const LANGUAGES = Deno.env.get("LANGUAGES")?.split(",") ?? ["en"];
-
+/**
+ * Menu component
+ */
 export default function Menu() {
   const { lang } = useContext(RenderContext);
   return (
@@ -26,7 +28,7 @@ export default function Menu() {
         class="h-[0vh] overflow-y-hidden flex-col gap-6 w-full px-0 md:w-auto md:h-auto md:mt-0 md:px-1 md:flex-row flex transition-all duration-300 ease-in"
       >
         <I18n>
-          <MenuLink lang="en" href="/en">
+          <MenuLink lang="en" href="/">
             About
           </MenuLink>
           <MenuLink lang="ru" href="/ru">
@@ -34,7 +36,7 @@ export default function Menu() {
           </MenuLink>
         </I18n>
         <I18n>
-          <MenuLink lang="en" href="/en/capabilities">
+          <MenuLink lang="en" href="/capabilities">
             Capabilities
           </MenuLink>
           <MenuLink lang="ru" href="/ru/capabilities">
@@ -42,7 +44,7 @@ export default function Menu() {
           </MenuLink>
         </I18n>
         <I18n>
-          <MenuLink lang="en" href="/en/stack">
+          <MenuLink lang="en" href="/stack">
             Stack
           </MenuLink>
           <MenuLink lang="ru" href="/ru/stack">
@@ -50,7 +52,7 @@ export default function Menu() {
           </MenuLink>
         </I18n>
         <I18n>
-          <MenuLink lang="en" href="/en/cases">
+          <MenuLink lang="en" href="/cases">
             Cases
           </MenuLink>
           <MenuLink lang="ru" href="/ru/cases">
@@ -58,7 +60,7 @@ export default function Menu() {
           </MenuLink>
         </I18n>
         <I18n>
-          <MenuLink lang="en" href="/en/hire">
+          <MenuLink lang="en" href="/hire">
             Hire
           </MenuLink>
           <MenuLink lang="ru" href="/ru/hire">
