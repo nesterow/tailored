@@ -60,9 +60,11 @@ export default function Landing() {
           >
             Tailored Software Development
           </h1>
-          <p class="apear text-sm font-thin mb-4 text-blue opacity-60">
-            Crafting custom software solutions, to fit your unique business
-            needs
+          <p class="apear">
+            <span class="text-sm font-thin mb-4 text-blue opacity-60">
+              Crafting custom software solutions, to fit your unique business
+              needs
+            </span>
           </p>
           <p class="apear mt-1 p-1 text-main font-thin md:w-2/4">
             With a <span class="text-blue">decade of experience</span>{" "}
@@ -73,7 +75,7 @@ export default function Landing() {
         </section>
 
         <h5 class="text-blood text-2xl font-thin mt-14 apear">Technologies</h5>
-        <StackIcons className="flex flex-wrap justify-center w-full md:w-2/3 px-6 apear opacity-100" />
+        <StackIcons className="flex flex-wrap justify-center w-full md:w-2/3 px-6 apear" />
 
         {
           /* <ColorfulLink

@@ -7,7 +7,7 @@ export interface ColorfulLinkProps
 }
 export default function ColorfulLink(props: ColorfulLinkProps) {
   return (
-    <a {...props} class="relative text-2xl text-[#333] font-normal font-sans">
+    <a {...props}>
       {props.children}
       <svg viewBox="0 0 10 10" width="100%" height={props.lineHeight || 8}>
         <path

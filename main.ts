@@ -5,8 +5,8 @@
 /// <reference lib="deno.ns" />
 import "$std/dotenv/load.ts";
 import { start } from "$fresh/server.ts";
-import { apply } from "twind";
 import manifest from "./fresh.gen.ts";
+import { plugins, preflight } from "@/components/GlobalStyles.ts";
 
 import twindPlugin from "$fresh/plugins/twind.ts";
 import twindConfig from "./twind.config.ts";
@@ -17,9 +17,8 @@ await start(manifest as any, {
     twindPlugin({
       selfURL: new URL("./twind.config.ts", import.meta.url).href,
       ...twindConfig,
-      preflight: {
-        ".menu-open": apply`h-[25vh!important] overflow-y-auto`,
-      },
+      preflight,
+      //plugins,
     }),
   ],
 });

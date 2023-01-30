@@ -15,9 +15,25 @@ export default {
     },
   },
   plugins: {
-    apear: {},
-    shake: {},
-    "apear-shake": {},
-    "slow-rotate": {},
+    apear: () => ({
+      opacity: 0,
+      animation: "appear 2s ease-in-out forwards 1s",
+    }),
+    shake: {
+      animation: "shake 15s infinite",
+      transformOrigin: "center",
+      animationTimingFunction: "ease-in-out",
+    },
+    "apear-shake": {
+      opacity: 0,
+      animation: "appear 2s ease-in-out forwards 1s, shake 15s infinite",
+      transformOrigin: "center",
+      animationTimingFunction: "ease-in-out",
+    },
+    "slow-rotate": {
+      animation: "rotate 120s infinite",
+      transformOrigin: "center",
+      animationTimingFunction: "ease-in-out",
+    },
   },
 } as Pick<Options, "theme">;
