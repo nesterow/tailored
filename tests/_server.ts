@@ -5,9 +5,10 @@ import { Manifest, ServerContext } from "$fresh/server.ts";
 import twindPlugin from "$fresh/plugins/twind.ts";
 import { preflight } from "@/components/GlobalStyles.ts";
 import twindConfig from "../twind.config.ts";
-import manifest from "../fresh.gen.ts";
 
 export default async () => {
+  const _file = "../$fresh.gen.ts";
+  const { default: manifest } = await import(_file); // pass by ref, otherwise won't work
   const ctx = await ServerContext.fromManifest(
     manifest as unknown as Manifest,
     {
