@@ -7,7 +7,7 @@ interface RenderContext {
 }
 
 export const RenderContext = createContext<RenderContext>({
-  lang: Deno.env.get("DEFAULT_LANGUAGE") || "en",
+  lang: "en",
   lc: { en: {} },
   headers: {},
 });

@@ -42,8 +42,18 @@ test("tailored", {
     await delay(100);
   }
   console.log("Test server started @", url);
-  const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+  const browser = await puppeteer.launch({
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3312.0 Safari/537.36"',
+    ],
+  });
   const page = await browser.newPage();
+  await page.setJavaScriptEnabled(true);
+  page.on("pageerror", function (err) {
+    console.log("Page error: ", err.toString());
+  });
   await page.goto("http://localhost:3001/$test", {
     waitUntil: "networkidle2",
   });
@@ -59,8 +69,20 @@ test("tailored", {
     await page.waitForSelector("span");
   });
 
-  // await t.step("TODO: test `useContext` within an island", async () => {
-  // });
+  await t.step("useFetch + SharedContext + island", async () => {
+    await page.goto("http://localhost:3001/$usefetch", {
+      waitUntil: "networkidle2",
+    });
+    await delay(100);
+    await page.waitForSelector("#test");
+    const html = await page.$eval("html", (element) => {
+      return element.innerHTML;
+    });
+    assert(html.includes(`id="shared-context"`));
+    assert(html.includes(`"lang":"cn"`));
+    assert(html.includes(`"x":"1"`));
+    assert(html.includes(`"x-test":"test"`));
+  });
 
   await browser.close();
   cleanup();
