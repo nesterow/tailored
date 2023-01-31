@@ -33,7 +33,7 @@ test("tailored", {
   // below are pupeeteer tests
   if (TEST_WITHOUT_BROWSER) {
     cleanup();
-    Deno.kill(Deno.pid);
+    Deno.kill(Deno.pid, "SIGINT");
     return;
   }
 
@@ -65,5 +65,5 @@ test("tailored", {
 
   await browser.close();
   cleanup();
-  Deno.kill(Deno.pid);
+  Deno.kill(Deno.pid, "SIGINT");
 });
