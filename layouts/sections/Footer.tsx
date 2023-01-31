@@ -8,7 +8,7 @@ const footer_style = apply`
   items-center
   gap-6
   w-full
-  min-h-[88px]
+  min-h-[70px]
   p-2
   pt-5
   absolute

@@ -20,7 +20,7 @@ export default function LangSwitcher(
   return (
     <ClickOutside
       onClickOutside={close}
-      className={"relative h-0 " + className}
+      className={className}
     >
       <a onClick={toggle} class="cursor-pointer">
         {lang.toLocaleUpperCase()}

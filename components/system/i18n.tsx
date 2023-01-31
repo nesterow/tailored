@@ -7,7 +7,6 @@ interface I18nProps {
   children: JSX.Element[];
 }
 /**
- * A strategy.
  * Good for static components and pages that might have slightly different styles for different languages.
  * It plays better when your app has heavy design and a lot of translations to different languages.
  */
@@ -28,7 +27,6 @@ interface LcMessageProps {
 }
 
 /**
- * A dictionary.
  * Good for short strings.
  * TODO: if or when we build an app, we will need a utility to generate a dictionary in json or csv formats.
  */

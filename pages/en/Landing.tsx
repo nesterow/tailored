@@ -2,6 +2,17 @@ import HexoCube from "@/islands/HexoCube.tsx";
 import ColorfulLink from "@/components/ColorfulLink.tsx";
 import StackIcons from "@/islands/StackIcons.tsx";
 import IconArrowGuide from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/arrow-guide.tsx";
+import { apply, tw } from "twind";
+
+const action_link_style = apply`
+  text-2xl
+  text-blue
+  hover:!text-black
+  !font-thin
+  py-2
+  px-2
+  transition
+`;
 
 export default function Landing() {
   return (
@@ -20,7 +31,7 @@ export default function Landing() {
             <ColorfulLink
               lineHeight={7}
               href="/hire"
-              className="!font-thin py-2 px-2 text-blue hover:!text-black transition"
+              className={tw(action_link_style)}
               active
             >
               IT Consult
@@ -29,7 +40,7 @@ export default function Landing() {
             <ColorfulLink
               lineHeight={7}
               href="/hire"
-              className="!font-thin py-2 px-2 text-blue hover:!text-black transition"
+              className={tw(action_link_style)}
               active
             >
               Create MVP
@@ -45,7 +56,7 @@ export default function Landing() {
             <ColorfulLink
               lineHeight={7}
               href="/hire"
-              className="!font-thin py-2 px-2 text-blue hover:!text-black transition"
+              className={tw(action_link_style)}
               active
             >
               Build a team
@@ -60,8 +71,8 @@ export default function Landing() {
           >
             Tailored Software Development
           </h1>
-          <p class="apear">
-            <span class="text-sm font-thin mb-4 text-blue opacity-60">
+          <p class="apear text-sm font-thin mb-4 text-blue">
+            <span class="opacity-60">
               Crafting custom software solutions, to fit your unique business
               needs
             </span>
@@ -76,16 +87,6 @@ export default function Landing() {
 
         <h5 class="text-blood text-2xl font-thin mt-14 apear">Technologies</h5>
         <StackIcons className="flex flex-wrap justify-center w-full md:w-2/3 px-6 apear" />
-
-        {
-          /* <ColorfulLink
-          href="/hire"
-          className="apear-shake !font-thin mt-6 py-2 px-6 !text-blue hover:!text-black transition"
-          active
-        >
-          Contacts
-        </ColorfulLink> */
-        }
       </div>
     </>
   );
