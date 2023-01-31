@@ -3,7 +3,6 @@ import { collect, generate } from "$fresh/src/dev/mod.ts";
 const dirs = [
   "islands",
   "layouts",
-  "pages",
   "routes",
 ];
 cleanup();

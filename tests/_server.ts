@@ -2,6 +2,7 @@ import { configSync } from "$std/dotenv/mod.ts";
 configSync({ export: true, path: "./tests/.env.test" });
 
 import { Manifest, ServerContext } from "$fresh/server.ts";
+import { serve } from "$fresh/src/server/deps.ts";
 import twindPlugin from "$fresh/plugins/twind.ts";
 import { preflight } from "@/components/GlobalStyles.ts";
 import twindConfig from "../twind.config.ts";
@@ -42,5 +43,6 @@ export default async () => {
     ctx,
     router,
     handler,
+    serve: () => serve(handler, { port: 3001 }),
   };
 };
