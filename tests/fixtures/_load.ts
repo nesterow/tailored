@@ -1,3 +1,17 @@
+/**
+ * At the time this works as follows:
+ *   - the mocks are copied to the project directory
+ *   - after the tests are run, the mocks are removed
+ *
+ *   TODO:
+ *   The downside is that the mocks are not removed from project if the tests fail.
+ *   Not a big deal, but it would be nice to have a better solution, so in the
+ *   future it should be done vice versa:
+ *      - copy project to a cache directory
+ *      - copy mocks
+ *      - clean cache directory
+ */
+
 import { collect, generate } from "$fresh/src/dev/mod.ts";
 
 const dirs = [

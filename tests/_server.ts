@@ -1,6 +1,3 @@
-import { configSync } from "$std/dotenv/mod.ts";
-configSync({ export: true, path: "./tests/.env.test" });
-
 import { Manifest, ServerContext } from "$fresh/server.ts";
 import { serve } from "$fresh/src/server/deps.ts";
 import twindPlugin from "$fresh/plugins/twind.ts";

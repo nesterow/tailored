@@ -1,1 +1,14 @@
 .env
+$*.ts
+routes/**/$*.ts
+routes/**/$*.tsx
+routes/**/$*.js
+routes/**/$*.jsx
+islands/**/$*.ts
+islands/**/$*.tsx
+islands/**/$*.js
+islands/**/$*.jsx
+layouts/**/$*.ts
+layouts/**/$*.tsx
+layouts/**/$*.js
+layouts/**/$*.jsx

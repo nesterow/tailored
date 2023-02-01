@@ -1,3 +1,6 @@
+import { configSync } from "$std/dotenv/mod.ts";
+configSync({ export: true, path: "./tests/.env.test" });
+
 import { delay } from "https://deno.land/std@0.150.0/async/delay.ts";
 import {
   assert,
@@ -42,6 +45,13 @@ test("tailored", {
     await delay(100);
   }
   console.log("Test server started @", url);
+  await t.step("fetch get /$test", async () => {
+    const res = await fetch("http://localhost:3001/$test");
+    const contents = await res.text();
+    assert(contents.includes("<span>Hello world!</span>"));
+    assertEquals(res.status, 200);
+  });
+
   const browser = await puppeteer.launch({
     args: [
       "--no-sandbox",
@@ -54,18 +64,11 @@ test("tailored", {
   page.on("pageerror", function (err) {
     console.log("Page error: ", err.toString());
   });
-  await page.goto("http://localhost:3001/$test", {
-    waitUntil: "networkidle2",
-  });
-
-  await t.step("fetch get /$test", async () => {
-    const res = await fetch("http://localhost:3001/$test");
-    const contents = await res.text();
-    assert(contents.includes("<span>Hello world!</span>"));
-    assertEquals(res.status, 200);
-  });
 
   await t.step("pupeteer get /$test", async () => {
+    await page.goto("http://localhost:3001/$test", {
+      waitUntil: "networkidle2",
+    });
     await page.waitForSelector("span");
   });
 
