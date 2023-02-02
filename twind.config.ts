@@ -124,9 +124,9 @@ export default {
     "[data-type-effect]": apply(typeAnimation),
   },
   plugins: {
-    "apear": apply`opacity-0 ${appearAnimation}`,
+    "appear": apply`opacity-0 ${appearAnimation}`,
     "shake": apply`transform-origin-center ${shakeAnimation}`,
-    "apear-shake": css((ctx) => ({
+    "appear-shake": css((ctx) => ({
       opacity: 0,
       animation: `${
         appearEffect(ctx)

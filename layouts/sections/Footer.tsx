@@ -1,7 +1,7 @@
 import { apply, tw } from "twind";
 
 const footer_style = apply`
-  apear
+  appear
   flex
   flex-wrap
   justify-center

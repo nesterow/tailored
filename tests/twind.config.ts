@@ -15,7 +15,7 @@ export default {
     },
   },
   plugins: {
-    apear: () => ({
+    appear: () => ({
       opacity: 0,
       animation: "appear 2s ease-in-out forwards 1s",
     }),
@@ -24,7 +24,7 @@ export default {
       transformOrigin: "center",
       animationTimingFunction: "ease-in-out",
     },
-    "apear-shake": {
+    "appear-shake": {
       opacity: 0,
       animation: "appear 2s ease-in-out forwards 1s, shake 15s infinite",
       transformOrigin: "center",
