@@ -3,6 +3,7 @@ import { JSX } from "preact";
 
 interface RandomActivateProps {
   activateClass: string;
+  deactiveClass?: string;
   delay: number;
   className?: string;
   onActivate?: (e: CustomEvent) => void;
@@ -51,12 +52,14 @@ export default function RandomActivate(props: RandomActivateProp) {
       }
       const element = elements[index];
       element.classList.add(props.activateClass);
+      if (props.deactiveClass) element.classList.remove(props.deactiveClass);
       element.dispatchEvent(new CustomEvent("activate"));
       if (props.onActivate) {
         props.onActivate(new CustomEvent("activate", { detail: element }));
       }
       setTimeout(() => {
         element.classList.remove(props.activateClass);
+        if (props.deactiveClass) element.classList.add(props.deactiveClass);
         element.dispatchEvent(new CustomEvent("deactivate"));
       }, props.delay);
     }, props.delay);

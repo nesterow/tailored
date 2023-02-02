@@ -2,10 +2,6 @@ import RandomActivate from "@/components/RandomActivate.tsx";
 import { useState } from "preact/hooks";
 import { apply, tw } from "twind";
 
-const stack_icons_active_style = apply`
-  opacity-100
-`;
-
 export default function StackIcons(props: { className?: string }) {
   const [active, setActive] = useState("");
   const icons = [
@@ -22,7 +18,8 @@ export default function StackIcons(props: { className?: string }) {
   return (
     <>
       <RandomActivate
-        activateClass={tw(stack_icons_active_style)}
+        activateClass={tw("opacity-100")}
+        deactiveClass={tw("opacity-40")}
         delay={2300}
         className={props.className}
         onActivate={onActivate}
@@ -36,7 +33,7 @@ export default function StackIcons(props: { className?: string }) {
           />
         ))}
       </RandomActivate>
-      <div class="w-full text-center text-blue opacity-40 mb-16 mt-4">
+      <div class="w-full font-mono text-center text-blue opacity-40 mb-16 mt-4">
         {active}
       </div>
     </>

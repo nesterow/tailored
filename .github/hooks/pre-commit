@@ -1,5 +1,6 @@
 #!/bin/sh
 FILES=$(deno fmt)
+deno lint
 if [ -n "$FILES" ]; then
   echo "formatted, adding files $FILES"
   echo "$FILES" | xargs git add

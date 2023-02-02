@@ -83,7 +83,7 @@ export default function HelixAnimation(props: HelixAnimationProps) {
     <div
       className={props.className}
       style={{
-        filter: "blur(1px)",
+        filter: "blur(0.1)",
       }}
     >
       <svg viewBox="0 0 100 126" width={props.width} height="100%">
