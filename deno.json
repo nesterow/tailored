@@ -2,7 +2,7 @@
   "tasks": {
     "dev": "deno run -A --watch=static/,routes/ dev.ts",
     "test": "deno test -A --no-check  tests/",
-    "init": "bash .github/init.sh"
+    "setup": "deno run -A .github/setup.ts"
   },
   "importMap": "./import_map.json",
   "compilerOptions": {
