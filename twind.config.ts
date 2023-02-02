@@ -1,39 +1,138 @@
-import { Options } from "$fresh/plugins/twind.ts";
+import { apply, Configuration } from "twind";
+import { animation, css, keyframes } from "twind/css";
 
-const mainColors = {
+const colors = {
   main: "#800856",
   blue: "#000082",
   blood: "#ac2424",
   light: "#fffdf099",
 };
+
+const bgAnimation = animation("3s ease", {
+  "0%": {
+    backgroundColor: "#000f1c",
+  },
+  "100%": {
+    backgroundColor: "#ffffff",
+  },
+});
+
+const typeEffect = keyframes({
+  "from": {
+    width: "0%",
+  },
+  "to": {
+    width: "100%",
+  },
+});
+
+const cursorEffect = keyframes({
+  "from": {
+    borderRightWidth: "3px",
+    borderRightColor: "rgba(0, 184, 0, 0.75)",
+  },
+  "to": {
+    borderRightWidth: "3px",
+    borderRightColor: "transparent",
+  },
+});
+
+const typeAnimation = css((ctx) => ({
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  animation: `2s steps(29,end) 1s 1 normal both ${
+    typeEffect(ctx)
+  }, 0.5s steps(29,end) 4 normal both ${cursorEffect(ctx)}`,
+}));
+
+const appearEffect = keyframes({
+  "0%": {
+    opacity: 0,
+  },
+  "100%": {
+    opacity: 1,
+  },
+});
+const appearAnimation = animation("2s ease-in-out forwards 1s", appearEffect);
+
+const shakeEffect = keyframes({
+  "0%": {
+    transform: "rotate(0deg)",
+  },
+  "25%": {
+    transform: "rotate(1.5deg)",
+  },
+  "75%": {
+    transform: "rotate(-1.5deg)",
+  },
+  "100%": {
+    transform: "rotate(0deg)",
+  },
+});
+const shakeAnimation = animation("15s ease-in-out infinite", shakeEffect);
+
+const rotateEffect = keyframes({
+  "0%": {
+    transform: "rotate(0deg)",
+  },
+  "100%": {
+    transform: "rotate(360deg)",
+  },
+});
+const slowRotateAnimation = animation(
+  "120s ease-in-out infinite",
+  rotateEffect,
+);
+
+const boldenPathEffect = keyframes({
+  "0%": {
+    opacity: .6,
+    strokeWidth: "1",
+  },
+  "50%": {
+    opacity: .2,
+    strokeWidth: "1.5",
+  },
+  "100%": {
+    opacity: 1,
+    strokeWidth: "2",
+  },
+});
+
+const boldPathAnimation = animation(".45s ease-in forwards", boldenPathEffect);
+
 export default {
+  darkMode: "class",
   theme: {
     extend: {
-      colors: mainColors,
-      textColor: mainColors,
-      backgroundColor: mainColors,
+      colors,
+      textColor: colors,
+      backgroundColor: colors,
     },
+  },
+  preflight: {
+    html: css({
+      scrollBehavior: "smooth",
+    }),
+    body: apply`relative min-h-[100vh] font-sans ${bgAnimation}`,
+    h1: apply`text-4xl font-bold`,
+    "a svg path[name='colors']": apply`hidden opacity-[0.6]`,
+    "a:hover svg path[name='colors']":
+      apply`block opacity-1 ${boldPathAnimation}`,
+    "a[active] svg path[name='colors']": apply`block`,
+    "a:active svg path[name='colors']": apply`block`,
+    "[data-type-effect]": apply(typeAnimation),
   },
   plugins: {
-    apear: () => ({
+    "apear": apply`opacity-0 ${appearAnimation}`,
+    "shake": apply`transform-origin-center ${shakeAnimation}`,
+    "apear-shake": css((ctx) => ({
       opacity: 0,
-      animation: "appear 2s ease-in-out forwards 1s",
-    }),
-    shake: {
-      animation: "shake 15s infinite",
+      animation: `${
+        appearEffect(ctx)
+      } 2s ease-in-out forwards 1s, ${shakeEffect} 15s ease-in-out infinite`,
       transformOrigin: "center",
-      animationTimingFunction: "ease-in-out",
-    },
-    "apear-shake": {
-      opacity: 0,
-      animation: "appear 2s ease-in-out forwards 1s, shake 15s infinite",
-      transformOrigin: "center",
-      animationTimingFunction: "ease-in-out",
-    },
-    "slow-rotate": {
-      animation: "rotate 120s infinite",
-      transformOrigin: "center",
-      animationTimingFunction: "ease-in-out",
-    },
+    })),
+    "slow-rotate": apply`transform-origin-center ${slowRotateAnimation}`,
   },
-} as Pick<Options, "theme">;
+} as Configuration;

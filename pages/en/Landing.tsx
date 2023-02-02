@@ -29,7 +29,7 @@ export default function Landing() {
         <div class="apear">
           <div class="flex items-center gap-1 mb-4 text-center opacity-70">
             <ColorfulLink
-              lineHeight={7}
+              lineHeight={5}
               href="/hire"
               className={tw(action_link_style)}
               active
@@ -38,7 +38,7 @@ export default function Landing() {
             </ColorfulLink>
             <IconArrowGuide size={20} color="red" class="opacity-30" />
             <ColorfulLink
-              lineHeight={7}
+              lineHeight={5}
               href="/hire"
               className={tw(action_link_style)}
               active
@@ -48,13 +48,13 @@ export default function Landing() {
             <IconArrowGuide
               size={20}
               color="red"
-              class="opacity-30"
+              class="opacity-30 tr"
               style={{
                 transform: "scale3d(1,-1,1)",
               }}
             />
             <ColorfulLink
-              lineHeight={7}
+              lineHeight={5}
               href="/hire"
               className={tw(action_link_style)}
               active

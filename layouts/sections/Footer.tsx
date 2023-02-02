@@ -17,6 +17,7 @@ const footer_style = apply`
   shadow
   bg-light
   font-thin
+  md:pb-4
 `;
 
 export default function Footer() {

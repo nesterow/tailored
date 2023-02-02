@@ -13,6 +13,7 @@ const mobile_menu_close_style = apply`
   overflow-y-hidden
   md:h-auto
   md:overflow-y-auto
+  md:pb-2
 `;
 const mobile_menu_open_style = apply`
   h-[25vh!important]
