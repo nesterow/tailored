@@ -1,7 +1,6 @@
 import { Manifest, ServerContext } from "$fresh/server.ts";
 import { serve } from "$fresh/src/server/deps.ts";
 import twindPlugin from "$fresh/plugins/twind.ts";
-import { preflight } from "@/components/GlobalStyles.ts";
 import twindConfig from "../twind.config.ts";
 
 export default async () => {
@@ -14,7 +13,6 @@ export default async () => {
         twindPlugin({
           selfURL: new URL("./twind.config.ts", import.meta.url).href,
           ...twindConfig,
-          preflight,
         }),
       ],
     },
