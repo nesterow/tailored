@@ -1,4 +1,4 @@
-import { animation, css, keyframes } from "twind/css";
+import { animation, css, keyframes } from "twind";
 
 const typeEffect = keyframes({
   "from": {
@@ -20,13 +20,13 @@ const cursorEffect = keyframes({
   },
 });
 
-export const typeAnimation = css((ctx) => ({
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  animation: `2s steps(29,end) 1s 1 normal both ${
-    typeEffect(ctx)
-  }, 0.5s steps(29,end) 4 normal both ${cursorEffect(ctx)}`,
-}));
+export const typeAnimation = () =>
+  css({
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    animation:
+      `2s steps(29,end) 1s 1 normal both ${typeEffect}, 0.5s steps(29,end) 4 normal both ${cursorEffect}`,
+  });
 
 const appearEffect = keyframes({
   "0%": {
@@ -36,10 +36,11 @@ const appearEffect = keyframes({
     opacity: 1,
   },
 });
-export const appearAnimation = animation(
-  "2s ease-in-out forwards 1s",
-  appearEffect,
-);
+export const appearAnimation = () =>
+  animation(
+    "2s ease-in-out forwards 1s",
+    appearEffect,
+  );
 
 const shakeEffect = keyframes({
   "0%": {
@@ -55,18 +56,19 @@ const shakeEffect = keyframes({
     transform: "rotate(0deg)",
   },
 });
-export const shakeAnimation = animation(
-  "15s ease-in-out infinite",
-  shakeEffect,
-);
+export const shakeAnimation = () =>
+  animation(
+    "15s ease-in-out infinite",
+    shakeEffect,
+  );
 
-export const appearShakeAnimation = css((ctx) => ({
-  opacity: 0,
-  animation: `${
-    appearEffect(ctx)
-  } 2s ease-in-out forwards 1s, ${shakeEffect} 15s ease-in-out infinite`,
-  transformOrigin: "center",
-}));
+export const appearShakeAnimation = () =>
+  css({
+    opacity: "0",
+    animation:
+      `${appearEffect} 2s ease-in-out forwards 1s, ${shakeEffect} 15s ease-in-out infinite`,
+    transformOrigin: "center",
+  });
 
 const rotateEffect = keyframes({
   "0%": {
@@ -76,10 +78,11 @@ const rotateEffect = keyframes({
     transform: "rotate(360deg)",
   },
 });
-export const slowRotateAnimation = animation(
-  "120s ease-in-out infinite",
-  rotateEffect,
-);
+export const slowRotateAnimation = () =>
+  animation(
+    "120s ease-in-out infinite",
+    rotateEffect,
+  );
 
 const boldenPathEffect = keyframes({
   "0%": {
@@ -96,16 +99,21 @@ const boldenPathEffect = keyframes({
   },
 });
 
-export const boldPathAnimation = animation(
-  ".45s ease-in forwards",
-  boldenPathEffect,
-);
+export const boldPathAnimation = () =>
+  animation(
+    ".45s ease-in forwards",
+    boldenPathEffect,
+  );
 
-export const bgAnimation = animation("3s ease", {
-  "0%": {
-    backgroundColor: "#000f1c",
-  },
-  "100%": {
-    backgroundColor: "#ffffff",
-  },
-});
+export const bgAnimation = () =>
+  animation(
+    "3s ease",
+    keyframes({
+      "0%": {
+        backgroundColor: "#000f1c",
+      },
+      "100%": {
+        backgroundColor: "#ffffff",
+      },
+    }),
+  );

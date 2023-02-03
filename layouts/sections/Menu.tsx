@@ -58,20 +58,20 @@ const lang_switcher_style = apply`
 export default function Menu() {
   const { lang } = useContext(RenderContext);
   return (
-    <section className={tw(menu_wrapper_style)}>
+    <section className={apply(menu_wrapper_style)}>
       <div>
         <MenuButton
           container="[data-site-header]"
           target="[data-mobile-menu]"
           size={30}
           className="mb-3 md:hidden"
-          toggleAddClass={tw(mobile_menu_open_style, "mt-4")}
-          toggleRemoveClass={tw(mobile_menu_close_style)}
+          toggleAddClass={tw(apply(mobile_menu_open_style, "mt-4"))}
+          toggleRemoveClass={tw(apply(mobile_menu_close_style))}
         />
       </div>
       <div
         data-mobile-menu
-        className={tw(mobile_menu_close_style, menu_container_style)}
+        className={apply(mobile_menu_close_style, menu_container_style)}
       >
         <I18n>
           <MenuLink lang="en" href="/">

@@ -1,6 +1,6 @@
 import { useRef } from "preact/hooks";
 import ClickOutside from "@/components/ClickOutside.tsx";
-
+import { tw } from "twind";
 interface LangSwitcherProps {
   lang: string;
   languages: string[];
@@ -12,10 +12,10 @@ export default function LangSwitcher(
 ) {
   const menuRef = useRef<HTMLDivElement>(null);
   function toggle() {
-    menuRef.current?.classList.toggle("h-0");
+    menuRef.current?.classList.toggle(tw("h-0"));
   }
   function close() {
-    menuRef.current?.classList.add("h-0");
+    menuRef.current?.classList.add(tw("h-0"));
   }
   return (
     <ClickOutside

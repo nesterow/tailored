@@ -1,39 +1,62 @@
-import { Options } from "$fresh/plugins/twind.ts";
+import { defineConfig, Preset } from "twind";
+import presetAutoprefix from "preset-autoprefix";
+import twindPreset from "preset-tailwind";
+import presetTypography from "preset-typography";
 
-const mainColors = {
+import {
+  appearAnimation,
+  appearShakeAnimation,
+  bgAnimation,
+  boldPathAnimation,
+  shakeAnimation,
+  slowRotateAnimation,
+  typeAnimation,
+} from "@/components/animations.ts";
+
+const colors = {
   main: "#800856",
   blue: "#000082",
   blood: "#ac2424",
   light: "#fffdf099",
 };
-export default {
+
+export default defineConfig({
+  darkMode: "class",
+  hash: false,
+  presets: [
+    presetAutoprefix() as Preset<unknown>,
+    twindPreset() as Preset<unknown>,
+    presetTypography() as Preset<unknown>,
+  ],
   theme: {
     extend: {
-      colors: mainColors,
-      textColor: mainColors,
-      backgroundColor: mainColors,
+      colors,
+      textColor: colors,
+      backgroundColor: colors,
     },
   },
-  plugins: {
-    appear: () => ({
-      opacity: 0,
-      animation: "appear 2s ease-in-out forwards 1s",
-    }),
-    shake: {
-      animation: "shake 15s infinite",
-      transformOrigin: "center",
-      animationTimingFunction: "ease-in-out",
+  variants: [
+    ["active", "[active]"],
+  ],
+  rules: [
+    ["appear", () => `opacity-0 ${appearAnimation()}`],
+    ["shake", () => `transform-origin-center ${shakeAnimation()}`],
+    ["appear-shake", () => `${appearShakeAnimation()}`],
+    ["slow-rotate", () => `transform ${slowRotateAnimation()}`],
+    ["typing", () => `${typeAnimation()}`],
+    ["bg-animation", () => `${bgAnimation()}`],
+    [
+      "menu-link",
+      () =>
+        `no-underline opacity-[0.6] stroke-0 active:stroke-1 hover:${boldPathAnimation()}`,
+    ],
+  ],
+  preflight: {
+    "html": {
+      scrollBehavior: "smooth",
     },
-    "appear-shake": {
-      opacity: 0,
-      animation: "appear 2s ease-in-out forwards 1s, shake 15s infinite",
-      transformOrigin: "center",
-      animationTimingFunction: "ease-in-out",
-    },
-    "slow-rotate": {
-      animation: "rotate 120s infinite",
-      transformOrigin: "center",
-      animationTimingFunction: "ease-in-out",
+    "body": {
+      minHeight: "100vh",
     },
   },
-} as Pick<Options, "theme">;
+});

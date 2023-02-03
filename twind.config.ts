@@ -1,5 +1,8 @@
-import { apply, Configuration } from "twind";
-import { css } from "twind/css";
+import { defineConfig, Preset } from "twind";
+import presetAutoprefix from "preset-autoprefix";
+import twindPreset from "preset-tailwind";
+import presetTypography from "preset-typography";
+
 import {
   appearAnimation,
   appearShakeAnimation,
@@ -17,8 +20,14 @@ const colors = {
   light: "#fffdf099",
 };
 
-export default {
+export default defineConfig({
   darkMode: "class",
+  hash: false,
+  presets: [
+    presetAutoprefix() as Preset<unknown>,
+    twindPreset() as Preset<unknown>,
+    presetTypography() as Preset<unknown>,
+  ],
   theme: {
     extend: {
       colors,
@@ -26,46 +35,28 @@ export default {
       backgroundColor: colors,
     },
   },
+  variants: [
+    ["active", "[active]"],
+  ],
+  rules: [
+    ["appear", () => `opacity-0 ${appearAnimation()}`],
+    ["shake", () => `transform-origin-center ${shakeAnimation()}`],
+    ["appear-shake", () => `${appearShakeAnimation()}`],
+    ["slow-rotate", () => `transform ${slowRotateAnimation()}`],
+    ["typing", () => `${typeAnimation()}`],
+    ["bg-animation", () => `${bgAnimation()}`],
+    [
+      "menu-link",
+      () =>
+        `no-underline opacity-[0.6] stroke-0 active:stroke-1 hover:${boldPathAnimation()}`,
+    ],
+  ],
   preflight: {
-    "html": css({
+    "html": {
       scrollBehavior: "smooth",
-    }),
-    "body": apply(
-      bgAnimation,
-      "relative",
-      "min-h-[100vh]",
-      "font-sans",
-    ),
-    "h1": apply(
-      "text-4xl",
-      "font-bold",
-    ),
-    "a svg path[name='colors']": apply(
-      "hidden",
-      "opacity-[0.6]",
-    ),
-    "a:hover svg path[name='colors']": apply(
-      boldPathAnimation,
-      "block",
-      "opacity-1",
-    ),
-    "a[active] svg path[name='colors']": apply("block"),
-    "a:active svg path[name='colors']": apply("block"),
-    "[data-type-effect]": apply(typeAnimation),
+    },
+    "body": {
+      minHeight: "100vh",
+    },
   },
-  plugins: {
-    "appear": apply(
-      appearAnimation,
-      "opacity-0",
-    ),
-    "shake": apply(
-      shakeAnimation,
-      "transform-origin-center",
-    ),
-    "appear-shake": apply(appearShakeAnimation),
-    "slow-rotate": apply(
-      slowRotateAnimation,
-      "transform-origin-center",
-    ),
-  },
-} as Configuration;
+});

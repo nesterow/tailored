@@ -2,9 +2,10 @@ import HexoCube from "@/islands/HexoCube.tsx";
 import ColorfulLink from "@/components/ColorfulLink.tsx";
 import StackIcons from "@/islands/StackIcons.tsx";
 import IconArrowGuide from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/arrow-guide.tsx";
-import { apply, tw } from "twind";
+import { cx, tw } from "twind";
 
-const action_link_style = apply`
+const action_link_style = cx`
+  menu-link
   text-[#444]
   font-mono
   hover:!text-blood
@@ -23,10 +24,7 @@ export default function Landing() {
         </a>
 
         <section class="text-center mt-12 flex flex-col w-full justify-center items-center">
-          <h1
-            data-type-effect
-            class="text-2xl sm:text-4xl text-blood font-thin mb-4"
-          >
+          <h1 class="typing text-2xl sm:text-4xl text-blood font-thin mb-4">
             Tailored Software Development
           </h1>
           <p class="appear font-thin mb-4 text-blue">
@@ -64,7 +62,7 @@ export default function Landing() {
             <IconArrowGuide
               size={20}
               color="red"
-              class="opacity-60 tr"
+              class="opacity-60"
               style={{
                 transform: "scale3d(1,-1,1)",
               }}

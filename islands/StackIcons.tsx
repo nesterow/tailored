@@ -1,6 +1,6 @@
 import RandomActivate from "@/components/RandomActivate.tsx";
 import { useState } from "preact/hooks";
-import { apply, tw } from "twind";
+import { tw } from "twind";
 
 export default function StackIcons(props: { className?: string }) {
   const [active, setActive] = useState("");

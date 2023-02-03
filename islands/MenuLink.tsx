@@ -28,7 +28,7 @@ export default function MenuLink(props: ColorfulLinkProps) {
     <ColorfulLink
       {...props}
       active={active}
-      className="hover:!text-blue transition text-2xl"
+      className="menu-link text-2xl font-bold hover:text-blue"
       onClick={() => setActive(true)}
     />
   );
