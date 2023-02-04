@@ -1,7 +1,7 @@
 import { PageProps } from "$fresh/server.ts";
 import $TestLayout from "../layouts/$TestLayout.tsx";
-import { RenderContext } from "@/components/system/context.ts";
-import SharedContext from "@/components/system/SharedContext.tsx";
+import { RenderContext } from "tailored/context.ts";
+import SharedContext from "tailored/components/SharedContext.tsx";
 import $WithContext from "../islands/$WithContext.tsx";
 
 export default function $TestUseFetch({ data }: PageProps) {

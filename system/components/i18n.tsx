@@ -1,6 +1,6 @@
 import { JSX } from "preact";
 import { useContext } from "preact/hooks";
-import { RenderContext } from "./context.ts";
+import { RenderContext } from "../context.ts";
 
 const DEFAULT_LANGUAGE = Deno.env.get("DEFAULT_LANGUAGE") || "en";
 interface I18nProps {
@@ -10,7 +10,7 @@ interface I18nProps {
  * Good for static components and pages that might have slightly different styles for different languages.
  * It plays better when your app has heavy design and a lot of translations to different languages.
  */
-export function I18n(props: I18nProps) {
+export default function I18n(props: I18nProps) {
   const { lang } = useContext(RenderContext);
   for (const child of props.children) {
     if (child.props.lang === lang) {

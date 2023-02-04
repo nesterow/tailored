@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "preact/hooks";
-import { useFetch } from "@/components/system/hooks.ts";
+import { useFetch } from "tailored/hooks.ts";
 
 export default function $WithContext() {
   const [headers, setHeaders] = useState({});

@@ -1,6 +1,6 @@
 import { Handlers, PageProps, RouteConfig } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import { RenderContext } from "@/components/system/context.ts";
+import { RenderContext } from "tailored/context.ts";
 import Landing from "@/pages/Landing.tsx";
 
 const langIndexPattern = (Deno.env.get("LANGUAGES") || "en").split(",").reduce(

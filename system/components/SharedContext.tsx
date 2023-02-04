@@ -1,8 +1,11 @@
 import { useContext } from "preact/hooks";
-import { RenderContext } from "./context.ts";
+import { RenderContext } from "../context.ts";
 import { Head } from "$fresh/runtime.ts";
 
 export default function SharedContext() {
+  if (typeof document !== "undefined") {
+    throw new Error("SharedContext.tsx should be used only on server side");
+  }
   return (
     <Head>
       <script

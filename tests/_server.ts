@@ -1,6 +1,6 @@
 import { Manifest, ServerContext } from "$fresh/server.ts";
 import { serve } from "$fresh/src/server/deps.ts";
-import twindPlugin from "../plugins/twind.ts";
+import twindPlugin from "../system/plugins/twind.ts";
 import twindConfig from "../twind.config.ts";
 
 export default async () => {

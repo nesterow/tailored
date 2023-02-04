@@ -1,5 +1,5 @@
 import Page from "@/layouts/Page.tsx";
-import { RenderContext } from "@/components/system/context.ts";
+import { RenderContext } from "tailored/context.ts";
 import { PageProps } from "$fresh/server.ts";
 
 export default function NotFoundPage(props: PageProps) {

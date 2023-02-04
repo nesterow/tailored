@@ -1,6 +1,6 @@
 import { WithCookie } from "./cookies.ts";
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
-import logger from "@/components/system/logger.ts";
+import logger from "../logger.ts";
 
 const log = logger("RequestCounterMiddleware:");
 const cookieName = "_unsigned_counter";

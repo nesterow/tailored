@@ -1,5 +1,5 @@
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
-import renderMd from "@/components/system/renderMd.ts";
+import renderMd from "../renderMd.ts";
 
 /**
  * Depends on i18n.ts

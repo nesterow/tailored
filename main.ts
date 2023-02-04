@@ -7,7 +7,7 @@ import "$std/dotenv/load.ts";
 import { start } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 
-import twindPlugin from "./plugins/twind.ts";
+import twindPlugin from "tailored/plugins/twind.ts";
 import twindConfig from "./twind.config.ts";
 
 // deno-lint-ignore no-explicit-any

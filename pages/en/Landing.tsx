@@ -19,7 +19,7 @@ export default function Landing() {
     <>
       <div class="flex flex-col items-center justify-start">
         <HexoCube className="slow-rotate" width="250" height="250" play />
-        <a href="/#" class="text-[red] font-thin opacity-60">
+        <a href="/#" class="text-[red] no-underline font-thin opacity-60">
           Nesterov.Digital
         </a>
 
@@ -37,7 +37,7 @@ export default function Landing() {
           </p>
         </section>
 
-        <h5 class="text-blood  sm:text-3xl font-thin mt-16 mb-4 appear">
+        <h5 class="text-blood sm:text-3xl font-thin mt-16 mb-4 appear">
           What can I help you with?
         </h5>
         <div class="appear">

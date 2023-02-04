@@ -1,6 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import Page from "@/layouts/Page.tsx";
-import { RenderContext } from "@/components/system/context.ts";
+import { RenderContext } from "tailored/context.ts";
 
 /**
  * This is a handler for a route that renders a markdown page.
