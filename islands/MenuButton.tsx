@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import ClickOutside from "@/components/ClickOutside.tsx";
+import ClickOutside from "tailored/components/ClickOutside.tsx";
 import IconMenu from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/menu-2.tsx";
 
 interface MenuButtonProps {

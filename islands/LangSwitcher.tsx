@@ -1,5 +1,5 @@
 import { useRef } from "preact/hooks";
-import ClickOutside from "@/components/ClickOutside.tsx";
+import ClickOutside from "tailored/components/ClickOutside.tsx";
 import { tw } from "twind";
 interface LangSwitcherProps {
   lang: string;
