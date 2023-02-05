@@ -26,7 +26,7 @@ function sanitizePath(path: string) {
  * @param {string} path - File path without extension.
  */
 export default async function renderMdPage(path: string): Promise<string> {
-  const file = "pages" + sanitizePath(path) + ".md";
+  const file = sanitizePath(path) + ".md";
   let source = isDev ? null : cache.get(file);
   if (!source) {
     source = await Deno.readTextFile(file);

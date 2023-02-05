@@ -1,7 +1,7 @@
 import HexoCube from "@/islands/HexoCube.tsx";
 import ColorfulLink from "@/components/ColorfulLink.tsx";
 import StackIcons from "@/islands/StackIcons.tsx";
-import IconArrowGuide from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/arrow-guide.tsx";
+import { ArrowGuideIcon } from "@/components/icons.ts";
 import { cx, tw } from "twind";
 
 const action_link_style = cx`
@@ -50,7 +50,7 @@ export default function Landing() {
             >
               IT Consult
             </ColorfulLink>
-            <IconArrowGuide size={20} color="red" class="opacity-60" />
+            <ArrowGuideIcon size={20} color="red" class="opacity-60" />
             <ColorfulLink
               lineHeight={5}
               href="/hire"
@@ -59,7 +59,7 @@ export default function Landing() {
             >
               Create MVP
             </ColorfulLink>
-            <IconArrowGuide
+            <ArrowGuideIcon
               size={20}
               color="red"
               class="opacity-60"

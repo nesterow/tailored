@@ -6,10 +6,21 @@ interface DefaultContext {
   headers?: Record<string, string>;
 }
 
-// deno-lint-ignore no-empty-interface
-export interface Context extends DefaultContext {}
+/**
+ * Inteface to augment default context.
+ */
+export interface Context extends DefaultContext {
+  lang: string;
+}
 
-/** */
+/**
+ * Default context:
+ *  - lang: "en" (default language)
+ *  - lc: { en: {} } (language dictionary)
+ *  - headers: {} (headers to be sent with fetch)
+ *
+ * Augmet it trough `Context` interface.
+ */
 export default createContext<DefaultContext | Context>({
   lang: "en",
   lc: { en: {} },

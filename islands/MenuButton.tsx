@@ -1,6 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
 import ClickOutside from "tailored/components/ClickOutside.tsx";
-import IconMenu from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/menu-2.tsx";
+import { MenuIcon } from "@/components/icons.ts";
 
 interface MenuButtonProps {
   target: string;
@@ -86,7 +86,7 @@ export default function MenuButton(
     <>
       <ClickOutside target={container} onClickOutside={deactivate} />
       <a onClick={toggle}>
-        <IconMenu size={size} class={className} color={color} stroke={stroke} />
+        <MenuIcon size={size} class={className} color={color} stroke={stroke} />
       </a>
     </>
   );
