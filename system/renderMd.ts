@@ -40,10 +40,10 @@ export default async function renderMdPage(path: string): Promise<string> {
     log.dev(file);
     return marked.parse(await Deno.readTextFile(file));
   }
-  let source = cache.get(file);
-  if (!source) {
-    source = await Deno.readTextFile(file);
-    cache.set(file, source);
+  let render = cache.get(file);
+  if (!render) {
+    render = marked.parse(await Deno.readTextFile(file));
+    cache.set(file, render);
   }
-  return marked.parse(source);
+  return render;
 }
