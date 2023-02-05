@@ -6,7 +6,7 @@
   },
   "importMap": "./import_map.json",
   "compilerOptions": {
-    "types": ["./global.d.ts"],
+    "types": ["./typings/*.d.ts"],
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   }

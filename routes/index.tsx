@@ -1,7 +1,7 @@
 import { Handlers, PageProps, RouteConfig } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import { RenderContext } from "tailored/context.ts";
 import Landing from "@/pages/Landing.tsx";
+import Context from "tailored/context.ts";
 
 const langIndexPattern = (Deno.env.get("LANGUAGES") || "en").split(",").reduce(
   (acc, val) => `${acc}{${val}}?`,
@@ -20,7 +20,7 @@ export const handler: Handlers = {
 
 export default function Index({ data }: PageProps) {
   return (
-    <RenderContext.Provider
+    <Context.Provider
       value={{
         lang: data.lang,
       }}
@@ -29,6 +29,6 @@ export default function Index({ data }: PageProps) {
         <title>nesterov.digital</title>
       </Head>
       <Landing />
-    </RenderContext.Provider>
+    </Context.Provider>
   );
 }

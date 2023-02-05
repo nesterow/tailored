@@ -1,3 +1,7 @@
+if (typeof document !== "undefined") {
+  throw new Error("`logger` should be imported only on server side.");
+}
+
 import { Logger } from "./deps.ts";
 
 const isDev = Deno.env.get("DENO_ENV") === "development";

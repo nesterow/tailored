@@ -1,6 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import Page from "@/layouts/Page.tsx";
-import { RenderContext } from "tailored/context.ts";
+import Context from "tailored/context.ts";
 
 /**
  * This is a handler for a route that renders a markdown page.
@@ -19,7 +19,7 @@ export const handler: Handlers = {
 
 export default function MarkedPage(props: PageProps) {
   return (
-    <RenderContext.Provider
+    <Context.Provider
       value={{
         lang: props.data.lang,
       }}
@@ -30,6 +30,6 @@ export default function MarkedPage(props: PageProps) {
           dangerouslySetInnerHTML={{ __html: props.data.source }}
         />
       </Page>
-    </RenderContext.Provider>
+    </Context.Provider>
   );
 }

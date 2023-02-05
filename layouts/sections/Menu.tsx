@@ -1,5 +1,5 @@
 import { useContext } from "preact/hooks";
-import { RenderContext } from "tailored/context.ts";
+import Context from "tailored/context.ts";
 import I18n from "tailored/components/i18n.tsx";
 import MenuLink from "@/islands/MenuLink.tsx";
 import LangSwitcher from "@/islands/LangSwitcher.tsx";
@@ -56,7 +56,7 @@ const lang_switcher_style = apply`
  * Menu component
  */
 export default function Menu() {
-  const { lang } = useContext(RenderContext);
+  const { lang } = useContext(Context);
   return (
     <section className={apply(menu_wrapper_style)}>
       <div>

@@ -1,8 +1,15 @@
 import { JSX } from "preact";
-import { useContext } from "preact/hooks";
-import { RenderContext } from "../context.ts";
+import { useSharedContext } from "../hooks.ts";
+import Context from "../context.ts";
 
-const DEFAULT_LANGUAGE = Deno.env.get("DEFAULT_LANGUAGE") || "en";
+declare module "preact" {
+  namespace JSX {
+    interface IntrinsicAttributes {
+      lang?: string;
+    }
+  }
+}
+
 interface I18nProps {
   children: JSX.Element[];
 }
@@ -11,15 +18,13 @@ interface I18nProps {
  * It plays better when your app has heavy design and a lot of translations to different languages.
  */
 export default function I18n(props: I18nProps) {
-  const { lang } = useContext(RenderContext);
+  const { lang } = useSharedContext(Context);
   for (const child of props.children) {
     if (child.props.lang === lang) {
       return child;
     }
   }
-  return props.children.find((child) =>
-    child.props.lang === DEFAULT_LANGUAGE
-  ) || <></>;
+  return props.children[0];
 }
 
 interface LcMessageProps {
@@ -31,7 +36,7 @@ interface LcMessageProps {
  * TODO: if or when we build an app, we will need a utility to generate a dictionary in json or csv formats.
  */
 export function LcMessage({ children }: LcMessageProps) {
-  const { lang, lc } = useContext(RenderContext);
+  const { lang, lc } = useSharedContext(Context);
   if (typeof children === "string") {
     return (
       <>
@@ -42,7 +47,7 @@ export function LcMessage({ children }: LcMessageProps) {
 
   return (
     <>
-      {children[lang] || children[DEFAULT_LANGUAGE] || ""}
+      {children[lang] || children[0] || ""}
     </>
   );
 }

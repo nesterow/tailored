@@ -1,7 +1,22 @@
 import { useContext } from "preact/hooks";
-import { RenderContext } from "../context.ts";
+import Context from "../context.ts";
 import { Head } from "$fresh/runtime.ts";
+import { SHARED_CONTEXT_ID } from "../constants.ts";
 
+/**
+ * This component is used to share context between server and client.
+ * Injects a script tag with the context data into the document head.
+ *
+ * Usage:
+ *   import Context from "tailored/context.ts";
+ *   import SharedContext from "tailored/components/SharedContext.tsx";
+ *
+ *   export default () => (
+ *     <Context.Provider value={...}>
+ *       <SharedContext />
+ *     </Context.Provider>
+ *   )
+ */
 export default function SharedContext() {
   if (typeof document !== "undefined") {
     throw new Error("SharedContext.tsx should be used only on server side");
@@ -10,9 +25,9 @@ export default function SharedContext() {
     <Head>
       <script
         type="application/json"
-        id="shared-context"
+        id={SHARED_CONTEXT_ID}
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(useContext(RenderContext)),
+          __html: JSON.stringify(useContext(Context)),
         }}
       >
       </script>

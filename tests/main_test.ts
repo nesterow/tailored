@@ -81,7 +81,7 @@ test("tailored", {
     const html = await page.$eval("html", (element) => {
       return element.innerHTML;
     });
-    assert(html.includes(`id="shared-context"`));
+    assert(html.includes(`id="__shared_context"`));
     assert(html.includes(`"lang":"cn"`));
     assert(html.includes(`"x":"1"`));
     assert(html.includes(`"x-test":"test"`));

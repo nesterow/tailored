@@ -1,10 +1,10 @@
 import Page from "@/layouts/Page.tsx";
-import { RenderContext } from "tailored/context.ts";
+import Context from "tailored/context.ts";
 import { PageProps } from "$fresh/server.ts";
 
 export default function NotFoundPage(props: PageProps) {
   return (
-    <RenderContext.Provider
+    <Context.Provider
       value={{
         lang: props.url.pathname.split("/")[1],
       }}
@@ -13,6 +13,6 @@ export default function NotFoundPage(props: PageProps) {
         <h1>404</h1>
         <p>Page not found</p>
       </Page>
-    </RenderContext.Provider>
+    </Context.Provider>
   );
 }
