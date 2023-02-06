@@ -9,6 +9,12 @@ interface HelixAnimationProps {
   colors?: string; // coma separated values for three nodes, default: red,green,blue
 }
 
+HelixAnimation.defaultProps = {
+  colors: "red,green,blue",
+  transitionTime: "13.5s,14.9s,13.3s",
+  trigger: "popstate",
+} as HelixAnimationProps;
+
 const SPEED_FACTOR = 0.3; // how fast the lines form a helix x <= 4
 
 /**
@@ -20,10 +26,10 @@ const SPEED_FACTOR = 0.3; // how fast the lines form a helix x <= 4
  */
 export default function HelixAnimation(props: HelixAnimationProps) {
   const [path, setPath] = useState(getPath(0.4));
-  const transitionTime = (props.transitionTime || "13.5s,14.9s,13.3s").split(
+  const transitionTime = props.transitionTime?.split(
     ",",
   );
-  const colors = (props.colors || "red,green,blue").split(",");
+  const colors = props.colors?.split(",");
 
   useEffect(() => {
     setPath(getPath(Math.random() * 10));
@@ -89,26 +95,26 @@ export default function HelixAnimation(props: HelixAnimationProps) {
       <svg viewBox="0 0 100 126" width={props.width} height="100%">
         <g>
           <path
-            style={{ transition: transitionTime[0] }}
+            style={{ transition: transitionTime![0] }}
             d={path}
             fill="none"
-            stroke={colors[0]}
+            stroke={colors![0]}
             stroke-width=".1"
             stroke-linecap="round"
           />
           <path
-            style={{ transition: transitionTime[1] }}
+            style={{ transition: transitionTime![1] }}
             d={path}
             fill="none"
-            stroke={colors[1]}
+            stroke={colors![1]}
             stroke-width=".1"
             stroke-linecap="round"
           />
           <path
-            style={{ transition: transitionTime[2] }}
+            style={{ transition: transitionTime![2] }}
             d={path}
             fill="none"
-            stroke={colors[2]}
+            stroke={colors![2]}
             stroke-width=".1"
             stroke-linecap="round"
           />

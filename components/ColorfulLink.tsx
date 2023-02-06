@@ -5,7 +5,14 @@ export interface ColorfulLinkProps
   active?: boolean;
   lineHeight?: number;
   className?: string;
+  colors?: string[];
 }
+
+ColorfulLink.defaultProps = {
+  colors: ["red", "blue", "green"],
+  lineHeight: 8,
+} as ColorfulLinkProps;
+
 export default function ColorfulLink(props: ColorfulLinkProps) {
   return (
     <a {...props}>
@@ -15,50 +22,18 @@ export default function ColorfulLink(props: ColorfulLinkProps) {
         style={{
           width: "100%",
         }}
-        height={props.lineHeight || 8}
+        height={props.lineHeight}
       >
-        <path
-          name="colors"
-          d="M 0 1 L 1000 4 Z"
-          fill="none"
-          stroke="red"
-          stroke-linecap="round"
-        />
-        <path
-          name="colors"
-          d="M -1000 1 L 0 1 Z"
-          fill="none"
-          stroke="green"
-          stroke-linecap="round"
-        />
-        <path
-          name="colors"
-          d="M 0 6 L 1000 0 Z"
-          fill="none"
-          stroke="blue"
-          stroke-linecap="round"
-        />
-        <path
-          name="colors"
-          d="M 0 1 L -1000 4 Z"
-          fill="none"
-          stroke="red"
-          stroke-linecap="round"
-        />
-        <path
-          name="colors"
-          d="M 1000 1 L 0 1 Z"
-          fill="none"
-          stroke="green"
-          stroke-linecap="round"
-        />
-        <path
-          name="colors"
-          d="M 0 6 L -1000 0 Z"
-          fill="none"
-          stroke="blue"
-          stroke-linecap="round"
-        />
+        {props.colors?.map((color, i) => (
+          <line
+            x1="-1000"
+            y1={i * 3}
+            x2="1000"
+            y2={i * 3}
+            fill="none"
+            stroke={color}
+          />
+        ))}
       </svg>
     </a>
   );
