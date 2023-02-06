@@ -11,6 +11,7 @@ import {
   shakeAnimation,
   slowRotateAnimation,
   typeAnimation,
+  zapAnimation,
 } from "@/components/animations.ts";
 
 const colors = {
@@ -50,6 +51,7 @@ export default defineConfig({
       () =>
         `no-underline opacity-[0.6] stroke-0 active:stroke-1 hover:${boldPathAnimation()}`,
     ],
+    ["zap", () => `${zapAnimation()}`],
   ],
   preflight: {
     "html": {
@@ -57,6 +59,12 @@ export default defineConfig({
     },
     "body": {
       minHeight: "100vh",
+    },
+    "header": {
+      backdropFilter: "blur(10px)",
+    },
+    "[data-marked] *:target": {
+      paddingTop: "5em",
     },
   },
 });

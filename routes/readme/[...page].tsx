@@ -1,5 +1,5 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import Page from "@/layouts/Page.tsx";
+import ReadmePage from "@/layouts/ReadmePage.tsx";
 import Context from "tailored/context.ts";
 
 /**
@@ -24,12 +24,12 @@ export default function MarkedPage(props: PageProps) {
         lang: props.data.lang,
       }}
     >
-      <Page className="appear">
+      <ReadmePage className="appear">
         <section
           data-marked
           dangerouslySetInnerHTML={{ __html: props.data.source }}
         />
-      </Page>
+      </ReadmePage>
     </Context.Provider>
   );
 }

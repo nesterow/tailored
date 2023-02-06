@@ -38,7 +38,7 @@ const appearEffect = keyframes({
 });
 export const appearAnimation = () =>
   animation(
-    "2s ease-in-out forwards 1s",
+    "1s ease-in-out forwards .2s",
     appearEffect,
   );
 
@@ -105,6 +105,20 @@ export const boldPathAnimation = () =>
     boldenPathEffect,
   );
 
+const zapEffect = keyframes({
+  "0%": {
+    width: "0%",
+  },
+  "100%": {
+    width: "100%",
+  },
+});
+
+export const zapAnimation = () =>
+  animation(
+    ".43s ease-in-out forwards",
+    zapEffect,
+  );
 export const bgAnimation = () =>
   animation(
     "3s ease",

@@ -12,7 +12,7 @@ const MARKDOWN_RENDER_CACHE_SIZE = Number(
 const MARKDOWN_RENDER_CACHE_DISABLED =
   Deno.env.get("MARKDOWN_RENDER_CACHE_DISABLED") ||
   Deno.env.get("DENO_ENV") === "development";
-const log = logger("renderMd");
+const log = logger("rendermd");
 const cache = new LRU<string>(MARKDOWN_RENDER_CACHE_SIZE);
 
 /**

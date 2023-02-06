@@ -4,12 +4,19 @@ export interface ColorfulLinkProps
   extends JSX.HTMLAttributes<HTMLAnchorElement> {
   active?: boolean;
   lineHeight?: number;
+  className?: string;
 }
 export default function ColorfulLink(props: ColorfulLinkProps) {
   return (
     <a {...props}>
       {props.children}
-      <svg viewBox="0 0 10 10" width="100%" height={props.lineHeight || 8}>
+      <svg
+        viewBox="0 0 10 10"
+        style={{
+          width: "100%",
+        }}
+        height={props.lineHeight || 8}
+      >
         <path
           name="colors"
           d="M 0 1 L 1000 4 Z"

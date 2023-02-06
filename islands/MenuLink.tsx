@@ -1,6 +1,6 @@
 import ColorfulLink, { ColorfulLinkProps } from "@/components/ColorfulLink.tsx";
 import { useEffect, useState } from "preact/hooks";
-
+import { tw } from "twind";
 /**
  * `props.href` must start with '/'
  */
@@ -28,7 +28,10 @@ export default function MenuLink(props: ColorfulLinkProps) {
     <ColorfulLink
       {...props}
       active={active}
-      className="menu-link text-2xl font-bold hover:text-blue"
+      className={tw(
+        "menu-link hover:[&>svg]:zap " +
+          (props.className || "text-2xl font-bold hover:text-blue"),
+      )}
       onClick={() => setActive(true)}
     />
   );
