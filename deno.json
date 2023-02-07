@@ -9,6 +9,7 @@
   "compilerOptions": {
     "types": ["./typings"],
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "jsxImportSource": "preact",
+    "strict": true
   }
 }

@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import { useSharedContext } from "../hooks.ts";
+import useSharedContext from "../hooks/useSharedContext.ts";
 import Context from "../context.ts";
 
 declare module "preact" {
