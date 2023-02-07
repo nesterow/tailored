@@ -1,5 +1,5 @@
 import { useRef } from "preact/hooks";
-import ClickOutside from "tailored/components/ClickOutside.tsx";
+import useClickOutside from "tailored/hooks/useClickOutside.ts";
 import { tw } from "twind";
 interface LangSwitcherProps {
   lang: string;
@@ -17,11 +17,9 @@ export default function LangSwitcher(
   function close() {
     menuRef.current?.classList.add(tw("h-0"));
   }
+  useClickOutside(menuRef, close);
   return (
-    <ClickOutside
-      onClickOutside={close}
-      className={className}
-    >
+    <section className={className}>
       <a onClick={toggle} class="cursor-pointer">
         {lang.toLocaleUpperCase()}
       </a>
@@ -39,6 +37,6 @@ export default function LangSwitcher(
           </a>
         ))}
       </div>
-    </ClickOutside>
+    </section>
   );
 }

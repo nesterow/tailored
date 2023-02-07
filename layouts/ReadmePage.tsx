@@ -22,12 +22,13 @@ export default function Page(props: PageProps) {
         class="relative flex p-2 mx-auto max-w-screen-lg prose"
         className={props.className}
       >
-        <div class="relative min-w-[300px]">
-          <div class="w-full max-w-[300px] max-h-[50vh] overflow-y-auto h-auto fixed">
+        <div class="relative min-w-[300px] border-r-[.2em] border-[#effaff] -mt-12 pt-12">
+          <div class="w-full max-w-[300px] max-h-[50vh] overflow-y-auto h-auto fixed px-6 py-2">
             <MenuLink
               className="relative text-2xl"
               href=""
-              lineHeight={3}
+              underlineHeight={6}
+              underlineWidth="10%"
               style={{
                 strokeOpacity: 0.5,
               }}
@@ -38,57 +39,62 @@ export default function Page(props: PageProps) {
               <MenuLink
                 className="relative"
                 href="#education"
-                lineHeight={3}
+                underlineHeight={6}
+                underlineWidth="10%"
                 style={{
                   strokeOpacity: 0.5,
                 }}
               >
-                - Education
+                Education
               </MenuLink>
               <MenuLink
                 className="relative"
                 href="#projects"
-                lineHeight={3}
+                underlineHeight={6}
+                underlineWidth="10%"
                 style={{
                   strokeOpacity: 0.5,
                 }}
               >
-                - Projects
+                Projects
               </MenuLink>
               <MenuLink
                 className="relative"
                 href="#current-scientific-study"
-                lineHeight={3}
+                underlineHeight={6}
+                underlineWidth="10%"
                 style={{
                   strokeOpacity: 0.5,
                 }}
               >
-                - Current Scientific Study
+                Current Scientific Study
               </MenuLink>
               <MenuLink
                 className="relative"
                 href="#interested-in"
-                lineHeight={3}
+                underlineHeight={6}
+                underlineWidth="10%"
                 style={{
                   strokeOpacity: 0.5,
                 }}
               >
-                - Interested in
+                Interested in
               </MenuLink>
               <MenuLink
                 className="relative"
                 href="#skills"
-                lineHeight={3}
+                underlineHeight={6}
+                underlineWidth="10%"
                 style={{
                   strokeOpacity: 0.5,
                 }}
               >
-                - Skills
+                Skills
               </MenuLink>
             </div>
           </div>
         </div>
-        <div class="w-full p-6 mt-64">
+        <div class="w-full relative p-6 pt-14">
           {props.children}
         </div>
       </div>

@@ -64,7 +64,7 @@ export default function Menu() {
           container="[data-site-header]"
           target="[data-mobile-menu]"
           size={30}
-          className="mb-3 md:hidden"
+          className="block mb-3 md:hidden"
           toggleAddClass={tw(apply(mobile_menu_open_style, "mt-4"))}
           toggleRemoveClass={tw(apply(mobile_menu_close_style))}
         />

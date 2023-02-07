@@ -43,7 +43,7 @@ export default function Landing() {
         <div class="appear">
           <div class="flex items-center gap-1 mb-4 text-center opacity-70">
             <ColorfulLink
-              lineHeight={5}
+              underlineHeight={5}
               href="/hire"
               className={tw(action_link_style)}
               active
@@ -52,7 +52,7 @@ export default function Landing() {
             </ColorfulLink>
             <ArrowGuideIcon size={20} color="red" class="opacity-60" />
             <ColorfulLink
-              lineHeight={5}
+              underlineHeight={5}
               href="/hire"
               className={tw(action_link_style)}
               active
@@ -68,7 +68,7 @@ export default function Landing() {
               }}
             />
             <ColorfulLink
-              lineHeight={5}
+              underlineHeight={5}
               href="/hire"
               className={tw(action_link_style)}
               active

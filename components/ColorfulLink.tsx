@@ -3,14 +3,16 @@ import { JSX } from "preact";
 export interface ColorfulLinkProps
   extends JSX.HTMLAttributes<HTMLAnchorElement> {
   active?: boolean;
-  lineHeight?: number;
+  underlineHeight?: number | string;
+  underlineWidth?: number | string;
   className?: string;
   colors?: string[];
 }
 
 ColorfulLink.defaultProps = {
   colors: ["red", "blue", "green"],
-  lineHeight: 8,
+  underlineHeight: 8,
+  underlineWidth: "100%",
 } as ColorfulLinkProps;
 
 export default function ColorfulLink(props: ColorfulLinkProps) {
@@ -21,8 +23,9 @@ export default function ColorfulLink(props: ColorfulLinkProps) {
         viewBox="0 0 10 10"
         style={{
           width: "100%",
+          maxWidth: props.underlineWidth,
         }}
-        height={props.lineHeight}
+        height={props.underlineHeight}
       >
         {props.colors?.map((color, i) => (
           <line
