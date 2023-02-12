@@ -24,11 +24,11 @@ export default function useClickOutside(
 ) {
   if (typeof document === "undefined") return;
 
-  let _ref: Ref;
+  let ref$: Ref;
   if (typeof ref === "string") {
-    _ref = useRef(document.querySelector(ref));
+    ref$ = useRef(document.querySelector(ref));
   } else {
-    _ref = ref;
+    ref$ = ref;
   }
 
   // 1. we use unique event ids for each use
@@ -39,13 +39,13 @@ export default function useClickOutside(
 
   // 2. document click event will trigger our custom event
   const documentOnClick = useCallback(function (e: MouseEvent) {
-    if (!_ref.current?.contains(e.target as Node)) {
+    if (!ref$.current?.contains(e.target as Node)) {
       const event = new CustomEvent(eventId, {
         bubbles: true,
         cancelable: true,
       });
       // 3. ref will be event target
-      _ref.current?.dispatchEvent(event);
+      ref$.current?.dispatchEvent(event);
     }
   }, inputs ?? [ref, onClickOutside]);
 
@@ -57,10 +57,10 @@ export default function useClickOutside(
   useEffect(() => {
     // 5. in order to manage event propagation in our side effects
     // we need to know the eventId, so we store it in the dataset
-    (_ref.current as HTMLBaseElement).dataset["clickOutside"] = eventId;
+    (ref$.current as HTMLBaseElement).dataset["clickOutside"] = eventId;
 
     // 6. we need to add event listeners to the owner document
-    const ownerDocument = _ref.current?.ownerDocument ?? document;
+    const ownerDocument = ref$.current?.ownerDocument ?? document;
     ownerDocument.addEventListener("click", documentOnClick, true);
     ownerDocument.addEventListener(eventId, onCustomEvent, {
       capture: true,

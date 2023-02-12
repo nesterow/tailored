@@ -1,10 +1,11 @@
 import { JSX } from "preact";
-import { useCallback, useEffect, useState } from "preact/hooks";
+import { MutableRef, useCallback, useEffect, useState } from "preact/hooks";
 import useClickOutside from "../hooks/useClickOutside.ts";
 import { MenuIcon } from "./_deps.ts";
 
+type Ref = MutableRef<Element | HTMLElement | null>;
 interface MenuButtonProps {
-  target: string;
+  target: string | Ref;
   container: string;
   toggleAddClass: string;
   toggleRemoveClass?: string;
@@ -47,25 +48,31 @@ export default function MenuButton(
   const _classes = toggleAddClass.split(" ");
   const _removeClasses = toggleRemoveClass?.split(" ");
 
-  function activate() {
-    document.querySelectorAll(target).forEach((el) => {
-      el.classList.add(..._classes);
+  const activate = useCallback(function () {
+    const targetEl = typeof target === "string"
+      ? document?.querySelectorAll(target)
+      : [target.current];
+    targetEl?.forEach((el) => {
+      el?.classList.add(..._classes);
       if (_removeClasses) {
-        el.classList.remove(..._removeClasses);
+        el?.classList.remove(..._removeClasses);
       }
     });
     setActive(true);
-  }
+  }, [target, container, toggleAddClass, toggleRemoveClass]);
 
-  function deactivate() {
-    document.querySelectorAll(target).forEach((el) => {
-      el.classList.remove(..._classes);
+  const deactivate = useCallback(function () {
+    const targetEl = typeof target === "string"
+      ? document?.querySelectorAll(target)
+      : [target.current];
+    targetEl.forEach((el) => {
+      el?.classList.remove(..._classes);
       if (_removeClasses) {
-        el.classList.add(..._removeClasses);
+        el?.classList.add(..._removeClasses);
       }
     });
     setActive(false);
-  }
+  }, [target, container, toggleAddClass, toggleRemoveClass]);
 
   function toggle() {
     if (active) {

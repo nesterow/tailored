@@ -7,6 +7,7 @@ interface HelixAnimationProps {
   trigger?: "popstate";
   transitionTime?: string; // coma separated values for three nodes, default: 13.5s,14.9s,13.3s
   colors?: string; // coma separated values for three nodes, default: red,green,blue
+  noSSR?: boolean;
 }
 
 HelixAnimation.defaultProps = {
@@ -25,10 +26,10 @@ const SPEED_FACTOR = 0.3; // how fast the lines form a helix x <= 4
  * A way to do a little optimization on cpu usage is to clear the loop when the user switched tab.
  */
 export default function HelixAnimation(props: HelixAnimationProps) {
-  const [path, setPath] = useState(getPath(0.4));
-  const transitionTime = props.transitionTime?.split(
-    ",",
-  );
+  const skipSSR = props.noSSR && typeof document === "undefined";
+
+  const [path, setPath] = useState(skipSSR ? "" : getPath(0.4));
+  const transitionTime = props.transitionTime?.split(",");
   const colors = props.colors?.split(",");
 
   useEffect(() => {
@@ -92,34 +93,38 @@ export default function HelixAnimation(props: HelixAnimationProps) {
         filter: "blur(0.1)",
       }}
     >
-      <svg viewBox="0 0 100 126" width={props.width} height="100%">
-        <g>
-          <path
-            style={{ transition: transitionTime![0] }}
-            d={path}
-            fill="none"
-            stroke={colors![0]}
-            stroke-width=".1"
-            stroke-linecap="round"
-          />
-          <path
-            style={{ transition: transitionTime![1] }}
-            d={path}
-            fill="none"
-            stroke={colors![1]}
-            stroke-width=".1"
-            stroke-linecap="round"
-          />
-          <path
-            style={{ transition: transitionTime![2] }}
-            d={path}
-            fill="none"
-            stroke={colors![2]}
-            stroke-width=".1"
-            stroke-linecap="round"
-          />
-        </g>
-      </svg>
+      {skipSSR
+        ? <svg></svg>
+        : (
+          <svg viewBox="0 0 100 126" width={props.width} height="100%">
+            <g>
+              <path
+                style={{ transition: transitionTime![0] }}
+                d={path}
+                fill="none"
+                stroke={colors![0]}
+                stroke-width=".1"
+                stroke-linecap="round"
+              />
+              <path
+                style={{ transition: transitionTime![1] }}
+                d={path}
+                fill="none"
+                stroke={colors![1]}
+                stroke-width=".1"
+                stroke-linecap="round"
+              />
+              <path
+                style={{ transition: transitionTime![2] }}
+                d={path}
+                fill="none"
+                stroke={colors![2]}
+                stroke-width=".1"
+                stroke-linecap="round"
+              />
+            </g>
+          </svg>
+        )}
     </div>
   );
 }
