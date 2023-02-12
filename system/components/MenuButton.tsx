@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import { useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect, useState } from "preact/hooks";
 import useClickOutside from "../hooks/useClickOutside.ts";
 import { MenuIcon } from "./_deps.ts";
 
@@ -92,7 +92,7 @@ export default function MenuButton(
     };
   }, []);
 
-  useClickOutside(container, deactivate);
+  useClickOutside(deactivate, container);
 
   return (
     <>

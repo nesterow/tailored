@@ -17,7 +17,7 @@ export default function LangSwitcher(
   function close() {
     menuRef.current?.classList.add(tw("h-0"));
   }
-  useClickOutside(menuRef, close);
+  useClickOutside(close, menuRef);
   return (
     <section className={className}>
       <a onClick={toggle} class="cursor-pointer">
