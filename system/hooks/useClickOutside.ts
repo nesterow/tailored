@@ -1,10 +1,5 @@
-import {
-  MutableRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-} from "preact/hooks";
+import { MutableRef, useCallback, useEffect, useMemo } from "preact/hooks";
+import { useDomSelectorRef } from "./useDomSelectorRef.ts";
 
 type Ref = MutableRef<Node | Element | null>;
 
@@ -14,27 +9,27 @@ type Ref = MutableRef<Node | Element | null>;
  * Click outside hook, accepts an element ref or a selector string
  *
  * @param onClickOutside - callback
- * @param ref - element ref or selector string
+ * @param refOrSelector - element ref or selector string
  * @param inputs - dependencies
  */
 export default function useClickOutside(
   onClickOutside: () => void,
-  ref: string | Ref,
+  refOrSelector: string | Ref,
   inputs?: unknown[],
 ) {
   if (typeof document === "undefined") return;
 
   let ref$: Ref;
-  if (typeof ref === "string") {
-    ref$ = useRef(document.querySelector(ref));
+  if (typeof refOrSelector === "string") {
+    ref$ = useDomSelectorRef(refOrSelector, inputs ?? [refOrSelector]);
   } else {
-    ref$ = ref;
+    ref$ = refOrSelector;
   }
 
   // 1. we use unique event ids for each use
   const eventId = useMemo(
     () => `co-${Math.random().toString(36).substring(2, 9)}`,
-    inputs ?? [ref, onClickOutside],
+    inputs ?? [refOrSelector, onClickOutside],
   );
 
   // 2. document click event will trigger our custom event
@@ -47,12 +42,12 @@ export default function useClickOutside(
       // 3. ref will be event target
       ref$.current?.dispatchEvent(event);
     }
-  }, inputs ?? [ref, onClickOutside]);
+  }, inputs ?? [refOrSelector, onClickOutside]);
 
   // 4. our custom event will trigger the callback
   const onCustomEvent: EventListener = useCallback(function (_event: Event) {
     onClickOutside();
-  }, inputs ?? [ref, onClickOutside]);
+  }, inputs ?? [refOrSelector, onClickOutside]);
 
   useEffect(() => {
     // 5. in order to manage event propagation in our side effects
@@ -71,5 +66,5 @@ export default function useClickOutside(
         capture: true,
       });
     };
-  }, inputs ?? [ref, onClickOutside]);
+  }, inputs ?? [refOrSelector, onClickOutside]);
 }
