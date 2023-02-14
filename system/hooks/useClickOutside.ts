@@ -26,7 +26,7 @@ export function useClickOutside(
 
   // 1. unique event id for each use
   const eventId = useRandomId(
-    { prefix: "co", length: 12 },
+    "co",
     [ref$, onClickOutside],
   );
 

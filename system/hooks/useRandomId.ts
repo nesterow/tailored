@@ -1,12 +1,14 @@
-import { useMemo } from "preact/hooks";
+import { useId, useMemo } from "preact/hooks";
 
+/**
+ * Alias for useId with a prefix.
+ */
 export function useRandomId(
-  opts = { prefix: "id", length: 9 },
+  prefix = "idx",
   inputs: unknown[] = [],
 ) {
   return useMemo(
-    () =>
-      `${opts.prefix}-${Math.random().toString(36).substring(2, opts.length)}`,
-    [opts, ...inputs],
+    () => prefix + useId(),
+    [prefix, ...inputs],
   );
 }
