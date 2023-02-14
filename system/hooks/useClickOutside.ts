@@ -1,5 +1,7 @@
-import { MutableRef, useCallback, useEffect, useMemo } from "preact/hooks";
+import { MutableRef, useCallback, useLayoutEffect, useRef } from "preact/hooks";
 import { useDomSelectorRef } from "./useDomSelectorRef.ts";
+import { useRandomId } from "./useRandomId.ts";
+import { useEventListener } from "./useEventListener.ts";
 
 type Ref = MutableRef<Node | Element | null>;
 
@@ -12,28 +14,25 @@ type Ref = MutableRef<Node | Element | null>;
  * @param refOrSelector - element ref or selector string
  * @param inputs - dependencies
  */
-export default function useClickOutside(
+export function useClickOutside(
   onClickOutside: () => void,
   refOrSelector: string | Ref,
   inputs?: unknown[],
 ) {
   if (typeof document === "undefined") return;
 
-  let ref$: Ref;
-  if (typeof refOrSelector === "string") {
-    ref$ = useDomSelectorRef(refOrSelector, inputs ?? [refOrSelector]);
-  } else {
-    ref$ = refOrSelector;
-  }
+  const ref$: Ref = (typeof refOrSelector === "string")
+    ? useDomSelectorRef(refOrSelector, inputs ?? [refOrSelector])
+    : refOrSelector;
 
   // 1. we use unique event ids for each use
-  const eventId = useMemo(
-    () => `co-${Math.random().toString(36).substring(2, 9)}`,
-    inputs ?? [refOrSelector, onClickOutside],
+  const eventId = useRandomId(
+    { prefix: "co", length: 12 },
+    inputs ?? [onClickOutside],
   );
 
   // 2. document click event will trigger our custom event
-  const documentOnClick = useCallback(function (e: MouseEvent) {
+  const documentOnClick = useCallback(function (e: Event) {
     if (!ref$.current?.contains(e.target as Node)) {
       const event = new CustomEvent(eventId, {
         bubbles: true,
@@ -42,29 +41,22 @@ export default function useClickOutside(
       // 3. ref will be event target
       ref$.current?.dispatchEvent(event);
     }
-  }, inputs ?? [refOrSelector, onClickOutside]);
+  }, inputs ?? [ref$, eventId]);
 
   // 4. our custom event will trigger the callback
   const onCustomEvent: EventListener = useCallback(function (_event: Event) {
     onClickOutside();
-  }, inputs ?? [refOrSelector, onClickOutside]);
+  }, inputs ?? [onClickOutside]);
 
-  useEffect(() => {
-    // 5. in order to manage event propagation in our side effects
-    // we need to know the eventId, so we store it in the dataset
+  // 5. we may need to know the eventId outside this scope, so we store it in the dataset
+  useLayoutEffect(() => {
     (ref$.current as HTMLBaseElement).dataset["clickOutside"] = eventId;
+  }, inputs ?? [ref$]);
 
-    // 6. we need to add event listeners to the owner document
-    const ownerDocument = ref$.current?.ownerDocument ?? document;
-    ownerDocument.addEventListener("click", documentOnClick, true);
-    ownerDocument.addEventListener(eventId, onCustomEvent, {
-      capture: true,
-    });
-    return () => {
-      ownerDocument.removeEventListener("click", documentOnClick, true);
-      ownerDocument.removeEventListener(eventId, onCustomEvent, {
-        capture: true,
-      });
-    };
-  }, inputs ?? [refOrSelector, onClickOutside]);
+  // 6. we need to add event listeners to the owner document
+  const ownerDocument = useRef(ref$.current?.ownerDocument ?? document);
+  useEventListener("click", documentOnClick, ownerDocument, true);
+  useEventListener(eventId, onCustomEvent, ownerDocument, {
+    capture: true,
+  });
 }

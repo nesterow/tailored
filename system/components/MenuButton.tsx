@@ -1,18 +1,21 @@
 import { JSX } from "preact";
 import { MutableRef, useCallback, useEffect, useState } from "preact/hooks";
-import useClickOutside from "../hooks/useClickOutside.ts";
+import { useClickOutside } from "../hooks/useClickOutside.ts";
+import { useDomSelectorRef } from "../hooks/useDomSelectorRef.ts";
+import { useEventListener } from "../hooks/useEventListener.ts";
+
 import { MenuIcon } from "./_deps.ts";
 
 type Ref = MutableRef<Element | HTMLElement | null>;
 interface MenuButtonProps {
   target: string | Ref;
-  container: string;
+  container: string | Ref;
+  className: string;
   toggleAddClass: string;
   toggleRemoveClass?: string;
   size?: number;
   color?: string;
   stroke?: number;
-  className: string;
   children?: JSX.Element | JSX.Element[];
 }
 
@@ -24,8 +27,10 @@ MenuButton.defaultProps = {
 
 /**
  * @hydrated
+ *
  * Menu button behavior.
  * Switch between classes on the target element.
+ *
  * @param target - CSS selector of the target element (menu wrapper).
  * @param container - CSS selector of the container element i.e header, used for the "click outside" behavour.
  * @param toggleAddClass - CSS class to add to the target element on activation.
@@ -45,60 +50,50 @@ export default function MenuButton(
   }: MenuButtonProps,
 ) {
   const [active, setActive] = useState(false);
-  const _classes = toggleAddClass.split(" ");
-  const _removeClasses = toggleRemoveClass?.split(" ");
+  const classes = toggleAddClass.split(" ");
+  const removeClasses = toggleRemoveClass?.split(" ");
+  const targetRef = typeof target === "string"
+    ? useDomSelectorRef(target)
+    : target;
+  const deps = [target, toggleAddClass, toggleRemoveClass];
 
   const activate = useCallback(function () {
-    const targetEl = typeof target === "string"
-      ? document?.querySelectorAll(target)
-      : [target.current];
-    targetEl?.forEach((el) => {
-      el?.classList.add(..._classes);
-      if (_removeClasses) {
-        el?.classList.remove(..._removeClasses);
-      }
-    });
+    targetRef.current?.classList.add(...classes);
+    if (removeClasses) {
+      targetRef.current?.classList.remove(...removeClasses);
+    }
     setActive(true);
-  }, [target, container, toggleAddClass, toggleRemoveClass]);
+  }, deps);
 
   const deactivate = useCallback(function () {
-    const targetEl = typeof target === "string"
-      ? document?.querySelectorAll(target)
-      : [target.current];
-    targetEl.forEach((el) => {
-      el?.classList.remove(..._classes);
-      if (_removeClasses) {
-        el?.classList.add(..._removeClasses);
-      }
-    });
+    targetRef.current?.classList.remove(...classes);
+    if (removeClasses) {
+      targetRef.current?.classList.add(...removeClasses);
+    }
     setActive(false);
-  }, [target, container, toggleAddClass, toggleRemoveClass]);
+  }, deps);
 
-  function toggle() {
+  const toggle = useCallback(function () {
     if (active) {
       deactivate();
     } else {
       activate();
     }
-  }
+  }, deps);
 
-  useEffect(() => {
-    const keyListener = function (e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        deactivate();
-      }
-    };
-    const resizeListener = function () {
+  const onResize = useCallback(function () {
+    deactivate();
+  }, [deactivate]);
+
+  const onKeyDown = useCallback(function (e: Event) {
+    const event = e as KeyboardEvent;
+    if (event.key === "Escape") {
       deactivate();
-    };
-    globalThis.addEventListener("resize", resizeListener);
-    globalThis.addEventListener("keydown", keyListener);
-    return () => {
-      globalThis.removeEventListener("keydown", keyListener);
-      globalThis.removeEventListener("resize", resizeListener);
-    };
-  }, []);
+    }
+  }, [deactivate]);
 
+  useEventListener("resize", onResize);
+  useEventListener("keydown", onKeyDown);
   useClickOutside(deactivate, container);
 
   return (
