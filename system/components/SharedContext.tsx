@@ -4,6 +4,7 @@ import { Head } from "$fresh/runtime.ts";
 import { SHARED_CONTEXT_ID } from "../constants.ts";
 
 /**
+ * TODO: Isomorphic global store using useReducer and providing universal methods for hydration.
  * This component is used to share context between server and client.
  * Injects a script tag with the context data into the document head.
  *
