@@ -1,9 +1,8 @@
 import { useLayoutEffect, useRef } from "preact/hooks";
-
 /**
  * @hydrated
  *
- * Get a ref to an element by dom selector. The ref is updated when the subtree of parent element changes.
+ * Get a ref to an element by dom selector. Uses a MutationObserver to update the ref. Be careful.
  * Useful when you need to work with native DOM APIs, for example, when some part of the DOM is rendered
  * by server-side code (i.e. when the app layout is rendered by the server).
  * Common use cases: click outside, layout styles, dataset attributes, web components, etc.;
@@ -41,9 +40,15 @@ export function useDomSelectorRef<T>(selector: string, inputs?: unknown[]) {
   useLayoutEffect(() => {
     setRef();
     const observer = new MutationObserver(setRef);
-    observer.observe(ref.current?.parentElement!, {
-      subtree: true,
+    observer.observe(ref.current!, {
+      subtree: false,
       attributes: true,
+      attributeOldValue: true,
+      attributeFilter: [
+        "id",
+        "class",
+        selector.replace(/(\[|\])/g, "").split("=").shift() || "none-existent",
+      ],
     });
     return () => {
       observer.disconnect();

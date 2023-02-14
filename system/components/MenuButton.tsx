@@ -58,28 +58,28 @@ export default function MenuButton(
   const deps = [target, toggleAddClass, toggleRemoveClass];
 
   const activate = useCallback(function () {
-    targetRef.current?.classList.add(...classes);
-    if (removeClasses) {
-      targetRef.current?.classList.remove(...removeClasses);
+    const cl = targetRef.current?.classList;
+    if (!cl?.contains(toggleAddClass)) {
+      targetRef.current?.classList.add(...classes);
+    }
+    if (toggleRemoveClass && cl?.contains(toggleRemoveClass)) {
+      cl?.remove(...removeClasses!);
     }
     setActive(true);
   }, deps);
 
   const deactivate = useCallback(function () {
-    targetRef.current?.classList.remove(...classes);
-    if (removeClasses) {
-      targetRef.current?.classList.add(...removeClasses);
+    const cl = targetRef.current?.classList;
+    if (cl?.contains(toggleAddClass)) {
+      cl?.remove(...classes);
+    }
+    if (toggleRemoveClass && cl?.contains(toggleRemoveClass)) {
+      cl?.add(...removeClasses!);
     }
     setActive(false);
   }, deps);
 
-  const toggle = useCallback(function () {
-    if (active) {
-      deactivate();
-    } else {
-      activate();
-    }
-  }, deps);
+  const toggle = () => active ? deactivate() : activate();
 
   const onResize = useCallback(function () {
     deactivate();
