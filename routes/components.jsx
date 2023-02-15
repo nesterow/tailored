@@ -5,7 +5,7 @@
 /*@jsxRuntime automatic @jsxImportSource preact*/
 import { Head } from "$fresh/runtime.ts";
 import HexoCube from "@/islands/HexoCube.tsx";
-import Page from "@/layouts/Page.tsx";
+import Page from "@/components/Layouts/Page.tsx";
 import { getLanguage, i18nRouteConfig } from "tailored/handlers/i18nRoute.ts";
 export const config = i18nRouteConfig(new URL(import.meta.url));
 function _createMdxContent(props) {

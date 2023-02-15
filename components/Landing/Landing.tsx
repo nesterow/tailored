@@ -1,4 +1,4 @@
-import Page from "@/layouts/Page.tsx";
+import Page from "@/components/Layouts/Page.tsx";
 import I18n from "tailored/components/i18n.tsx";
 
 import LandingEn from "./LandingEn.tsx";

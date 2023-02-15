@@ -1,4 +1,4 @@
-import Page from "@/layouts/Page.tsx";
+import Page from "@/components/Layouts/Page.tsx";
 import Context from "tailored/context.ts";
 import { PageProps } from "$fresh/server.ts";
 
