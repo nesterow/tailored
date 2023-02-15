@@ -3,12 +3,12 @@ import { useLayoutEffect, useRef } from "preact/hooks";
  * @hydrated
  *
  * Get a ref to an element by dom selector. Uses a MutationObserver to update the ref. Be careful.
+ *
  * Useful when you need to work with native DOM APIs, for example, when some part of the DOM is rendered
  * by server-side code (i.e. when the app layout is rendered by the server).
  * Common use cases: click outside, layout styles, dataset attributes, web components, etc.;
  *
  * You should avoid using this kind of approach if the rendered dom is outside of component subtree.
- * Don't depend on things outside of your control.
  *
  * GOOD (hydrated component applying effects to dom rendered by server inside component):
  *
@@ -36,7 +36,7 @@ export function useDomSelectorRef<T>(selector: string, inputs?: unknown[]) {
   const setRef = () => {
     ref.current = document.querySelector(selector);
   };
-
+  const noop = "noop";
   useLayoutEffect(() => {
     setRef();
     const observer = new MutationObserver(setRef);
@@ -47,7 +47,9 @@ export function useDomSelectorRef<T>(selector: string, inputs?: unknown[]) {
       attributeFilter: [
         "id",
         "class",
-        selector.replace(/(\[|\])/g, "").split("=").shift() || "none-existent",
+        selector.includes("[") // [a="b"]
+          ? selector.replace(/(\[|\])/g, "").split("=").shift() || noop
+          : noop,
       ],
     });
     return () => {
