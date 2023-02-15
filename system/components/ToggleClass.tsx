@@ -4,50 +4,36 @@ import { useClickOutside } from "../hooks/useClickOutside.ts";
 import { useDomSelectorRef } from "../hooks/useDomSelectorRef.ts";
 import { useEventListener } from "../hooks/useEventListener.ts";
 
-import { MenuIcon } from "./_deps.ts";
-
 type Ref = MutableRef<Element | HTMLElement | null>;
-interface MenuButtonProps {
+export interface ToggleClassProps {
   target: string | Ref;
-  container: string | Ref;
+  clickOutside?: string | Ref;
   className: string;
   toggleAddClass: string;
   toggleRemoveClass?: string;
-  size?: number;
-  color?: string;
-  stroke?: number;
   children?: JSX.Element | JSX.Element[];
 }
-
-MenuButton.defaultProps = {
-  size: 24,
-  color: "black",
-  stroke: 2,
-} as MenuButtonProps;
 
 /**
  * @hydrated
  *
- * Menu button behavior.
+ * Toggle class behavior.
  * Switch between classes on the target element.
  *
- * @param target - CSS selector of the target element (menu wrapper).
- * @param container - CSS selector of the container element i.e header, used for the "click outside" behavour.
- * @param toggleAddClass - CSS class to add to the target element on activation.
- * @param toggleRemoveClass - CSS class to remove from the target element on activation.
+ * @param {Ref | string} target - target element (menu wrapper).
+ * @param {Ref | string} clickOutside - container element i.e header, used for the "click outside" behavour.
+ * @param {string} toggleAddClass - CSS class to add to the target element on activation.
+ * @param {string} toggleRemoveClass - CSS class to remove from the target element on activation.
  */
-export default function MenuButton(
+export default function ToggleClass(
   {
     target,
     toggleAddClass,
     toggleRemoveClass,
     className,
-    size,
-    stroke,
-    color,
-    container,
+    clickOutside,
     children,
-  }: MenuButtonProps,
+  }: ToggleClassProps,
 ) {
   const [active, setActive] = useState(false);
   const classes = toggleAddClass.split(" ");
@@ -60,7 +46,7 @@ export default function MenuButton(
   const activate = useCallback(function () {
     const cl = targetRef.current?.classList;
     if (!cl?.contains(toggleAddClass)) {
-      targetRef.current?.classList.add(...classes);
+      cl?.add(...classes);
     }
     if (toggleRemoveClass && cl?.contains(toggleRemoveClass)) {
       cl?.remove(...removeClasses!);
@@ -73,7 +59,7 @@ export default function MenuButton(
     if (cl?.contains(toggleAddClass)) {
       cl?.remove(...classes);
     }
-    if (toggleRemoveClass && cl?.contains(toggleRemoveClass)) {
+    if (toggleRemoveClass && !cl?.contains(toggleRemoveClass)) {
       cl?.add(...removeClasses!);
     }
     setActive(false);
@@ -94,18 +80,14 @@ export default function MenuButton(
 
   useEventListener("resize", onResize);
   useEventListener("keydown", onKeyDown);
-  useClickOutside(deactivate, container);
+  if (clickOutside) {
+    useClickOutside(deactivate, clickOutside);
+  }
 
   return (
     <>
       <a onClick={toggle} className={className}>
-        {children ?? (
-          <MenuIcon
-            size={size}
-            color={color}
-            stroke={stroke}
-          />
-        )}
+        {children}
       </a>
     </>
   );

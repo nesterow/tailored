@@ -61,9 +61,9 @@ export default function Menu() {
     <section className={apply(menu_wrapper_style)}>
       <div>
         <MenuButton
-          container="[data-site-header]"
-          target="[data-mobile-menu]"
           size={30}
+          target="[data-mobile-menu]"
+          clickOutside="[data-site-header]"
           className="block mb-3 md:hidden"
           toggleAddClass={tw(apply(mobile_menu_open_style, "mt-4"))}
           toggleRemoveClass={tw(apply(mobile_menu_close_style))}
