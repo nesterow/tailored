@@ -1,10 +1,18 @@
 #!/usr/bin/env -S deno run -A --watch=static/,routes/
 
 import dev from "$fresh/dev.ts";
-import { watchMdx } from "https://deno.land/x/watch_mdx@v0.0.5/mod.ts";
+import { watchMdx } from "https://deno.land/x/watch_mdx@v0.0.7/mod.ts";
 
 const precompile =
   Deno.args.findLast((arg) => arg === "--precompile") !== undefined;
+
+// deno-lint-ignore no-explicit-any
+const lock = precompile && (function (this: any) {
+  this.release = new Promise((resolve) => {
+    this.resolve = resolve;
+  });
+  return this;
+}.bind({}))();
 
 watchMdx({
   precompile,
@@ -26,9 +34,11 @@ watchMdx({
       output,
     };
   },
+  onCompile: lock ? lock.resolve : undefined,
 });
 
 if (precompile) {
+  await lock.release;
   Deno.exit(0);
 }
 
