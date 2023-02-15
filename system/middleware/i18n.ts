@@ -12,13 +12,13 @@ export default function I18nMiddleware(
   ctx: MiddlewareHandlerContext,
 ) {
   const path = new URL(req.url).pathname;
-  const lang = path.split("/")[1];
+  const lang = path.split(".").pop() ?? DEFAULT_LANGUAGE;
   if (LANGUAGES.includes(lang)) {
     ctx.state.lang = lang;
     ctx.state.i18nPath = path;
   } else {
     ctx.state.lang = DEFAULT_LANGUAGE;
-    ctx.state.i18nPath = "/" + DEFAULT_LANGUAGE + path;
+    ctx.state.i18nPath = `/${path}.${DEFAULT_LANGUAGE}`;
   }
   return ctx.next();
 }

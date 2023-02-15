@@ -1,8 +1,8 @@
 import Page from "@/layouts/Page.tsx";
 import I18n from "tailored/components/i18n.tsx";
 
-import LandingEn from "./en/Landing.tsx";
-import LandingRu from "./ru/Landing.tsx";
+import LandingEn from "./LandingEn.tsx";
+import LandingRu from "./LandingRu.tsx";
 
 export default function Landing() {
   return (

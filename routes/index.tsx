@@ -1,28 +1,16 @@
-import { Handlers, PageProps, RouteConfig } from "$fresh/server.ts";
+import { PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import Landing from "@/pages/Landing.tsx";
+import Landing from "@/components/Landing/Landing.tsx";
 import Context from "tailored/context.ts";
+import { getLanguage, i18nIndexConfig } from "tailored/handlers/i18nRoute.ts";
 
-const langIndexPattern = (Deno.env.get("LANGUAGES") || "en").split(",").reduce(
-  (acc, val) => `${acc}{${val}}?`,
-  "/",
-);
-export const config: RouteConfig = {
-  routeOverride: langIndexPattern,
-};
-export const handler: Handlers = {
-  GET(req, ctx) {
-    return ctx.render({
-      lang: ctx.state.lang,
-    });
-  },
-};
+export const config = i18nIndexConfig();
 
-export default function Index({ data }: PageProps) {
+export default function Index({ url }: PageProps) {
   return (
     <Context.Provider
       value={{
-        lang: data.lang,
+        lang: getLanguage(url),
       }}
     >
       <Head>

@@ -1,5 +1,5 @@
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
-import rendermd from "../rendermd.ts";
+import renderMarked from "../handlers/marked.ts";
 
 const MARKDOWN_PAGES_DIR = Deno.env.get("MARKDOWN_PAGES_DIR") || "pages";
 
@@ -20,7 +20,7 @@ export default async function MarkdownMiddleware(
   const path = MARKDOWN_PAGES_DIR +
     (ctx.state.i18nPath as string || pathname);
   try {
-    const markdown = await rendermd(path);
+    const markdown = await renderMarked(path);
     ctx.state.markdown = markdown;
   } catch (_e) {
     return ctx.next();

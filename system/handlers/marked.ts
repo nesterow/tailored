@@ -2,9 +2,10 @@ if (typeof document !== "undefined") {
   throw new Error("`renderMd` should be imported only on server side.");
 }
 
-import { marked } from "./deps.ts";
+// @deno-types="https://cdn.jsdelivr.net/npm/@types/marked@4/index.d.ts"
+import { marked } from "https://cdn.jsdelivr.net/npm/marked@4.2.12/lib/marked.esm.js";
 import { LRU } from "https://deno.land/x/lru@1.0.2/mod.ts";
-import logger from "./logger.ts";
+import logger from "../logger.ts";
 
 const MARKDOWN_RENDER_CACHE_SIZE = Number(
   Deno.env.get("MARKDOWN_RENDER_CACHE_SIZE") || 32,
@@ -34,7 +35,7 @@ function sanitizePath(path: string) {
  *
  * @param {string} path - File path without extension.
  */
-export default async function renderMdPage(path: string): Promise<string> {
+export default async function renderMarked(path: string): Promise<string> {
   const file = sanitizePath(path) + ".md";
   if (MARKDOWN_RENDER_CACHE_DISABLED) {
     log.dev(file);
@@ -43,7 +44,7 @@ export default async function renderMdPage(path: string): Promise<string> {
   let render = cache.get(file);
   if (!render) {
     render = marked.parse(await Deno.readTextFile(file));
-    cache.set(file, render);
+    cache.set(file, render!);
   }
-  return render;
+  return render!;
 }

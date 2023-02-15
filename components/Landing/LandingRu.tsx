@@ -13,11 +13,10 @@ export default function Landing() {
 
         <section class="text-center mt-12 flex flex-col w-full justify-center items-center">
           <h1 class="typing text-2xl sm:text-3xl md:text-4xl text-blood font-thin mb-4">
-            Заказная разработка ПО
+            Все продумано до мелочей
           </h1>
           <p class="appear font-thin mb-4 text-blue opacity-60">
-            Crafting custom software solutions, to fit your unique business
-            needs
+            Разрабатваем решения, подходящие именно вашему бизнесу
           </p>
           <p class="appear mt-1 p-1 text-2xl text-main font-thin md:w-3/4">
             With a <span class="text-blue">decade of experience</span>{" "}
