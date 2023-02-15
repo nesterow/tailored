@@ -1,5 +1,5 @@
 import { PageProps } from "$fresh/server.ts";
-import $TestLayout from "../layouts/$TestLayout.tsx";
+import $TestLayout from "../components/$TestLayout.tsx";
 import Context from "tailored/context.ts";
 import SharedContext from "tailored/components/SharedContext.tsx";
 import $WithContext from "../islands/$WithContext.tsx";
