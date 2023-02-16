@@ -530,6 +530,8 @@
     "https://deno.land/x/watch_mdx@v0.0.6/mod.ts": "f6a6cf5c6001a455d3e961703e958b0e828b82c3a134554f48e8b7e9bcb56c5f",
     "https://deno.land/x/watch_mdx@v0.0.7/deps.ts": "512fdfccaecfa893449b489e2865c7f90180f62cf3ca0fd956fad9163fe39a33",
     "https://deno.land/x/watch_mdx@v0.0.7/mod.ts": "f6a6cf5c6001a455d3e961703e958b0e828b82c3a134554f48e8b7e9bcb56c5f",
+    "https://deno.land/x/watch_mdx@v0.0.8/deps.ts": "512fdfccaecfa893449b489e2865c7f90180f62cf3ca0fd956fad9163fe39a33",
+    "https://deno.land/x/watch_mdx@v0.0.8/mod.ts": "1102d5c4fef915300f5cac608a4c34b58122982041e05e6dd9940008ad2aace5",
     "https://esm.sh/*preact-render-to-string@5.2.4": "b5ea1be1c1c40c87e04f7f29921e504032e0afa618ca8941aad479ea0f4d8751",
     "https://esm.sh/@floating-ui/dom@1.2.1": "be0986cb3a0b461b25138b67e9d54283210403d27eed887008878ae6c52cc089",
     "https://esm.sh/@mdx-js/mdx@2.3.0": "3ac2ae06b4a6f59e93adf0ef1820c5f65db6de3a8d8645812ec3e83a40dfae15",

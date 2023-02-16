@@ -9,25 +9,6 @@ import { useLayoutEffect, useRef } from "preact/hooks";
  * Common use cases: click outside, layout styles, dataset attributes, web components, etc.;
  *
  * You should avoid using this kind of approach if the rendered dom is outside of component subtree.
- *
- * GOOD (hydrated component applying effects to dom rendered by server inside component):
- *
- *    <MyServerLayout>
- *     <MyServerHeader>
- *       <MyHydratedMenuToggle selector="#my-menu"/>
- *       <menu-web-component id="my-menu" hidden>
- *         no hydrated menu rendered by server
- *       </menu-web-component>
- *     </MyServerHeader>
- *    <MyServerLayout>
- *
- * BAD (hydrated component applying effects to arbitrary dom selector):
- *
- *    <MyServerLayout>
- *     <MyServerHeader>
- *      <MyHydratedMenuToggle selector="#who-knows-where"/>
- *     </MyServerHeader>
- *    </MyServerLayout>
  */
 export function useDomSelectorRef<T>(selector: string, inputs?: unknown[]) {
   if (typeof document === "undefined") return useRef(null);
