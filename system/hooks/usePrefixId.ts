@@ -3,7 +3,7 @@ import { useId, useMemo } from "preact/hooks";
 /**
  * Alias for useId with a prefix.
  */
-export function useRandomId(
+export function usePrefixId(
   prefix = "idx",
   inputs: unknown[] = [],
 ) {

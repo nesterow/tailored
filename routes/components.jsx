@@ -70,6 +70,8 @@ function _createMdxContent(props) {
           {"\n"}
         </_components.ul>
         <_components.h1>{"Popover"}</_components.h1>
+        <PopoverShowcase />
+        <_components.hr />
       </Page>
     </>
   );

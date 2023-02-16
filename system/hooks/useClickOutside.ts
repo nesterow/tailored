@@ -1,6 +1,6 @@
 import { MutableRef, useCallback, useLayoutEffect, useRef } from "preact/hooks";
 import { useDomSelectorRef } from "./useDomSelectorRef.ts";
-import { useRandomId } from "./useRandomId.ts";
+import { usePrefixId } from "./usePrefixId.ts";
 import { useEventListener } from "./useEventListener.ts";
 
 type Ref = MutableRef<Node | Element | null>;
@@ -14,14 +14,13 @@ type Ref = MutableRef<Node | Element | null>;
  * @param refOrSelector - element ref or selector string
  * @param inputs - dependencies
  */
-useClickOutside.__callnumber = 0;
+useClickOutside.__callNId$ = 0;
 
 export function useClickOutside(
   onClickOutside: () => void,
   refOrSelector: string | Ref | Ref[],
 ) {
   if (typeof document === "undefined") return;
-  useClickOutside.__callnumber++;
 
   const refs$: Ref[] =
     (Array.isArray(refOrSelector) ? refOrSelector : [refOrSelector]).map(
@@ -31,8 +30,8 @@ export function useClickOutside(
     );
 
   // 1. unique event id for each use
-  const eventId = useRandomId(
-    `co-${useClickOutside.__callnumber}-`,
+  const eventId = usePrefixId(
+    `co-${++useClickOutside.__callNId$}-`,
     [...refs$, onClickOutside],
   );
 
