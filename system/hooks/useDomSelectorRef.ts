@@ -36,7 +36,7 @@ export function useDomSelectorRef<T>(selector: string, inputs?: unknown[]) {
   const setRef = () => {
     ref.current = document.querySelector(selector);
   };
-  const noop = "noop";
+  const noop = "_noop";
   useLayoutEffect(() => {
     setRef();
     const observer = new MutationObserver(setRef);
