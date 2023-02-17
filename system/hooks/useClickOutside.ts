@@ -12,13 +12,14 @@ type Ref = MutableRef<Node | Element | null>;
  *
  * @param onClickOutside - callback
  * @param refOrSelector - element ref or selector string
- * @param inputs - dependencies
+ * @param eventType - click (default), mousedown, etc.
  */
 useClickOutside.__callNId$ = 0;
 
 export function useClickOutside(
   onClickOutside: () => void,
   refOrSelector: string | Ref | Ref[],
+  eventType = "click",
 ) {
   if (typeof document === "undefined") return;
 
@@ -31,7 +32,7 @@ export function useClickOutside(
 
   // 1. unique event id for each use
   const eventId = usePrefixId(
-    `co-${++useClickOutside.__callNId$}-`,
+    `${eventType}-${++useClickOutside.__callNId$}-`,
     [...refs$, onClickOutside],
   );
 
@@ -68,7 +69,7 @@ export function useClickOutside(
 
   // 6. we need to add event listeners to the owner document
   const ownerDocument = useRef(refs$[0].current?.ownerDocument ?? document);
-  useEventListener("click", documentOnClick, ownerDocument, true);
+  useEventListener(eventType, documentOnClick, ownerDocument, true);
   useEventListener(eventId, onCustomEvent, ownerDocument, {
     capture: true,
   });

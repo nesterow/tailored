@@ -19,7 +19,7 @@ export function useEventListener<
       | MediaQueryListEventMap[KM]
       | Event,
   ) => void,
-  element?: MutableRef<T>,
+  element?: MutableRef<T> | MutableRef<T>[],
   options?: boolean | AddEventListenerOptions,
 ) {
   // Create a ref that stores handler
@@ -30,18 +30,21 @@ export function useEventListener<
   }, [handler]);
 
   useEffect(() => {
-    // Define the listening target
-    const targetElement = element?.current ?? globalThis;
-
-    if (!(targetElement && targetElement.addEventListener)) return;
-
-    // Create event listener that calls handler function stored in ref
-    const listener: typeof handler = (event) => savedHandler.current(event);
-    targetElement.addEventListener(eventName, listener, options);
-
+    const targets = Array.isArray(element)
+      ? element.filter((e) => !!e.current).map((e) => e.current)
+      : [element?.current ?? globalThis];
+    const listener: typeof handler = (event) => {
+      savedHandler.current(event);
+    };
+    targets.forEach((target) => {
+      if (!(target && target.addEventListener)) return;
+      target.addEventListener(eventName, listener, options);
+    });
     // Remove event listener on cleanup
     return () => {
-      targetElement.removeEventListener(eventName, listener, options);
+      targets.forEach((target) => {
+        target.removeEventListener(eventName, listener, options);
+      });
     };
   }, [eventName, element, options]);
 }
