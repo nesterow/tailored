@@ -27,7 +27,6 @@ export interface PopoverProps {
   debounce?: number;
   role?: string;
   arrow?: MutableRef<Element | null>;
-  animationTimeout?: number;
 }
 
 Popover.defaultProps = {
@@ -38,7 +37,6 @@ Popover.defaultProps = {
   clickOutside: true,
   role: "tooltip",
   debounce: 100,
-  animationTimeout: 600,
 } as Partial<PopoverProps>;
 
 /**
@@ -143,6 +141,7 @@ export default function Popover(props: PopoverProps) {
   }
 
   // handle animations
+  let pendingAnimations;
   useLayoutEffect(() => {
     const target = refs.floating.current;
 
@@ -151,33 +150,12 @@ export default function Popover(props: PopoverProps) {
 
     const animationend = () => {
       if (hasTransition && hasAnimation) {
-        Promise.all([
+        pendingAnimations = Promise.allSettled([
           new Promise((resolve) => {
-            let called = false;
-            target!.ontransitionend = () => {
-              if (called) return;
-              called = true;
-              resolve(true);
-            };
-            setTimeout(() => {
-              if (called) return;
-              called = true;
-              resolve(true);
-            }, props.animationTimeout);
+            target!.ontransitionend = resolve;
           }),
           new Promise((resolve) => {
             target!.onanimationend = resolve;
-            let called = false;
-            target!.ontransitionend = () => {
-              if (called) return;
-              called = true;
-              resolve(true);
-            };
-            setTimeout(() => {
-              if (called) return;
-              called = true;
-              resolve(true);
-            }, props.animationTimeout);
           }),
         ]).then(finish);
         return;
@@ -189,15 +167,19 @@ export default function Popover(props: PopoverProps) {
       }
     };
 
+    const cleanup = () => {
+      target!.ontransitionstart = null;
+      target!.onanimationstart = null;
+      target!.ontransitionend = null;
+      target!.onanimationend = null;
+    };
+
     const finish = () => {
       target?.style.setProperty(
         "visibility",
         active ? "visible" : "hidden",
       );
-      target!.ontransitionstart = null;
-      target!.onanimationstart = null;
-      target!.ontransitionend = null;
-      target!.onanimationend = null;
+      cleanup();
     };
 
     target!.ontransitionstart = (ev) => {
@@ -223,12 +205,7 @@ export default function Popover(props: PopoverProps) {
       }
     }
 
-    return () => {
-      target!.ontransitionstart = null;
-      target!.onanimationstart = null;
-      target!.ontransitionend = null;
-      target!.onanimationend = null;
-    };
+    return cleanup;
   }, [active]);
 
   return (
