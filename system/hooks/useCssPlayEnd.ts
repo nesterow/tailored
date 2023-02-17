@@ -1,7 +1,9 @@
 import { MutableRef, useLayoutEffect, useRef } from "preact/hooks";
 
 /**
- * Handle css transition and/or animation end
+ * Handle css transition and/or animation end.
+ * Layout effect.
+ *
  * @param onFinish
  * @param ref
  * @param inputs
@@ -61,6 +63,11 @@ export function useCssPlayEnd(
       hasAnimation = true;
       animationend();
     };
+    setTimeout(() => {
+      if (!hasTransition && !hasAnimation) {
+        onFinish();
+      }
+    });
     return cleanup;
-  }, [...inputs]);
+  }, inputs);
 }
