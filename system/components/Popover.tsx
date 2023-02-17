@@ -11,6 +11,7 @@ import { usePosition } from "../hooks/usePosition.ts";
 import { useEventListener } from "../hooks/useEventListener.ts";
 import { useClickOutside } from "../hooks/useClickOutside.ts";
 import { useDebounceCallback } from "../hooks/useDebounceCallback.ts";
+import { useCssPlayEnd } from "../hooks/useCssPlayEnd.ts";
 
 export interface PopoverProps {
   target: MutableRef<Element | null>;
@@ -140,60 +141,19 @@ export default function Popover(props: PopoverProps) {
     ]);
   }
 
-  // handle animations
-  let pendingAnimations;
-  useLayoutEffect(() => {
-    const target = refs.floating.current;
-
-    let hasTransition = false;
-    let hasAnimation = false;
-
-    const animationend = () => {
-      if (hasTransition && hasAnimation) {
-        pendingAnimations = Promise.allSettled([
-          new Promise((resolve) => {
-            target!.ontransitionend = resolve;
-          }),
-          new Promise((resolve) => {
-            target!.onanimationend = resolve;
-          }),
-        ]).then(finish);
-        return;
-      }
-      if (hasTransition) {
-        target!.ontransitionend = finish;
-      } else if (hasAnimation) {
-        target!.onanimationend = finish;
-      }
-    };
-
-    const cleanup = () => {
-      target!.ontransitionstart = null;
-      target!.onanimationstart = null;
-      target!.ontransitionend = null;
-      target!.onanimationend = null;
-    };
-
-    const finish = () => {
-      target?.style.setProperty(
+  useCssPlayEnd(
+    () => {
+      refs.floating.current?.style.setProperty(
         "visibility",
         active ? "visible" : "hidden",
       );
-      cleanup();
-    };
+    },
+    refs.floating,
+    [active],
+  );
 
-    target!.ontransitionstart = (ev) => {
-      if (ev.target !== target) return;
-      hasTransition = true;
-      animationend();
-    };
-
-    target!.onanimationstart = (ev) => {
-      if (ev.target !== target) return;
-      hasAnimation = true;
-      animationend();
-    };
-
+  useLayoutEffect(() => {
+    const target = refs.floating.current;
     target!.className = "";
     if (active) {
       if (className) {
@@ -204,8 +164,6 @@ export default function Popover(props: PopoverProps) {
         target!.className = hideClassName;
       }
     }
-
-    return cleanup;
   }, [active]);
 
   return (
