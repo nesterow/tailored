@@ -1,13 +1,7 @@
 import { JSX } from "preact";
 import { MutableRef, useLayoutEffect, useState } from "preact/hooks";
-import {
-  arrow,
-  flip,
-  inline,
-  offset,
-  platform,
-  shift,
-} from "../hooks/utils/floating.ts";
+import { arrow, flip, inline, offset, shift } from "../hooks/utils/floating.ts";
+import type { Middleware } from "../hooks/utils/floating.ts";
 import { usePosition } from "../hooks/usePosition.ts";
 import { useEventListener } from "../hooks/useEventListener.ts";
 import { useClickOutside } from "../hooks/useClickOutside.ts";
@@ -36,6 +30,7 @@ export interface PopoverProps {
   debounce?: number;
   role?: string;
   arrow?: MutableRef<HTMLElement | null>;
+  middlewares?: Middleware[];
 }
 
 Popover.defaultProps = {
@@ -46,6 +41,7 @@ Popover.defaultProps = {
   clickOutside: true,
   role: "tooltip",
   debounce: 100,
+  middlewares: [],
 } as Partial<PopoverProps>;
 
 /**
@@ -79,6 +75,9 @@ export default function Popover(props: PopoverProps) {
     middleware.push(arrow({
       element: _arrow,
     }));
+  }
+  if (props.middlewares?.length) {
+    middleware.push(...props.middlewares);
   }
   const { x, y, placement, refs, update, middlewareData } = usePosition({
     strategy,
@@ -209,6 +208,8 @@ export default function Popover(props: PopoverProps) {
     </div>
   );
 
+  /* Special methods */
+
   function updatearrow() {
     if (_arrow && middlewareData.arrow) {
       const el = _arrow?.current!;
@@ -220,7 +221,7 @@ export default function Popover(props: PopoverProps) {
       if (y) {
         style.setProperty("top", y + "px");
       }
-      const offset = el.getBoundingClientRect().width!
+      const offset = el.getBoundingClientRect().width!;
       style.setProperty(placement, null);
       style.setProperty(
         INVPOS[placement],
