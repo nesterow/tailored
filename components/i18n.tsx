@@ -1,6 +1,6 @@
 import { JSX } from "preact";
-import useSharedContext from "../hooks/useSharedContext.ts";
-import Context from "../context.ts";
+import { useContext } from "preact/hooks";
+import Context from "@/context.ts";
 
 declare module "preact" {
   namespace JSX {
@@ -18,7 +18,7 @@ interface I18nProps {
  * It plays better when your app has heavy design and a lot of translations to different languages.
  */
 export default function I18n(props: I18nProps) {
-  const { lang } = useSharedContext(Context);
+  const { lang } = useContext(Context);
   for (const child of props.children) {
     if (child.props.lang === lang) {
       return child;
@@ -36,7 +36,7 @@ interface LcMessageProps {
  * TODO: if or when we build an app, we will need a utility to generate a dictionary in json or csv formats.
  */
 export function LcMessage({ children }: LcMessageProps) {
-  const { lang, lc } = useSharedContext(Context);
+  const { lang, lc } = useContext(Context);
   if (typeof children === "string") {
     return (
       <>

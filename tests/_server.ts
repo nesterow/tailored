@@ -2,6 +2,8 @@ import { Manifest, ServerContext } from "$fresh/server.ts";
 import { serve } from "$fresh/src/server/deps.ts";
 import twindPlugin from "../system/plugins/twind.ts";
 import twindConfig from "../twind.config.ts";
+import contextPlugin from "tailored/plugins/context.ts";
+import Context from "@/tests/context.ts";
 
 export default async () => {
   const _file = "../$fresh.gen.ts";
@@ -10,6 +12,10 @@ export default async () => {
     manifest as unknown as Manifest,
     {
       plugins: [
+        contextPlugin(
+          Context,
+          new URL("./context.ts", import.meta.url).href,
+        ),
         twindPlugin({
           selfURL: new URL("./twind.config.ts", import.meta.url).href,
           ...twindConfig,

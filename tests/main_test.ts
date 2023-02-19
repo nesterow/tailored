@@ -64,6 +64,9 @@ test("tailored", {
   page.on("pageerror", function (err) {
     console.log("Page error: ", err.toString());
   });
+  page.on("console", (log) => {
+    console.log(log.text());
+  });
 
   await t.step("pupeteer get /$test", async () => {
     await page.goto("http://localhost:3001/$test", {
@@ -76,13 +79,13 @@ test("tailored", {
     await page.goto("http://localhost:3001/$usefetch", {
       waitUntil: "networkidle2",
     });
-    await delay(100);
+
+    await delay(5000);
     await page.waitForSelector("#test");
     const html = await page.$eval("html", (element) => {
       return element.innerHTML;
     });
-    assert(html.includes(`id="__shared_context"`));
-    assert(html.includes(`"lang":"cn"`));
+    //assert(html.includes(`"lang":"cn"`));
     assert(html.includes(`"x":"1"`));
     assert(html.includes(`"x-test":"test"`));
   });

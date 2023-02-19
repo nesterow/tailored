@@ -10,10 +10,16 @@ import manifest from "./fresh.gen.ts";
 import twindPlugin from "tailored/plugins/twind.ts";
 import twindConfig from "./twind.config.ts";
 import preloaderPlugin from "tailored/plugins/preloader.ts";
+import contextPlugin from "tailored/plugins/context.ts";
+import Context from "./context.ts";
 
 // deno-lint-ignore no-explicit-any
 await start(manifest as any, {
   plugins: [
+    contextPlugin(
+      Context,
+      new URL("./context.ts", import.meta.url).href,
+    ),
     preloaderPlugin(),
     twindPlugin({
       selfURL: new URL("./twind.config.ts", import.meta.url).href,

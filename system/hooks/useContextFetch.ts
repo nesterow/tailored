@@ -1,12 +1,19 @@
-import useSharedContext from "./useSharedContext.ts";
-import Context from "../context.ts";
+import { Context } from "preact";
+import { useContext } from "preact/hooks";
 
 /**
- * Use shared context to get headers and return fetch function.
+ * Use context to get headers and return fetch function.
  * @returns fetch function with headers from context
  */
-export default function useFetch() {
-  const { headers } = useSharedContext(Context);
+
+type ContextWithHeaders = {
+  headers?: HeadersInit;
+};
+
+export default function useContextFetch<T>(
+  Context: Context<T & ContextWithHeaders>,
+) {
+  const { headers } = useContext(Context);
   return async (url: string, options?: RequestInit) => {
     const response = await fetch(url, {
       ...options,

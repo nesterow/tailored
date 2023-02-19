@@ -1,7 +1,7 @@
 import { PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Landing from "@/components/Landing/Landing.tsx";
-import Context from "tailored/context.ts";
+import Context from "@/context.ts";
 import { getLanguage, i18nIndexConfig } from "tailored/handlers/i18nRoute.ts";
 
 export const config = i18nIndexConfig();

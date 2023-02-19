@@ -1,6 +1,6 @@
 import { useContext } from "preact/hooks";
-import Context from "tailored/context.ts";
-import I18n from "tailored/components/i18n.tsx";
+import Context from "@/context.ts";
+import I18n from "@/components/i18n.tsx";
 import MenuLink from "@/islands/MenuLink.tsx";
 import LangSwitcher from "@/islands/LangSwitcher.tsx";
 import MenuButton from "@/islands/MenuButton.tsx";
