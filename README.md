@@ -42,8 +42,8 @@ Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.9
 
 ## Preact Hooks
 
-A set of useful hooks for preact. The hooks are designed with the future perspective of being built within Web
-components.
+A set of useful hooks for preact. The hooks are designed with the future
+perspective of being built within Web components.
 
 ### useContextFetch(Context)
 
