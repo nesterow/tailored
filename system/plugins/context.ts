@@ -9,7 +9,6 @@ export default function context(
 ): Plugin {
   setup(Context);
 
-  console.log(importURL);
   const main = `data:application/javascript,import hydrate from "${
     new URL("./context/hydrate.ts", import.meta.url).href
   }";
