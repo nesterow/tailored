@@ -1,11 +1,15 @@
 # Tailored
 
-A set of utilities and components for [Fresh](https://fresh.deno.dev) and
-[Preact](https://preactjs.com).
+Isomorphic utilities, components and hooks for [Fresh](https://fresh.deno.dev)
+and [Preact](https://preactjs.com).
+
+---
 
 ## Fresh plugins
 
-### Preact Context
+Useful plugins for Fresh.
+
+### 1. Context plugin
 
 A plugin that enables the use of global Preact Context in islands. Current
 verion supports only one provider and only JSON-serializable values.
@@ -16,7 +20,7 @@ verion supports only one provider and only JSON-serializable values.
 import Context from "./context.ts";
 import contextPlugin from "tailored/plugins/context.ts";
 
-await start(manifest as any, {
+await start(manifest, {
   plugins: [
     contextPlugin(
       Context,
@@ -29,7 +33,7 @@ await start(manifest as any, {
 [context.ts](./context.ts) |
 [source](https://deno.land/x/tailored/plugins/context.ts?source)
 
-### Twind v1 plugin
+### 2. Twind v1 plugin
 
 Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.9
 
@@ -38,12 +42,32 @@ Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.9
 [Plugin](./main.ts) | [Config](./twind.config.ts) |
 [source](https://deno.land/x/tailored/plugins/twind.ts?source)
 
+### 3. Preloader plugin
+
+Show a progress indicator while the page is loading.
+
+> Usage
+
+```typescript
+import preloaderPlugin from "tailored/plugins/preloader.ts";
+
+await start(manifest, {
+  plugins: [
+    preloaderPlugin({
+      color: "#48d1cc",
+    }),
+  ],
+});
+```
+
+---
+
 ## Preact Hooks
 
 A set of useful hooks for preact. The hooks are designed with the future
 perspective of being built within Web components.
 
-### useContextFetch(Context)
+### _useContextFetch(Context)_
 
 Returns a `fetch` with headers set from the context.
 
@@ -57,20 +81,20 @@ const response = await _fetch("/api/v1/test");
 
 [source](https://deno.land/x/tailored/hooks/useContextFetch.ts?source)
 
-### useClickOutside(callback, refOrSelector, eventType="click")
+### _useClickOutside(callback, refOrSelector, eventType="click")_
 
 Handle click outside of an element.
 
 [source](https://deno.land/x/tailored/hooks/useClickOutside.ts?source)
 
-### useCssPlayEnd(onFinish, ref, inputs=[])
+### _useCssPlayEnd(onFinish, ref, inputs=[])_
 
 Handle the end of a CSS animation or/and transition. At the time doesn't handle
 infinite animations.
 
 [source](https://deno.land/x/tailored/hooks/useCssPlayEnd.ts?source)
 
-### useDebounceCallback(callback, delay, inputs=[])
+### _useDebounceCallback(callback, delay, inputs=[])_
 
 Returns an object with a debounced version of the `callback`, `immediate` and
 `cancel`.
@@ -95,13 +119,13 @@ return (
 
 [source](https://deno.land/x/tailored/hooks/useDebounceCallback.ts?source)
 
-### useEventListener(eventName, handler, elementRef, options)
+### _useEventListener(eventName, handler, elementRef, options)_
 
 Handles adding event listener to an element or a set of elements (elementRef).
 
 [source](https://deno.land/x/tailored/hooks/useEventListener.ts?source)
 
-### usePosition(ref, options)
+### _usePosition(ref, options)_
 
 Calculate position of a floating element. Ported from @floating-ui/react-dom
 
@@ -116,6 +140,8 @@ Calculate position of a floating element. Ported from @floating-ui/react-dom
 ```
 
 [source](https://deno.land/x/tailored/hooks/usePosition.ts?source)
+
+---
 
 ## Components
 
@@ -178,6 +204,8 @@ export default function MenuButton(props: MenuButtonProps) {
 ```
 
 [source / typedefs](https://deno.land/x/tailored/components/ToggleClass.tsx?source)
+
+---
 
 ## Development
 
