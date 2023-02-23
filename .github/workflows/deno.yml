@@ -41,8 +41,5 @@ jobs:
       - name: Run linter
         run: deno lint
 
-      - name: Reload deps
-        run: deno cache --reload --lock=deno.lock main.ts
-
       - name: Run tests
-        run: deno test -A --no-check  tests/
+        run: deno test -A --no-check --lock-write tests/

@@ -2,7 +2,7 @@
   "tasks": {
     "dev": "deno run -A ./dev.ts --precompile && deno run -A --watch=static/,routes/ dev.ts",
     "run": "deno run -A  main.ts",
-    "test": "deno test -A --no-check  tests/",
+    "test": "deno test -A --no-check --lock-write tests/",
     "setup": "deno run -A .github/setup.ts"
   },
   "importMap": "./import_map.json",
