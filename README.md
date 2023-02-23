@@ -7,7 +7,7 @@ A set of utilities and components for [Fresh](https://fresh.deno.dev) and
 
 ### Preact Context
 
-[source](https://deno.land/x/tailored/plugins/context.ts)
+[source](https://deno.land/x/tailored/plugins/context.ts?source)
 
 A plugin that enables the use of global Preact Context in islands. Current
 verion supports only one provider and only JSON-serializable values.
@@ -32,7 +32,7 @@ await start(manifest as any, {
 
 ### Twind v1 plugin
 
-[source](https://deno.land/x/tailored/plugins/twind.ts)
+[source](https://deno.land/x/tailored/plugins/twind.ts?source)
 
 Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.9
 
@@ -47,7 +47,7 @@ perspective of being built within Web components.
 
 ### useContextFetch(Context)
 
-[source](https://deno.land/x/tailored/hooks/useContextFetch.ts)
+[source](https://deno.land/x/tailored/hooks/useContextFetch.ts?source)
 
 Returns a `fetch` with headers set from the context.
 
@@ -61,20 +61,20 @@ const response = await _fetch("/api/v1/test");
 
 ### useClickOutside(callback, refOrSelector, eventType="click")
 
-[source](https://deno.land/x/tailored/hooks/useClickOutside.ts)
+[source](https://deno.land/x/tailored/hooks/useClickOutside.ts?source)
 
 Handle click outside of an element.
 
 ### useCssPlayEnd(onFinish, ref, inputs=[])
 
-[source](https://deno.land/x/tailored/hooks/useCssPlayEnd.ts)
+[source](https://deno.land/x/tailored/hooks/useCssPlayEnd.ts?source)
 
 Handle the end of a CSS animation or/and transition. At the time doesn't handle
 infinite animations.
 
 ### useDebounceCallback(callback, delay, inputs=[])
 
-[source](https://deno.land/x/tailored/hooks/useDebounceCallback.ts)
+[source](https://deno.land/x/tailored/hooks/useDebounceCallback.ts?source)
 
 Returns an object with a debounced version of the `callback`, `immediate` and
 `cancel`.
@@ -99,13 +99,13 @@ return (
 
 ### useEventListener(eventName, handler, elementRef, options)
 
-[source](https://deno.land/x/tailored/hooks/useEventListener.ts)
+[source](https://deno.land/x/tailored/hooks/useEventListener.ts?source)
 
 Handles adding event listener to an element or a set of elements (elementRef).
 
 ### usePosition(ref, options)
 
-[source](https://deno.land/x/tailored/hooks/usePosition.ts)
+[source](https://deno.land/x/tailored/hooks/usePosition.ts?source)
 
 Calculate position of a floating element. Ported from @floating-ui/react-dom
 
@@ -129,7 +129,7 @@ perspective of being built as Web components.
 An unstyled popover built with
 [Floating UI](https://floating-ui.com/docs/getting-started)
 
-[source / typedefs](https://deno.land/x/tailored/components/Popover.tsx)
+[source / typedefs](https://deno.land/x/tailored/components/Popover.tsx?source)
 
 > Usage
 
@@ -160,7 +160,7 @@ export default function App() {
 A component that toggles a class on a target element. The target element can be
 a ref or a selector.
 
-[source / typedefs](https://deno.land/x/tailored/components/ToggleClass.tsx)
+[source / typedefs](https://deno.land/x/tailored/components/ToggleClass.tsx?source)
 
 > Usage
 
