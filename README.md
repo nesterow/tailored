@@ -5,7 +5,9 @@ A set of utilities and components for [Fresh](https://fresh.deno.dev) and
 
 ## Fresh plugins
 
-### [Preact Context](https://deno.land/x/tailored/plugins/context.ts)
+### Preact Context
+
+[source](https://deno.land/x/tailored/plugins/context.ts)
 
 A plugin that enables the use of global Preact Context in islands. Current
 verion supports only one provider and only JSON-serializable values.
@@ -28,7 +30,9 @@ await start(manifest as any, {
 });
 ```
 
-### [Twind v1 plugin](https://deno.land/x/tailored/plugins/twind.ts)
+### Twind v1 plugin
+
+[source](https://deno.land/x/tailored/plugins/twind.ts)
 
 Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.9
 
@@ -38,10 +42,12 @@ Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.9
 
 ## Preact Hooks
 
-The hooks are designed with the future perspective of being built within Web
+A set of useful hooks for preact. The hooks are designed with the future perspective of being built within Web
 components.
 
-### [useContextFetch(Context)](https://deno.land/x/tailored/hooks/useContextFetch.ts)
+### useContextFetch(Context)
+
+[source](https://deno.land/x/tailored/hooks/useContextFetch.ts)
 
 Returns a `fetch` with headers set from the context.
 
@@ -53,16 +59,22 @@ const response = await _fetch("/api/v1/test");
 //..
 ```
 
-### [useClickOutside(callback, refOrSelector, eventType="click")](https://deno.land/x/tailored/hooks/useClickOutside.ts)
+### useClickOutside(callback, refOrSelector, eventType="click")
+
+[source](https://deno.land/x/tailored/hooks/useClickOutside.ts)
 
 Handle click outside of an element.
 
-### [useCssPlayEnd(onFinish, ref, inputs=[])](https://deno.land/x/tailored/hooks/useCssPlayEnd.ts)
+### useCssPlayEnd(onFinish, ref, inputs=[])
+
+[source](https://deno.land/x/tailored/hooks/useCssPlayEnd.ts)
 
 Handle the end of a CSS animation or/and transition. At the time doesn't handle
 infinite animations.
 
-### [useDebounceCallback(callback, delay, inputs=[])](https://deno.land/x/tailored/hooks/useDebounceCallback.ts)
+### useDebounceCallback(callback, delay, inputs=[])
+
+[source](https://deno.land/x/tailored/hooks/useDebounceCallback.ts)
 
 Returns an object with a debounced version of the `callback`, `immediate` and
 `cancel`.
@@ -85,11 +97,15 @@ return (
 );
 ```
 
-### [useEventListener(eventName, handler, elementRef, options)](https://deno.land/x/tailored/hooks/useEventListener.ts)
+### useEventListener(eventName, handler, elementRef, options)
+
+[source](https://deno.land/x/tailored/hooks/useEventListener.ts)
 
 Handles adding event listener to an element or a set of elements (elementRef).
 
-### [usePosition(ref, options)](https://deno.land/x/tailored/hooks/usePosition.ts)
+### usePosition(ref, options)
+
+[source](https://deno.land/x/tailored/hooks/usePosition.ts)
 
 Calculate position of a floating element. Ported from @floating-ui/react-dom
 
