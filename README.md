@@ -7,14 +7,10 @@ A set of utilities and components for [Fresh](https://fresh.deno.dev) and
 
 ### Preact Context
 
-[source](https://deno.land/x/tailored/plugins/context.ts?source)
-
 A plugin that enables the use of global Preact Context in islands. Current
 verion supports only one provider and only JSON-serializable values.
 
 > Usage
-
-[context.ts](./context.ts)
 
 ```typescript
 import Context from "./context.ts";
@@ -30,15 +26,17 @@ await start(manifest as any, {
 });
 ```
 
-### Twind v1 plugin
+[context.ts](./context.ts) |
+[source](https://deno.land/x/tailored/plugins/context.ts?source)
 
-[source](https://deno.land/x/tailored/plugins/twind.ts?source)
+### Twind v1 plugin
 
 Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.9
 
 > Usage
 
-[Plugin](./main.ts) | [Config](./twind.config.ts)
+[Plugin](./main.ts) | [Config](./twind.config.ts) |
+[source](https://deno.land/x/tailored/plugins/twind.ts?source)
 
 ## Preact Hooks
 
@@ -46,8 +44,6 @@ A set of useful hooks for preact. The hooks are designed with the future
 perspective of being built within Web components.
 
 ### useContextFetch(Context)
-
-[source](https://deno.land/x/tailored/hooks/useContextFetch.ts?source)
 
 Returns a `fetch` with headers set from the context.
 
@@ -59,22 +55,22 @@ const response = await _fetch("/api/v1/test");
 //..
 ```
 
-### useClickOutside(callback, refOrSelector, eventType="click")
+[source](https://deno.land/x/tailored/hooks/useContextFetch.ts?source)
 
-[source](https://deno.land/x/tailored/hooks/useClickOutside.ts?source)
+### useClickOutside(callback, refOrSelector, eventType="click")
 
 Handle click outside of an element.
 
-### useCssPlayEnd(onFinish, ref, inputs=[])
+[source](https://deno.land/x/tailored/hooks/useClickOutside.ts?source)
 
-[source](https://deno.land/x/tailored/hooks/useCssPlayEnd.ts?source)
+### useCssPlayEnd(onFinish, ref, inputs=[])
 
 Handle the end of a CSS animation or/and transition. At the time doesn't handle
 infinite animations.
 
-### useDebounceCallback(callback, delay, inputs=[])
+[source](https://deno.land/x/tailored/hooks/useCssPlayEnd.ts?source)
 
-[source](https://deno.land/x/tailored/hooks/useDebounceCallback.ts?source)
+### useDebounceCallback(callback, delay, inputs=[])
 
 Returns an object with a debounced version of the `callback`, `immediate` and
 `cancel`.
@@ -97,15 +93,15 @@ return (
 );
 ```
 
-### useEventListener(eventName, handler, elementRef, options)
+[source](https://deno.land/x/tailored/hooks/useDebounceCallback.ts?source)
 
-[source](https://deno.land/x/tailored/hooks/useEventListener.ts?source)
+### useEventListener(eventName, handler, elementRef, options)
 
 Handles adding event listener to an element or a set of elements (elementRef).
 
-### usePosition(ref, options)
+[source](https://deno.land/x/tailored/hooks/useEventListener.ts?source)
 
-[source](https://deno.land/x/tailored/hooks/usePosition.ts?source)
+### usePosition(ref, options)
 
 Calculate position of a floating element. Ported from @floating-ui/react-dom
 
@@ -119,6 +115,8 @@ Calculate position of a floating element. Ported from @floating-ui/react-dom
 }
 ```
 
+[source](https://deno.land/x/tailored/hooks/usePosition.ts?source)
+
 ## Components
 
 The unstyled Preact components. The components are designed with the future
@@ -128,8 +126,6 @@ perspective of being built as Web components.
 
 An unstyled popover built with
 [Floating UI](https://floating-ui.com/docs/getting-started)
-
-[source / typedefs](https://deno.land/x/tailored/components/Popover.tsx?source)
 
 > Usage
 
@@ -155,12 +151,12 @@ export default function App() {
 }
 ```
 
+[source / typedefs](https://deno.land/x/tailored/components/Popover.tsx?source)
+
 ### ToggleClass
 
 A component that toggles a class on a target element. The target element can be
 a ref or a selector.
-
-[source / typedefs](https://deno.land/x/tailored/components/ToggleClass.tsx?source)
 
 > Usage
 
@@ -180,6 +176,8 @@ export default function MenuButton(props: MenuButtonProps) {
   );
 }
 ```
+
+[source / typedefs](https://deno.land/x/tailored/components/ToggleClass.tsx?source)
 
 ## Development
 
