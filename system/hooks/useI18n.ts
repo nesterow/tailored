@@ -23,29 +23,79 @@ export interface I18nContext {
 }
 
 export interface I18nSetup {
-  formatters: Record<string, (value: unknown) => string>;
+  pattern: RegExp;
+  escapePattern: RegExp;
+  // deno-lint-ignore no-explicit-any
+  format: Record<string, (value: any, ctx?: any) => string>;
+  debug?: boolean;
+  defaultLang?: string;
+  // deno-lint-ignore no-explicit-any
+  onMissing?: (key: string, ctx: any) => string;
+  cache?: Map<string, string>;
+  cacheSize?: number;
 }
 
 const settings: I18nSetup = {
-  formatters: {},
+  pattern: /(?<!%)%([a-z0-9\:]+)/g, // %key, %key:format, != %%key
+  escapePattern: /%%([a-z0-9\:]+)/g, // %%key -> %key
+  debug: false,
+  format: {
+    upper: (value) => value.toString().toUpperCase(),
+    lower: (value) => value.toString().toLowerCase(),
+  },
 };
 
-export function setup({ formatters }: I18nSetup) {
-  settings.formatters = formatters;
+/**
+ * Sets up translations, should be called once before app initialization.
+ *
+ * - defaultLang: default language
+ * - format: custom formatters
+ * - onMissing: custom missing key handler
+ *
+ * @param {{
+ *  defaultLang?: string,
+ *  format?: Record<string, (value: any, ctx: Context) => string>,
+ *  onMissing?: (key: string, lang: string) => string
+ * }}
+ */
+export function setup(
+  {
+    defaultLang,
+    format,
+    onMissing,
+    cache = new Map<string, string>(),
+    cacheSize = 1000,
+  }: Partial<I18nSetup>,
+) {
+  settings.defaultLang = defaultLang;
+  settings.format = { ...settings.format, ...format };
+  settings.onMissing = onMissing;
+  settings.cache = cache;
+  settings.cacheSize = cacheSize;
 }
 
-export function useI18n<T>(context: Context<T & I18nContext>) {
-  const { lang, lc } = useContext(context);
+/**
+ * Reads translation settings from a context, returns translation utilities.
+ *
+ * @param {Context<T & I18nContext>} context
+ * @param {I18nSetup} config
+ * @returns {I18n, Message, t, lang}
+ */
+export function useI18n<T>(
+  context: Context<T & I18nContext>,
+  config: I18nSetup = settings,
+) {
+  const ctx = useContext(context);
+  const { lang, lc } = ctx;
+  const { defaultLang, debug, format, onMissing } = config;
 
-  return { I18n, Message, t };
+  const _cache = limitedCache(config);
+
+  return { I18n, Message, t, lang };
 
   /**
-   * Good for static components and pages that might have
-   * slightly different styles for different languages.
-   * It plays better when your app has heavy design and
-   * a lot of translations to different languages.
-   * The downside is that the translations are hardcoded
-   * and bundled with the component.
+   * Useful when there are different markup for each language
+   * or when you translate inplace.
    */
   function I18n(props: I18nProps): VNode {
     for (const child of props.children) {
@@ -62,33 +112,111 @@ export function useI18n<T>(context: Context<T & I18nContext>) {
   function Message({ children }: LcMessageProps): VNode {
     if (typeof children === "string") {
       return h(Fragment, {
-        children: lc && lc[lang] ? lc[lang][children] : children,
+        children: lc && lc[lang] ? t(lc[lang][children]) : t(children),
       } as LcMessageProps);
     }
 
     return h(Fragment, {
-      children: t(children[lang] || children[0] || ""),
+      children: t(children[lang] ?? ""),
     } as LcMessageProps);
   }
 
   /**
-   * TODO: format function calling settings.formatters, escaping, etc.
+   * Formats a string with the current language.
+   * - The template literal is %key, where key is a key name in the data object or array index.
+   * - The key can be followed by a format metod, e.g. %key:upper.
+   * - The default escape character is `%`.
+   *
+   * Examples:
+   * ```
+   *  t("Hello, %name", { name: "John" }) -> "Hello, John"
+   *  t("Hello, %%name", { name: "John" }) -> "Hello, %name"
+   *  t("Hello, %name:upper", { name: "John" }) -> "Hello, JOHN"
+   *  t("Hello, %0 %1", "John", "Doe") -> "Hello, John Doe"
+   *  t("Hello, %0 %1:upper", "John", "Doe") -> "Hello, John DOE"
+   *  t("Hello, %%0 %1", "John", "Doe") -> "Hello, %0 Doe"
+   * ```
    */
-  function t(string: string, ...args: unknown[]): string {
-    const template = lc && lc[lang] ? lc[lang][string] : string;
-    if (args.length === 0) return template;
+  function t(key: string, ...args: unknown[]): string {
+    let template = lc?.[lang]?.[key] ?? lc?.[defaultLang ?? ""]?.[key];
 
-    if (args.length === 1 && typeof args[0] === "object") {
-      return Object.entries(args[0] as Record<string, string>).reduce(
-        (p, [k, v]) => {
-          return p.replace(new RegExp(`%${k}`, "g"), v as string);
-        },
-        template,
-      );
+    if (!template) {
+      onMissing?.(key, ctx);
+      template = key;
     }
 
-    return [...args as string[]].reduce((p, c) => {
-      return p.replace(/%s/, c);
-    }, template);
+    // deno-lint-ignore no-explicit-any
+    let data: any = args;
+    if (
+      args.length === 1 &&
+      (args[0] as Record<string, unknown>).constructor === Object
+    ) {
+      data = args[0] as Record<string, unknown>;
+    }
+
+    let result = _cache?.get(template);
+    if (!result) {
+      result = getFormatKeys(template).reduce((p, c) => {
+        const [name, formatFn] = parseFormatterName(c);
+        if (debug && formatFn && !format[formatFn]) {
+          console.warn(
+            `useI18n.t ${lang}: Missing format function "${formatFn}"`,
+          );
+          console.warn(
+            `useI18n.t ${lang}: Template: "${template}", Key: "${c}"`,
+          );
+        }
+        const value =
+          (format[formatFn]?.(data[name], ctx) ?? data[name]) as string;
+        if (debug && !value) {
+          console.warn(
+            `useI18n.t ${lang}: Missing value for "${name}", with format function "${formatFn}"`,
+          );
+          console.warn(`useI18n.t ${lang}: Template: "${template}"`);
+        }
+        return p.replaceAll(`%${c}`, value);
+      }, template)
+        .replace(config.escapePattern, "$1");
+      _cache?.set(template, result);
+    }
+
+    return result;
   }
+
+  /**
+   * %key:format -> [key, format]
+   */
+  function parseFormatterName(key: string) {
+    return key
+      .replace(config.pattern, "$1")
+      .split(":");
+  }
+
+  /**
+   * Returns an array of keys in the template.
+   * - %key
+   * - %key:format
+   */
+  function getFormatKeys(template: string) {
+    return [...template.matchAll(config.pattern)].map((m) => m[1]);
+  }
+}
+
+function limitedCache(settings: I18nSetup) {
+  const cache = settings.cache;
+  return cache
+    ? {
+      get: (key: string) => cache.get(key),
+      set(key: string, value: string) {
+        cache.set(key, value);
+        if (cache.size > settings.cacheSize!) {
+          cache.delete(cache.keys().next().value);
+        }
+      },
+    }
+    : undefined;
+}
+
+export function invalidateCache() {
+  settings?.cache?.clear();
 }

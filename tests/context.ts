@@ -1,12 +1,12 @@
 import { createContext } from "preact";
-
+import type { I18nContext } from "tailored/hooks/useI18n.ts";
 interface GlobalContext {
-  lang: string;
-  lc?: Record<string, Record<string, string>>;
   headers?: Record<string, string>;
 }
 
-export default createContext<GlobalContext>({
+type Context = I18nContext & GlobalContext;
+
+export default createContext<Context>({
   lang: "en",
   lc: { en: {} },
   headers: {},

@@ -10,7 +10,7 @@ type ContextWithHeaders = {
   headers?: HeadersInit;
 };
 
-export default function useContextFetch<T>(
+export function useContextFetch<T>(
   Context: Context<T & ContextWithHeaders>,
 ) {
   const { headers } = useContext(Context);
