@@ -35,7 +35,7 @@ interface LcMessageProps {
  * Good for short strings.
  * TODO: if or when we build an app, we will need a utility to generate a dictionary in json or csv formats.
  */
-export function LcMessage({ children }: LcMessageProps) {
+export function Message({ children }: LcMessageProps) {
   const { lang, lc } = useContext(Context);
   if (typeof children === "string") {
     return (
