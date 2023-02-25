@@ -1,5 +1,5 @@
-import { useContext, useEffect, useRef, useState } from "preact/hooks";
-import useContextFetch from "tailored/hooks/useContextFetch.ts";
+import { useEffect, useRef, useState } from "preact/hooks";
+import { useContextFetch } from "tailored/hooks/useContextFetch.ts";
 import Context from "@/tests/context.ts";
 
 export default function $WithContext() {

@@ -1,10 +1,12 @@
 import Page from "@/components/Layouts/Page.tsx";
-import I18n from "@/components/i18n.tsx";
+import { useI18n } from "tailored/hooks/useI18n.ts";
+import Context from "@/context.ts";
 
 import LandingEn from "./LandingEn.tsx";
 import LandingRu from "./LandingRu.tsx";
 
 export default function Landing() {
+  const { I18n } = useI18n(Context);
   return (
     <Page>
       <I18n>

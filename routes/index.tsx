@@ -11,6 +11,7 @@ export default function Index({ url }: PageProps) {
     <Context.Provider
       value={{
         lang: getLanguage(url),
+        lc: {},
       }}
     >
       <Head>

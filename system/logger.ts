@@ -1,18 +1,7 @@
-if (typeof document !== "undefined") {
-  throw new Error("`logger` should be imported only on server side.");
-}
-
-import { Logger } from "./deps.ts";
-
-const isDev = Deno.env.get("DENO_ENV") === "development";
-const LOGGER_FILE_DIR = Deno.env.get("LOGGER_FILE_DIR");
-const LOGGER_DISABLE_CONSOLE = Deno.env.get("LOGGER_DISABLE_CONSOLE") === "1";
-const logger = new Logger();
-
-if (LOGGER_DISABLE_CONSOLE) logger.disableConsole();
-if (LOGGER_FILE_DIR) {
-  await logger.initFileLogger(LOGGER_FILE_DIR);
-}
+const isDev = typeof document !== "undefined"
+  ? false
+  : Deno.env.get("DENO_ENV") === "development";
+const logger = console;
 
 export default (prefix: string) => {
   function proxy(callback: (...args: unknown[]) => void) {
