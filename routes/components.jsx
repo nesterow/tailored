@@ -4,7 +4,7 @@
 /*@jsxRuntime automatic @jsxImportSource preact*/
 import { Head } from "$fresh/runtime.ts";
 import HexoCube from "@/islands/HexoCube.tsx";
-import Page from "@/components/Layouts/Page.tsx";
+import ReadmePage from "@/components/Layouts/ReadmePage.tsx";
 import PopoverShowcase from "@/islands/PopoverShowcase.tsx";
 function _createMdxContent(props) {
   const _components = Object.assign({
@@ -25,7 +25,7 @@ function _createMdxContent(props) {
         <meta name="description" content="HexoCube" />
       </Head>
       {"\n"}
-      <Page className="prose relative flex p-2 mx-auto max-w-screen-lg">
+      <ReadmePage className="prose relative flex p-2 mx-auto max-w-screen-lg">
         <_components.h1>{"Popover"}</_components.h1>
         <PopoverShowcase />
         <_components.hr />
@@ -72,7 +72,7 @@ function _createMdxContent(props) {
         <_components.h1>{"Popover"}</_components.h1>
         <PopoverShowcase />
         <_components.hr />
-      </Page>
+      </ReadmePage>
     </>
   );
 }

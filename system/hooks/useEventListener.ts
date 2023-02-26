@@ -1,4 +1,10 @@
-import { MutableRef, useEffect, useLayoutEffect, useRef } from "preact/hooks";
+import {
+  MutableRef,
+  useDebugValue,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from "preact/hooks";
 
 export function useEventListener<
   KW extends keyof WindowEventMap,
@@ -22,6 +28,7 @@ export function useEventListener<
   element?: MutableRef<T> | MutableRef<T>[],
   options?: boolean | AddEventListenerOptions,
 ) {
+  useDebugValue("useEventListener", () => [eventName, element, options]);
   // Create a ref that stores handler
   const savedHandler = useRef(handler);
 

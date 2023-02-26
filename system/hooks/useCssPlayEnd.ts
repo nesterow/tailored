@@ -1,4 +1,9 @@
-import { MutableRef, useLayoutEffect, useRef } from "preact/hooks";
+import {
+  MutableRef,
+  useDebugValue,
+  useLayoutEffect,
+  useRef,
+} from "preact/hooks";
 
 /**
  * Handle css transition and/or animation end.
@@ -13,6 +18,7 @@ export function useCssPlayEnd(
   ref: MutableRef<HTMLElement | null>,
   inputs: unknown[] = [],
 ) {
+  useDebugValue("useCssPlayEnd", () => ref.current);
   const pendingAnimations = useRef<unknown | null>(null);
   useLayoutEffect(() => {
     pendingAnimations.current = null;

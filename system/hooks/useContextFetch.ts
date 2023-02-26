@@ -1,5 +1,5 @@
 import { Context } from "preact";
-import { useContext } from "preact/hooks";
+import { useContext, useDebugValue } from "preact/hooks";
 
 /**
  * Use context to get headers and return fetch function.
@@ -13,6 +13,7 @@ type ContextWithHeaders = {
 export function useContextFetch<T>(
   Context: Context<T & ContextWithHeaders>,
 ) {
+  useDebugValue("useContextFetch");
   const { headers } = useContext(Context);
   return async (url: string, options?: RequestInit) => {
     const response = await fetch(url, {

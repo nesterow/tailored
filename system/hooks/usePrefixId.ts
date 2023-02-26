@@ -1,4 +1,4 @@
-import { useId, useMemo } from "preact/hooks";
+import { useDebugValue, useId, useMemo } from "preact/hooks";
 
 /**
  * Alias for useId with a prefix.
@@ -7,8 +7,10 @@ export function usePrefixId(
   prefix = "idx",
   inputs: unknown[] = [],
 ) {
-  return useMemo(
+  const id = useMemo(
     () => prefix + useId(),
     [prefix, ...inputs],
   );
+  useDebugValue("usePrefixId", () => id);
+  return id;
 }

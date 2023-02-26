@@ -1,4 +1,10 @@
-import { MutableRef, useCallback, useLayoutEffect, useRef } from "preact/hooks";
+import {
+  MutableRef,
+  useCallback,
+  useDebugValue,
+  useLayoutEffect,
+  useRef,
+} from "preact/hooks";
 import { useDomSelectorRef } from "./useDomSelectorRef.ts";
 import { usePrefixId } from "./usePrefixId.ts";
 import { useEventListener } from "./useEventListener.ts";
@@ -29,6 +35,7 @@ export function useClickOutside(
         return (typeof ref === "string") ? useDomSelectorRef(ref, [ref]) : ref;
       },
     );
+  useDebugValue("useClickOutside", () => [refs$, eventType]);
 
   // 1. unique event id for each use
   const eventId = usePrefixId(
