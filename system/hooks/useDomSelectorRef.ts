@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "preact/hooks";
+import { useDebugValue, useLayoutEffect, useRef } from "preact/hooks";
 /**
  * @hydrated
  *
@@ -37,6 +37,6 @@ export function useDomSelectorRef<T>(selector: string, inputs?: unknown[]) {
       observer.disconnect();
     };
   }, inputs ?? [selector]);
-
+  useDebugValue("useDomSelectorRef", () => ref.current);
   return ref;
 }

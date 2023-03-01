@@ -1,4 +1,9 @@
-import { useCallback, useLayoutEffect, useRef } from "preact/hooks";
+import {
+  useCallback,
+  useDebugValue,
+  useLayoutEffect,
+  useRef,
+} from "preact/hooks";
 
 // deno-lint-ignore no-explicit-any
 export function useDebounceCallback<T extends any>(
@@ -33,6 +38,7 @@ export function useDebounceCallback<T extends any>(
   }, [callback$, ...inputs]);
 
   useLayoutEffect(() => cancel, []);
-
-  return { callback, cancel, immediate };
+  const methods = { callback, cancel, immediate };
+  useDebugValue("useDebounceCallback", () => [wait, methods]);
+  return methods;
 }

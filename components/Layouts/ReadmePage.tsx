@@ -16,7 +16,7 @@ export default function Page(props: PageProps) {
       <HelixAnimation
         trigger="popstate"
         width="100%"
-        className="w-full fixed -left-[0%] top-0 bottom-0 -z-50 opacity-5"
+        className="w-full fixed -left-[0%] top-0 bottom-0 -z-50 opacity-[0.02]"
         noSSR
       />
       <div

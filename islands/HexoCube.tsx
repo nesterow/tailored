@@ -75,7 +75,6 @@ export default function HexoCube(props: HexoCubeProps) {
     }
     return hexagons;
   }
-
   return (
     <section
       class="flex flex-col items-center"

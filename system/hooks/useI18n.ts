@@ -1,5 +1,5 @@
 import { Context, Fragment, h, JSX, VNode } from "preact";
-import { useContext } from "preact/hooks";
+import { useContext, useDebugValue } from "preact/hooks";
 
 declare module "preact" {
   namespace JSX {
@@ -88,9 +88,8 @@ export function useI18n<T>(
   const ctx = useContext(context);
   const { lang, lc } = ctx;
   const { defaultLang, debug, format, onMissing } = config;
-
   const _cache = limitedCache(config);
-
+  useDebugValue("useI18n", () => lang);
   return { I18n, Message, t, lang };
 
   /**

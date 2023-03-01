@@ -3,6 +3,7 @@
  */
 import {
   useCallback,
+  useDebugValue,
   useLayoutEffect,
   useMemo,
   useRef,
@@ -35,7 +36,7 @@ export function usePosition<RT extends ReferenceType = ReferenceType>(
     whileElementsMounted,
     open,
   } = options;
-
+  useDebugValue("usePosition", () => options);
   const [data, setData] = useState<UseFloatingData>({
     x: null,
     y: null,
