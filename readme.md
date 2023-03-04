@@ -33,8 +33,7 @@ _A set of useful hooks for preact._
 
 ## Components
 
-_The unstyled Preact components. The components are designed with the future
-perspective of being built as Web components._
+_The unstyled Preact components._
 
 ### Popover
 
