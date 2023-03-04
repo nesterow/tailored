@@ -32,7 +32,7 @@ jobs:
         # uses: denoland/setup-deno@v1
         uses: denoland/setup-deno@9db7f66e8e16b5699a514448ce994936c63f0d54
         with:
-          deno-version: v1.x
+          deno-version: v1.31.1
 
       # Uncomment this step to verify the use of 'deno fmt' on each commit.
       - name: Verify formatting
@@ -42,4 +42,4 @@ jobs:
         run: deno lint
 
       - name: Run tests
-        run: deno test -A --no-check --lock-write tests/
+        run: deno test -A --no-check tests/

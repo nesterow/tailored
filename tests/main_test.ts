@@ -7,7 +7,7 @@ import {
   assertEquals,
 } from "https://deno.land/std@0.174.0/testing/asserts.ts";
 import puppeteer from "https://deno.land/x/puppeteer@16.2.0/mod.ts";
-import cleanup from "./fixtures/_load.ts";
+import { cleanup, setup } from "./fixtures/_load.ts";
 import server from "./_server.ts";
 
 const TEST_WITHOUT_BROWSER = !!Deno.env.get("TEST_WITHOUT_BROWSER");
@@ -17,6 +17,7 @@ test("tailored", {
   sanitizeOps: false,
   sanitizeResources: false,
 }, async (t) => {
+  await setup();
   const { router, serve } = await server();
 
   await t.step("ctx get /", async () => {
@@ -91,6 +92,6 @@ test("tailored", {
   });
 
   await browser.close();
-  cleanup();
-  Deno.kill(Deno.pid, "SIGQUIT");
+  await cleanup();
+  Promise.resolve().then(() => Deno.exit(0));
 });
