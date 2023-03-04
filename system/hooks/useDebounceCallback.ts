@@ -5,6 +5,24 @@ import {
   useRef,
 } from "preact/hooks";
 
+/**
+ * Debounce callback function.
+ *
+ * Usage:
+ * ```
+ * const { callback, cancel, immediate } = useDebounceCallback(
+ *  (value) => {
+ *   console.log("call me no more than once a second", value);
+ * },
+ * 1000
+ * );
+ * ```
+ *
+ * @param callback$ Callback function
+ * @param wait Wait time in milliseconds
+ * @param inputs Inputs to watch for changes
+ * @returns Callback function, cancel function and immediate function
+ */
 // deno-lint-ignore no-explicit-any
 export function useDebounceCallback<T extends any>(
   callback$: (...args: unknown[]) => void,
