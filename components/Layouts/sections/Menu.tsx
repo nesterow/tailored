@@ -81,7 +81,7 @@ export default function Menu() {
           </MenuLink>
         </I18n>
         <I18n>
-          <MenuLink lang="en" href="/capabilities">
+          <MenuLink lang="en" href="/components">
             Capabilities
           </MenuLink>
           <MenuLink lang="ru" href="/ru/capabilities">

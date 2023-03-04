@@ -2,8 +2,13 @@ import { Options, STYLE_ELEMENT_ID } from "./shared.ts";
 import { cssom, setup, Sheet, SheetRule, stringify } from "twind";
 
 type State = [string, string][];
+hydrate.called = false;
 
 export default function hydrate(options: Options, _state: State) {
+  if (hydrate.called) {
+    return;
+  }
+  hydrate.called = true;
   const el = document.getElementById(STYLE_ELEMENT_ID) as HTMLStyleElement;
   const sheet = cssom(el);
   sheet.resume = resume.bind(sheet);

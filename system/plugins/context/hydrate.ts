@@ -28,6 +28,34 @@ const _id = is_ugly ? ugly["_id"] : "_id";
 const _render = is_ugly ? ugly["_render"] : "_render";
 const _component = is_ugly ? ugly["_component"] : "_component";
 
+let contextId = "cC0";
+let provider: any = null;
+let value = null;
+
+const hook = options.vnode;
+options.vnode = (vnode: VNode) => {
+  if (typeof vnode.type === "function") {
+    vnode.__ctx = {
+      [contextId]: provider,
+    };
+  }
+  hook?.(vnode);
+};
+
+const render = options[_render];
+options[_render] = (vnode) => {
+  if (
+    vnode[_component] &&
+    vnode.__ctx
+  ) {
+    vnode[_component].context = {
+      ...vnode[_component].context,
+      ...vnode.__ctx,
+    };
+  }
+  render?.(vnode);
+};
+
 /**
  * @param Context
  * @param state
@@ -40,38 +68,14 @@ export default function hydrate(Context: any, state: { id: string }) {
         "The application must use only one global context",
     );
   }
-
   const el = document.getElementById(state.id);
-  const value = JSON.parse(
+
+  contextId = Context[_id];
+  value = JSON.parse(
     el?.innerHTML || "{}",
   );
-
-  const provider = new Context.Provider({ value });
+  provider = new Context.Provider({ value });
   provider.props = { value };
-
-  const hook = options.vnode;
-  options.vnode = (vnode: VNode) => {
-    if (typeof vnode.type === "function") {
-      vnode.__ctx = {
-        [Context[_id]]: provider,
-      };
-    }
-    hook?.(vnode);
-  };
-
-  const render = options[_render];
-  options[_render] = (vnode) => {
-    if (
-      vnode[_component] &&
-      vnode.__ctx
-    ) {
-      vnode[_component].context = {
-        ...vnode[_component].context,
-        ...vnode.__ctx,
-      };
-    }
-    render?.(vnode);
-  };
 
   setTimeout(() => {
     el?.remove();

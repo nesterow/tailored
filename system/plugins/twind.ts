@@ -23,7 +23,7 @@ export default function(state) { hydrate(options, state); }`;
       }
       return {
         scripts,
-        styles: [{ cssText, id: STYLE_ELEMENT_ID }],
+        styles: [{ cssText, id: STYLE_ELEMENT_ID, "data-attr": "test" }],
       };
     },
   };
