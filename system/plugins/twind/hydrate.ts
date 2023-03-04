@@ -1,5 +1,5 @@
 import { Options, STYLE_ELEMENT_ID } from "./shared.ts";
-import { cssom, setup, Sheet, SheetRule, stringify } from "twind";
+import { cssom, setup, Sheet, SheetRule, stringify } from "twind/core";
 
 type State = [string, string][];
 hydrate.called = false;

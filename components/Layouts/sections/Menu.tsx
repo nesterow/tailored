@@ -3,7 +3,7 @@ import Context from "@/context.ts";
 import MenuLink from "@/islands/MenuLink.tsx";
 import LangSwitcher from "@/islands/LangSwitcher.tsx";
 import MenuButton from "@/islands/MenuButton.tsx";
-import { apply, tw } from "twind";
+import { apply, tw } from "twind/core";
 
 const LANGUAGES = Deno.env.get("LANGUAGES")?.split(",") ?? ["en"];
 

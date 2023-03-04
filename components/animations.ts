@@ -1,4 +1,4 @@
-import { animation, css, keyframes } from "twind";
+import { animation, css, keyframes } from "twind/core";
 
 const typeEffect = keyframes({
   "from": {

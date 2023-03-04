@@ -1,4 +1,4 @@
-import { apply, tw } from "twind";
+import { apply, tw } from "twind/core";
 
 const footer_style = apply`
   appear

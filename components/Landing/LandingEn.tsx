@@ -2,7 +2,7 @@ import HexoCube from "@/islands/HexoCube.tsx";
 import ColorfulLink from "@/components/ColorfulLink.tsx";
 import StackIcons from "@/islands/StackIcons.tsx";
 import { ArrowGuideIcon } from "@/components/icons.ts";
-import { cx, tw } from "twind";
+import { cx, tw } from "twind/core";
 
 const action_link_style = cx`
   menu-link

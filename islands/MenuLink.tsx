@@ -1,6 +1,6 @@
 import ColorfulLink, { ColorfulLinkProps } from "@/components/ColorfulLink.tsx";
 import { useEffect, useState } from "preact/hooks";
-import { tw } from "twind";
+import { tw } from "twind/core";
 /**
  * `props.href` must start with '/'
  */

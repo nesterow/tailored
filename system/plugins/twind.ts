@@ -1,4 +1,4 @@
-import { extract } from "twind";
+import { extract } from "twind/core";
 import { Plugin } from "$fresh/server.ts";
 
 import { Options, setup, STYLE_ELEMENT_ID } from "./twind/shared.ts";

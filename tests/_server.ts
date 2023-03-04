@@ -1,3 +1,5 @@
+/// <reference types="../typings/twind.d.ts" />
+
 import { Manifest, ServerContext } from "$fresh/server.ts";
 import { serve } from "$fresh/src/server/deps.ts";
 import twindPlugin from "../system/plugins/twind.ts";

@@ -1,4 +1,5 @@
 #!/usr/bin/env -S deno run -A --watch=static/,routes/
+/// <reference types="./typings/twind.d.ts" />
 
 import {
   compileMdx as compile_mdx,

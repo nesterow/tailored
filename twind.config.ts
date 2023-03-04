@@ -1,4 +1,4 @@
-import { defineConfig, Preset } from "twind";
+import { defineConfig, Preset } from "twind/core";
 import presetAutoprefix from "preset-autoprefix";
 import twindPreset from "preset-tailwind";
 import presetTypography from "preset-typography";

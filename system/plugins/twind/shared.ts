@@ -1,5 +1,5 @@
 import { JSX, options as preactOptions, VNode } from "preact";
-import { install as twSetup, tw, TwindConfig } from "twind";
+import { install as twSetup, tw, TwindConfig } from "twind/core";
 
 export const STYLE_ELEMENT_ID = "__FRSH_TWIND";
 
