@@ -1,0 +1,5 @@
+static/* linguist-vendored
+.github/* linguist-vendored
+*.sh linguist-detectable=false
+*.jsx linguist-detectable=false
+*.html linguist-detectable=false
