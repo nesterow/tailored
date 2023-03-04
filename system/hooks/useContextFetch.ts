@@ -3,6 +3,16 @@ import { useContext, useDebugValue } from "preact/hooks";
 
 /**
  * Use context to get headers and return fetch function.
+ *
+ * Usage:
+ * ```
+ *
+ * import Context from "@/context.ts";
+ * // ...
+ * const _fetch = useContextFetch(Context);
+ * const response = await _fetch("/api/endpoint", { method: "POST" });
+ *
+ * ```
  * @returns fetch function with headers from context
  */
 
