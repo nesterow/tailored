@@ -26,8 +26,8 @@ _A set of useful hooks for preact._
   > (elementRef).
 - [usePosition(ref, options)](https://deno.land/x/tailored/hooks/usePosition.ts?source)
   > Calculate position of a floating element. Ported from @floating-ui/react-dom
-- [useI18n(ctx)](https://deno.land/x/tailored/hooks/useI18n.ts?source) Use
-  > Translations set from context: `{lc: {}, lang: "en"}`
+- [useI18n(ctx)](https://deno.land/x/tailored/hooks/useI18n.ts?source)
+  > Use translations set from context: `{lc: {en: {}}, lang: "en"}`
 
 ---
 
@@ -118,7 +118,7 @@ await start(manifest, {
 
 ### Client plugin
 
-Used for clien-only code:
+Used for client-only code:
 
 ```typescript
 import clientPlugin from "tailored/plugins/client.ts";
