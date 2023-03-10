@@ -25,6 +25,7 @@ SOFTWARE.
 import type { JSX } from "preact";
 import { useEffect, useRef } from "preact/hooks";
 import { useEventListener } from "../hooks/useEventListener.ts";
+import { useDebounceCallback } from "../hooks/useDebounceCallback.ts";
 import { h, hydrate } from "preact";
 
 const isServer = typeof document === "undefined";
@@ -81,16 +82,21 @@ export function LazyHydrate(
         { threshold: 0.1 },
       );
       observer.observe(ref.current!);
+      return () => {
+        observer.disconnect();
+      };
     }
   }, []);
 
+  const render = useDebounceCallback(() => {
+    hydrate(children, ref.current!);
+    ref.current?.classList.remove(nonHydratedCls);
+    ref.current?.classList.add(hydratedCls);
+  }, 50);
+
   useEventListener(
     event!,
-    () => {
-      hydrate(children, ref.current!);
-      ref.current?.classList.remove(nonHydratedCls);
-      ref.current?.classList.add(hydratedCls);
-    },
+    render.callback,
     useRef(document),
     { once: true },
   );

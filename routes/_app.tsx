@@ -5,7 +5,6 @@ export default function App({ Component }: AppProps) {
   return (
     <>
       <Head>
-        {/* <meta name="turbo-cache-control" content="no-cache"/> */}
         <link
           rel="apple-touch-icon"
           sizes="180x180"
