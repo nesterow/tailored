@@ -8,7 +8,7 @@ islands/**/$*.ts
 islands/**/$*.tsx
 islands/**/$*.js
 islands/**/$*.jsx
-layouts/**/$*.ts
-layouts/**/$*.tsx
-layouts/**/$*.js
-layouts/**/$*.jsx
+components/**/$*.ts
+components/**/$*.tsx
+components/**/$*.js
+components/**/$*.jsx

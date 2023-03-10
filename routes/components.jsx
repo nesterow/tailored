@@ -4,6 +4,7 @@
 /*@jsxRuntime automatic @jsxImportSource preact*/
 import { Head } from "$fresh/runtime.ts";
 import HexoCube from "@/islands/HexoCube.tsx";
+import LazyHexoCube from "@/islands/LazyHexoCube.tsx";
 import ReadmePage from "@/components/Layouts/ReadmePage.tsx";
 import PopoverShowcase from "@/islands/PopoverShowcase.tsx";
 function _createMdxContent(props) {
@@ -72,6 +73,12 @@ function _createMdxContent(props) {
         <_components.h1>{"Popover"}</_components.h1>
         <PopoverShowcase />
         <_components.hr />
+        <LazyHexoCube
+          width={500}
+          height={500}
+          title="LazyHexoCube Island"
+          play
+        />
       </ReadmePage>
     </>
   );

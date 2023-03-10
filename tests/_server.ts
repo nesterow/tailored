@@ -46,6 +46,6 @@ export default async () => {
     ctx,
     router,
     handler,
-    serve: () => serve(handler, { port: 3001 }),
+    serve: () => serve(handler, { port: 7001 }),
   };
 };

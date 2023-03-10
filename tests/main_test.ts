@@ -40,14 +40,14 @@ test("tailored", {
     return;
   }
 
-  const url = "http://localhost:3001";
+  const url = "http://localhost:7001";
   const _server = serve();
   while (await (await fetch(url)).ok === false) {
     await delay(100);
   }
   console.log("Test server started @", url);
   await t.step("fetch get /$test", async () => {
-    const res = await fetch("http://localhost:3001/$test");
+    const res = await fetch("http://localhost:7001/$test");
     const contents = await res.text();
     assert(contents.includes("<span>Hello world!</span>"));
     assertEquals(res.status, 200);
@@ -70,14 +70,14 @@ test("tailored", {
   });
 
   await t.step("pupeteer get /$test", async () => {
-    await page.goto("http://localhost:3001/$test", {
+    await page.goto("http://localhost:7001/$test", {
       waitUntil: "networkidle2",
     });
     await page.waitForSelector("span");
   });
 
   await t.step("useFetch + SharedContext + island", async () => {
-    await page.goto("http://localhost:3001/$usefetch", {
+    await page.goto("http://localhost:7001/$usefetch", {
       waitUntil: "networkidle2",
     });
 

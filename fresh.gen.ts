@@ -12,10 +12,11 @@ import * as $5 from "./routes/index.tsx";
 import * as $$0 from "./islands/HelixAnimation.tsx";
 import * as $$1 from "./islands/HexoCube.tsx";
 import * as $$2 from "./islands/LangSwitcher.tsx";
-import * as $$3 from "./islands/MenuButton.tsx";
-import * as $$4 from "./islands/MenuLink.tsx";
-import * as $$5 from "./islands/PopoverShowcase.tsx";
-import * as $$6 from "./islands/StackIcons.tsx";
+import * as $$3 from "./islands/LazyHexoCube.tsx";
+import * as $$4 from "./islands/MenuButton.tsx";
+import * as $$5 from "./islands/MenuLink.tsx";
+import * as $$6 from "./islands/PopoverShowcase.tsx";
+import * as $$7 from "./islands/StackIcons.tsx";
 
 const manifest = {
   routes: {
@@ -30,10 +31,11 @@ const manifest = {
     "./islands/HelixAnimation.tsx": $$0,
     "./islands/HexoCube.tsx": $$1,
     "./islands/LangSwitcher.tsx": $$2,
-    "./islands/MenuButton.tsx": $$3,
-    "./islands/MenuLink.tsx": $$4,
-    "./islands/PopoverShowcase.tsx": $$5,
-    "./islands/StackIcons.tsx": $$6,
+    "./islands/LazyHexoCube.tsx": $$3,
+    "./islands/MenuButton.tsx": $$4,
+    "./islands/MenuLink.tsx": $$5,
+    "./islands/PopoverShowcase.tsx": $$6,
+    "./islands/StackIcons.tsx": $$7,
   },
   baseUrl: import.meta.url,
   config,
