@@ -70,6 +70,7 @@ export default function Menu() {
       </div>
       <div
         data-mobile-menu
+        data-prefetch
         className={apply(mobile_menu_close_style, menu_container_style)}
       >
         <I18n>

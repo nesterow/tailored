@@ -2,6 +2,7 @@
   "imports": {
     "@/": "./",
     "tailored/": "./system/",
+    "quicklink": "https://esm.sh/quicklink@2.3.0",
     "$std/": "https://deno.land/std@0.144.0/",
     "$fresh/": "https://deno.land/x/fresh@1.1.4/",
     "preact": "https://esm.sh/preact@10.11.0",

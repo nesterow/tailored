@@ -16,6 +16,7 @@ import Context from "./context.ts";
 // deno-lint-ignore no-explicit-any
 await start(manifest as any, {
   plugins: [
+    preloaderPlugin(),
     clientPlugin(
       new URL("./client.ts", import.meta.url).href,
     ),
@@ -23,7 +24,6 @@ await start(manifest as any, {
       Context,
       new URL("./context.ts", import.meta.url).href,
     ),
-    preloaderPlugin(),
     twindPlugin({
       selfURL: new URL("./twind.config.ts", import.meta.url).href,
       ...twindConfig,
