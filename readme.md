@@ -88,6 +88,35 @@ export default function MenuButton(props: MenuButtonProps) {
 
 [source / typedefs](https://deno.land/x/tailored/components/ToggleClass.tsx?source)
 
+### LazyHydrate
+
+Hydrate components only when they are in the viewport or when an event is
+emitted. You can control hydration by emmiting a custom event on the document.
+By default, the component supports the `visible` event which is implemented with
+an intersection observer.
+
+```typescript
+import { tw } from "twind/core";
+import LazyHydrate from "https://deno.land/x/tailored/components/LazyHydrate.tsx";
+
+export default function MenuButton(props: MenuButtonProps) {
+  return (
+    <LazyHydrate
+      id="lazy123"
+      event="visible"
+      classNames={[
+        "x-non-hydrated",
+        "x-hydrated",
+      ]}
+    >
+      <MyComplexComponent {...props} />
+    </LazyHydrate>
+  );
+}
+```
+
+[source / typedefs](https://deno.land/x/tailored/components/LazyHydrate.tsx?source)
+
 ---
 
 ## Fresh plugins

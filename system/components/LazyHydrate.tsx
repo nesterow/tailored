@@ -49,7 +49,7 @@ LazyHydrate.defaultProps = {
  * Listens to the `event` on the `document` and hydrates the component.
  * Default emitted custom event is `visible`, dispatched by an IntersectionObserver.
  */
-export function LazyHydrate(
+export default function LazyHydrate(
   { children, event, tagName, id, classNames }: LazyHydrateProps,
 ) {
   const [nonHydratedCls, hydratedCls] = classNames!;

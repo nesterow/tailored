@@ -1,4 +1,4 @@
-import { LazyHydrate } from "tailored/components/LazyHydrate.tsx";
+import LazyHydrate from "tailored/components/LazyHydrate.tsx";
 import HexoCube from "./HexoCube.tsx";
 
 export default function LazyHexoCube(props: Parameters<typeof HexoCube>[0]) {
