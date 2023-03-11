@@ -1,17 +1,20 @@
+/// <reference no-default-lib="true" />
+/// <reference lib="dom" />
 /**
- * Client only code
+ * Client only code: prefetch, service worker, etc.
  */
 import { listen } from "quicklink";
 
-export function init() {
-  document.addEventListener("DOMContentLoaded", () => {
-    const anchors: NodeListOf<HTMLElement> = document.querySelectorAll(
+function prefetchLinks() {
+  setTimeout(() => {
+    const anchorParents: NodeListOf<HTMLElement> = document.querySelectorAll(
       "[data-prefetch]",
     );
-    anchors.forEach((el) =>
+    anchorParents.forEach((el) =>
       listen({
         limit: 10,
         el,
+        delay: 2000,
         ignores: [
           (uri) => {
             return uri.includes("#") || uri === location.toString();
@@ -19,5 +22,18 @@ export function init() {
         ],
       })
     );
-  }, { once: true });
+  }, 5000);
+}
+
+export function init() {
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
+    prefetchLinks();
+  } else {
+    document.addEventListener("DOMContentLoaded", prefetchLinks, {
+      once: true,
+    });
+  }
 }

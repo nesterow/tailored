@@ -106,7 +106,7 @@ export default function LazyHydrate(
     ref.current?.classList.remove(nonHydratedCls);
     ref.current?.classList.add(hydratedCls);
     observer?.disconnect();
-  }, 5);
+  }, 25);
 
   useEventListener(
     eventName,
