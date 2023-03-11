@@ -64,6 +64,7 @@ export default function LazyHydrate(
 
   const ref = useRef(document.getElementById(id));
   const eventName = "hydrate" + id;
+  let observer: IntersectionObserver;
 
   if (event !== "visible") {
     useEventListener(
@@ -80,7 +81,7 @@ export default function LazyHydrate(
       if (
         "IntersectionObserver" in window
       ) {
-        const observer = new IntersectionObserver(
+        observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
@@ -94,7 +95,7 @@ export default function LazyHydrate(
         );
         observer.observe(ref.current!);
         return () => {
-          observer.disconnect();
+          observer?.disconnect();
         };
       }
     }, []);
@@ -104,7 +105,8 @@ export default function LazyHydrate(
     hydrate(children, ref.current!);
     ref.current?.classList.remove(nonHydratedCls);
     ref.current?.classList.add(hydratedCls);
-  }, 50);
+    observer?.disconnect();
+  }, 5);
 
   useEventListener(
     eventName,
