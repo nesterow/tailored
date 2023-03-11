@@ -63,30 +63,42 @@ export default function LazyHydrate(
   }
 
   const ref = useRef(document.getElementById(id));
+  const eventName = "hydrate" + id;
 
-  useEffect(() => {
-    if (
-      event === "visible" &&
-      "IntersectionObserver" in window
-    ) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const event = new CustomEvent("visible");
-              document.dispatchEvent(event);
-              observer.disconnect();
-            }
-          });
-        },
-        { threshold: 0.1 },
-      );
-      observer.observe(ref.current!);
-      return () => {
-        observer.disconnect();
-      };
-    }
-  }, []);
+  if (event !== "visible") {
+    useEventListener(
+      event!,
+      () => {
+        const event = new CustomEvent(eventName);
+        document.dispatchEvent(event);
+      },
+      useRef(document),
+      { once: true },
+    );
+  } else {
+    useEffect(() => {
+      if (
+        "IntersectionObserver" in window
+      ) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const event = new CustomEvent(eventName);
+                document.dispatchEvent(event);
+                observer.disconnect();
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+        observer.observe(ref.current!);
+        return () => {
+          observer.disconnect();
+        };
+      }
+    }, []);
+  }
 
   const render = useDebounceCallback(() => {
     hydrate(children, ref.current!);
@@ -95,7 +107,7 @@ export default function LazyHydrate(
   }, 50);
 
   useEventListener(
-    event!,
+    eventName,
     render.callback,
     useRef(document),
     { once: true },
