@@ -16,7 +16,10 @@ import Context from "./context.ts";
 // deno-lint-ignore no-explicit-any
 await start(manifest as any, {
   plugins: [
-    preloaderPlugin(),
+    preloaderPlugin(
+      "linear-gradient(to right, #f65599 0%, #fd5599 51%, #f65599 100%)",
+      "4px",
+    ),
     clientPlugin(
       new URL("./client.ts", import.meta.url).href,
     ),

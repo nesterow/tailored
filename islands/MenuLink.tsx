@@ -30,7 +30,7 @@ export default function MenuLink(props: ColorfulLinkProps) {
       active={active}
       className={tw(
         "menu-link hover:[&>svg]:zap " +
-          (props.className || "text-2xl font-bold hover:text-blue"),
+          (props.className || "text-2xl font-thin hover:text-blue"),
       )}
       onClick={() => setActive(true)}
     />

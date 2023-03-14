@@ -173,16 +173,14 @@ import preloaderPlugin from "tailored/plugins/preloader.ts";
 
 await start(manifest, {
   plugins: [
-    preloaderPlugin({
-      color: "#48d1cc",
-    }),
+    preloaderPlugin("#48d1cc", "4px"),
   ],
 });
 ```
 
 ### Twind v1 plugin
 
-Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.9
+Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.x
 
 [Plugin](./main.ts) | [Config](./twind.config.ts) |
 [source](https://deno.land/x/tailored/plugins/twind.ts?source)

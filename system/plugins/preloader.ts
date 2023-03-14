@@ -39,12 +39,12 @@ const KEYFRAMES = `
 }
 `;
 
-export default function preloader({ animation, keyframes, color, height } = {
-  animation: ANIMATION,
-  keyframes: KEYFRAMES,
-  color: "linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%)",
-  height: "10px",
-}): Plugin {
+export default function preloader(
+  color = "linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%)",
+  height = "10px",
+  animation = ANIMATION,
+  keyframes = KEYFRAMES,
+): Plugin {
   const main = `data:application/javascript,
   export default function(_) {
     const preloader = document.getElementById("__preloader");
@@ -54,13 +54,17 @@ export default function preloader({ animation, keyframes, color, height } = {
       rules.style.animation = "${animation}";
     };
     window.hidePreloader = () => {
-      rules.style.animationDuration = ".3s";
+      rules.style.animationDuration = ".15s";
       setTimeout(() => {
         rules.style.display = "none";
         rules.style.animation = "none";
-      }, 300);
+      }, 50);
     };
     window.addEventListener('load', hidePreloader);
+    window.addEventListener('beforeunload', () => {
+      rules.style.animationDuration = "1s";
+      showPreloader()
+    });
   }
   `;
   return {

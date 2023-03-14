@@ -32,7 +32,7 @@ const menu_container_style = apply`
   transition-all
   duration-300
   ease-in
-  opacity-90
+  opacity-95
 `;
 const menu_wrapper_style = apply`
   w-full
@@ -75,10 +75,10 @@ export default function Menu() {
       >
         <I18n>
           <MenuLink lang="en" href="/">
-            Tailored
+            Get started
           </MenuLink>
           <MenuLink lang="ru" href="/ru">
-            Tailored
+            Старт
           </MenuLink>
         </I18n>
         <I18n>

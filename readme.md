@@ -173,9 +173,7 @@ import preloaderPlugin from "tailored/plugins/preloader.ts";
 
 await start(manifest, {
   plugins: [
-    preloaderPlugin({
-      color: "#48d1cc",
-    }),
+    preloaderPlugin("#48d1cc", "4px"),
   ],
 });
 ```
