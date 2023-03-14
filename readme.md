@@ -1,4 +1,4 @@
-# Tailored
+# Tailored Components
 
 ![test](https://github.com/nesterow/tailored/actions/workflows/test.yml/badge.svg?branch=main)
 
@@ -182,7 +182,7 @@ await start(manifest, {
 
 ### Twind v1 plugin
 
-Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.9
+Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.x
 
 [Plugin](./main.ts) | [Config](./twind.config.ts) |
 [source](https://deno.land/x/tailored/plugins/twind.ts?source)

@@ -1,4 +1,4 @@
-# Tailored
+# Tailored Components
 
 ![test](https://github.com/nesterow/tailored/actions/workflows/test.yml/badge.svg?branch=main)
 

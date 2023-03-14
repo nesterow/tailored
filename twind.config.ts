@@ -18,7 +18,7 @@ const colors = {
   main: "#800856",
   blue: "#000082",
   blood: "#ac2424",
-  light: "#fffdf099",
+  light: "#ffffff99",
 };
 
 export default defineConfig({
@@ -49,7 +49,7 @@ export default defineConfig({
     [
       "menu-link",
       () =>
-        `no-underline opacity-[0.6] stroke-0 active:stroke-1 hover:${boldPathAnimation()}`,
+        `no-underline opacity-[0.9] stroke-0 active:stroke-1 font-thin hover:${boldPathAnimation()}`,
     ],
     ["zap", () => `${zapAnimation()}`],
   ],

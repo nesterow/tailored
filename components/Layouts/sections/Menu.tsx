@@ -75,42 +75,34 @@ export default function Menu() {
       >
         <I18n>
           <MenuLink lang="en" href="/">
-            About
+            Tailored
           </MenuLink>
           <MenuLink lang="ru" href="/ru">
-            Основное
+            Tailored
           </MenuLink>
         </I18n>
         <I18n>
           <MenuLink lang="en" href="/components">
-            Capabilities
+            Components
           </MenuLink>
-          <MenuLink lang="ru" href="/ru/capabilities">
-            Возможности
-          </MenuLink>
-        </I18n>
-        <I18n>
-          <MenuLink lang="en" href="/stack">
-            Stack
-          </MenuLink>
-          <MenuLink lang="ru" href="/ru/stack">
-            Технологии
+          <MenuLink lang="ru" href="/ru/components">
+            Компоненты
           </MenuLink>
         </I18n>
         <I18n>
-          <MenuLink lang="en" href="/cases">
-            Cases
+          <MenuLink lang="en" href="/hooks">
+            Hooks
           </MenuLink>
-          <MenuLink lang="ru" href="/ru/cases">
-            Кейсы
+          <MenuLink lang="ru" href="/ru/hooks">
+            Хуки
           </MenuLink>
         </I18n>
         <I18n>
-          <MenuLink lang="en" href="/hire">
-            Hire
+          <MenuLink lang="en" href="/plugins">
+            Plugins
           </MenuLink>
-          <MenuLink lang="ru" href="/ru/hire">
-            Контакты
+          <MenuLink lang="ru" href="/ru/plugins">
+            Плагины
           </MenuLink>
         </I18n>
       </div>

@@ -81,10 +81,10 @@ export default function HexoCube(props: HexoCubeProps) {
       className={props.className}
       onClick={play}
     >
-      <svg width={props.width} height={props.height} viewBox="0 0 100 100">
+      <svg width={props.width} height={props.height} viewBox="0 0 100 110">
         <defs>
         </defs>
-        <g transform="rotate(90, 50, 50)">
+        <g transform="rotate(90, 50, 50)" y="-20">
           {hexagons.map((polygon, i) => (
             <polygon
               // ref={refs[i]}
@@ -103,18 +103,18 @@ export default function HexoCube(props: HexoCubeProps) {
             stroke-width="1.5"
           />
         </g>
-        <text x="15.6" style="opacity:0.6;">
+        <text x="12">
           {props.title?.split("").map((char, i) => (
             <tspan
-              dx="0.09"
-              y="97"
+              dx="0"
+              y="105"
               text-anchor="middle"
+              style={{
+                textAlign: "center",
+              }}
               alignment-baseline="middle"
-              font-size="8"
+              font-size="7"
               font-family="mono,monospace,courier"
-              fill={i < Math.ceil((props.title?.length || 0) / 2)
-                ? "blue"
-                : "red"}
             >
               {char}
             </tspan>

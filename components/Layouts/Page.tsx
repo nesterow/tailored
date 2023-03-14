@@ -15,7 +15,7 @@ export default function Page(props: PageProps) {
       <HelixAnimation
         trigger="popstate"
         width="100%"
-        className="w-full fixed -left-[0%] top-0 bottom-0 -z-50 opacity-[0.02]"
+        className="w-full fixed -left-[0%] top-0 bottom-0 -z-50 opacity-[0.01]"
         noSSR
       />
       <div
@@ -26,7 +26,7 @@ export default function Page(props: PageProps) {
           {props.children}
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
