@@ -161,7 +161,6 @@ Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.x
 
 ---
 
-
 ## Preact Hooks
 
 _A set of useful hooks for preact._
@@ -185,7 +184,6 @@ _A set of useful hooks for preact._
   > Use translations set from context: `{lc: {en: {}}, lang: "en"}`
 
 ---
-
 
 ## Development
 
