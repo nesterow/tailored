@@ -5,32 +5,6 @@
 _Isomorphic utilities, components and hooks for [Fresh](https://fresh.deno.dev)
 and [Preact](https://preactjs.com)._
 
----
-
-## Preact Hooks
-
-_A set of useful hooks for preact._
-
-- [useContextFetch(ctx)](https://deno.land/x/tailored/hooks/useContextFetch.ts?source)
-  > Retutns fetch function with set headers from context: `{headers: {}}`
-- [useClickOutside(callback, refOrSelector, eventType="click")](https://deno.land/x/tailored/hooks/useClickOutside.ts?source)
-  > Handle click outside of an element set by ref or selector.
-- [useCssPlayEnd(onFinish, ref, inputs=[])](https://deno.land/x/tailored/hooks/useCssPlayEnd.ts?source)
-  > Handle the end of a CSS animation or/and transition. At the time doesn't
-  > handle infinite animations.
-- [useDebounceCallback(callback, delay, inputs=[])](https://deno.land/x/tailored/hooks/useDebounceCallback.ts?source)
-  > Returns an object with a debounced version of the `callback`, `immediate`
-  > and `cancel`.
-- [useEventListener(eventName, handler, elementRef, options)](https://deno.land/x/tailored/hooks/useEventListener.ts?source)
-  > Handles adding event listener to an element or a set of elements
-  > (elementRef).
-- [usePosition(ref, options)](https://deno.land/x/tailored/hooks/usePosition.ts?source)
-  > Calculate position of a floating element. Ported from @floating-ui/react-dom
-- [useI18n(ctx)](https://deno.land/x/tailored/hooks/useI18n.ts?source)
-  > Use translations set from context: `{lc: {en: {}}, lang: "en"}`
-
----
-
 ## Components
 
 _The unstyled Preact components._
@@ -186,6 +160,32 @@ Twind v1 plugin for Fresh. Based on the official fresh plugin for twind v0.x
 [source](https://deno.land/x/tailored/plugins/twind.ts?source)
 
 ---
+
+
+## Preact Hooks
+
+_A set of useful hooks for preact._
+
+- [useContextFetch(ctx)](https://deno.land/x/tailored/hooks/useContextFetch.ts?source)
+  > Retutns fetch function with set headers from context: `{headers: {}}`
+- [useClickOutside(callback, refOrSelector, eventType="click")](https://deno.land/x/tailored/hooks/useClickOutside.ts?source)
+  > Handle click outside of an element set by ref or selector.
+- [useCssPlayEnd(onFinish, ref, inputs=[])](https://deno.land/x/tailored/hooks/useCssPlayEnd.ts?source)
+  > Handle the end of a CSS animation or/and transition. At the time doesn't
+  > handle infinite animations.
+- [useDebounceCallback(callback, delay, inputs=[])](https://deno.land/x/tailored/hooks/useDebounceCallback.ts?source)
+  > Returns an object with a debounced version of the `callback`, `immediate`
+  > and `cancel`.
+- [useEventListener(eventName, handler, elementRef, options)](https://deno.land/x/tailored/hooks/useEventListener.ts?source)
+  > Handles adding event listener to an element or a set of elements
+  > (elementRef).
+- [usePosition(ref, options)](https://deno.land/x/tailored/hooks/usePosition.ts?source)
+  > Calculate position of a floating element. Ported from @floating-ui/react-dom
+- [useI18n(ctx)](https://deno.land/x/tailored/hooks/useI18n.ts?source)
+  > Use translations set from context: `{lc: {en: {}}, lang: "en"}`
+
+---
+
 
 ## Development
 
