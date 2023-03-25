@@ -42,4 +42,4 @@ jobs:
         run: deno lint
 
       - name: Run tests
-        run: deno test -A --no-check tests/
+        run: deno test -A --no-check --reload tests/
